@@ -27,8 +27,8 @@ def test_proposal_unapproved_by_default():
 
 def test_cannot_send_without_approval():
     proposal = ReplyProposal(ticket_id=1,category="general",suggested_reply="Hello")
-    assert simulate_send(proposal,approved=False)["sent"] is False
+    assert simulate_send(proposal,approved=False)["would_send"] is False
 
 def test_approved_send_is_still_only_simulated():
     proposal = ReplyProposal(ticket_id=1,category="general",suggested_reply="Hello")
-    assert simulate_send(proposal,approved=True)["sent"] is True
+    assert simulate_send(proposal,approved=True)["would_send"] is True

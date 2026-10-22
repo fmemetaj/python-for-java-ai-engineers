@@ -1,19 +1,21 @@
-# Progress tracker (60 minutes)
+# Course progress
 
-Tick each checkbox when you've run the notebook and tried its checkpoint.
+Check each notebook when you've run the examples and attempted its checkpoint. **The core is 60 minutes**; optional setup and lab are outside that time.
 
-- [ ] [00 · Getting started](notebooks/00_getting_started.ipynb) — 3 min
-- [ ] [01 · Pythonic essentials](notebooks/01_pythonic_essentials.ipynb) — 9 min
-- [ ] [02 · OOP, typing and Pydantic](notebooks/02_typing_pydantic.ipynb) — 12 min
-- [ ] [03 · Async and streaming](notebooks/03_async_streaming.ipynb) — 12 min
+- [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb) — 3 min
+- [ ] [01 · Pythonic Essentials](notebooks/01_pythonic_essentials.ipynb) — 9 min
+- [ ] [02 · OOP, Typing & Pydantic](notebooks/02_typing_pydantic.ipynb) — 12 min
+- [ ] [03 · Async & Streaming](notebooks/03_async_streaming.ipynb) — 12 min
 - [ ] [04 · Production Python](notebooks/04_production_python.ipynb) — 9 min
-- [ ] [05 · Mini agent-shaped workflow](notebooks/05_mini_ai_agent.ipynb) — 12 min
-- [ ] [06 · Readiness check](notebooks/06_readiness_check.ipynb) — 3 min
+- [ ] [05 · Mini Workflow](notebooks/05_mini_ai_agent.ipynb) — 12 min
+- [ ] [06 · Readiness Check](notebooks/06_readiness_check.ipynb) — 3 min
 
-**Total:** 60 min (excluding initial setup).
+## Optional showcase (after the one-hour core)
 
-## Notes
+- [ ] [Open the Gradio app in Mock mode](guides/06_local_ai_lab.md)
+- [ ] Try Ollama with `llama3.2:1b` locally (optional)
+- [ ] Extend one category and add a test
 
-| Lesson | Questions to revisit |
-| --- | --- |
-| | |
+## Troubleshooting notes
+
+Use the [specific guides](guides/README.md) only when needed.

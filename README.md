@@ -1,100 +1,108 @@
-# Python for Java AI Engineers
+<p align="center"><img src="assets/bridge.svg" alt="Illustrated bridge from Java development to Python AI engineering" width="100%"></p>
 
-**A practical, 60-minute Python bridge for experienced Java developers entering AI engineering.**
+<h1 align="center">Python for Java AI Engineers</h1>
+<p align="center"><strong>A practical, 60-minute bridge from the Java you know to Python you'll use in AI engineering.</strong></p>
+<p align="center"><a href="https://github.com/fmemetaj/python-for-java-ai-engineers/actions/workflows/ci.yml"><img src="https://github.com/fmemetaj/python-for-java-ai-engineers/actions/workflows/ci.yml/badge.svg" alt="CI checks"></a> <img src="https://img.shields.io/badge/Python-3.12-3776ab" alt="Python 3.12"> <img src="https://img.shields.io/badge/study-60_minutes-446f61" alt="60 minutes"> <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="MIT license"></a></p>
 
-If you've worked with Java, Spring Boot, APIs and backend architecture, you already know how to program. The question is how Python expresses familiar ideas, and which Python patterns you'll encounter in LLM and agent projects. Let's focus on *that*.
+> **You already know how to program.** Learn the Python-specific patterns that turn up in AI projects, without re-learning basic programming.
 
-This is a beginner-friendly **Python language bridge**, not a complete AI, LangChain or Python course. Examples use a fictional helpdesk: support tickets, knowledge-base lookup and an approval-gated response. The mini workflow is deterministic and does **not** call an LLM. You do not need API keys or paid services.
+Seven hands-on **Jupyter notebooks**, Java comparisons, short exercises, a targeted `guides/` directory, and an **optional Gradio + Ollama local AI demo**. No paid API keys, Java-to-Python conversion service, or previous machine-learning experience required.
 
-## Who this is for
+## Start here
 
-- Experienced Java/JVM developers who know OOP, interfaces, exceptions, REST and concurrency.
-- Engineers who want to read, troubleshoot and modify Python used in GenAI and agent applications.
-- People who would rather run small examples than watch another 20-hour beginner course.
+| I want to... | Go to |
+| --- | --- |
+| Start the 60-minute course | **[Lesson 00](notebooks/00_getting_started.ipynb)** |
+| Use Cursor, including AI tutor rules | **[Cursor configuration](guides/01_editor_setup.md#cursor)** |
+| Use VS Code or another IDE | [Editor alternatives](guides/01_editor_setup.md) |
+| Fix a confusing concept | [Six targeted guides](guides/README.md) |
+| Try a live local model in a small UI | [Optional Gradio + Ollama lab](guides/06_local_ai_lab.md) |
+| Track lesson completion | [Progress checklist](PROGRESS.md) |
 
-**Prerequisites:** Java programming knowledge, Python 3.11+ (or let `uv` install Python 3.12), [uv](https://docs.astral.sh/uv/getting-started/installation/) and a terminal. No prior ML expertise required.
+## Seven focused lessons (60 minutes)
 
-## One-hour syllabus
+| Lesson | What you will learn | Time |
+| --- | --- | ---: |
+| [00 · Getting Started](notebooks/00_getting_started.ipynb) | Notebook mechanics and Java mental model | 3 min |
+| [01 · Pythonic Essentials](notebooks/01_pythonic_essentials.ipynb) | Comprehensions, dictionaries, `None`, kwargs | 9 min |
+| [02 · OOP, Typing & Pydantic](notebooks/02_typing_pydantic.ipynb) | Dataclasses, types, runtime validation, decorators | 12 min |
+| [03 · Async & Streaming](notebooks/03_async_streaming.ipynb) | Coroutines, concurrent I/O, generators | 12 min |
+| [04 · Production Python](notebooks/04_production_python.ipynb) | Modules, `uv`, tests, context managers | 9 min |
+| [05 · Mini Workflow](notebooks/05_mini_ai_agent.ipynb) | Typed fake tools, async coordination, approval | 12 min |
+| [06 · Readiness Check](notebooks/06_readiness_check.ipynb) | Questions and executable checks | 3 min |
+| | **Total core learning time** | **60 min** |
 
-| Lesson | Notebook | Time | You will practice |
-| --- | --- | ---: | --- |
-| 00 | [Getting started](notebooks/00_getting_started.ipynb) | 3 min | Working with a Python notebook and comparing Java types |
-| 01 | [Pythonic essentials](notebooks/01_pythonic_essentials.ipynb) | 9 min | Comprehensions, dictionaries, `None`, kwargs and mutable defaults |
-| 02 | [OOP, typing and Pydantic](notebooks/02_typing_pydantic.ipynb) | 12 min | Dataclasses, validation, type hints and decorators |
-| 03 | [Async and streaming](notebooks/03_async_streaming.ipynb) | 12 min | Coroutines, concurrent I/O, exceptions and generators |
-| 04 | [Production Python](notebooks/04_production_python.ipynb) | 9 min | Imports, uv, files, testing, installed packages |
-| 05 | [Mini agent workflow](notebooks/05_mini_ai_agent.ipynb) | 12 min | A typed, async, approval-gated mock agent |
-| 06 | [Readiness check](notebooks/06_readiness_check.ipynb) | 3 min | Five diagnostic questions and executable checks |
-| | **Total** | **60 min** | |
+Times estimate active learning for engineers comfortable with Java; **environment installation and the optional capstone are excluded**. Run the examples, change one thing, predict what will happen, and attempt the checkpoint.
 
-Track completion in [PROGRESS.md](PROGRESS.md). **The 60 minutes exclude initial environment installation.**
+## Install once using uv
 
-## Setup (using uv)
-
-Open a terminal in the repository root:
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then from the repository root:
 
 ```bash
-# Install uv first if needed: https://docs.astral.sh/uv/getting-started/installation/
 uv python install 3.12
 uv sync --group dev
 uv run jupyter lab
 ```
 
-Open `notebooks/00_getting_started.ipynb`, select the project's Python kernel if prompted, and run the cells in order. The exercises have safe-to-run starting cells and solutions directly below them, so **Run All** is also supported.
+Open [Lesson 00](notebooks/00_getting_started.ipynb) and select the interpreter in this repository's `.venv`.
 
-If Jupyter selects another environment, select the interpreter from `.venv` or run:
+**Cursor and VS Code:** open the repository *folder*, install the recommended Python and Jupyter extensions, use **Python: Select Interpreter**, then choose `.venv/Scripts/python.exe` on Windows or `.venv/bin/python` on macOS/Linux. Use the matching notebook kernel. Cursor includes a [learning-first rule](.cursor/rules/learning-first.mdc) that explains Python concepts in Java terms and gives hints instead of automatically completing exercises. [Exact editor instructions](guides/01_editor_setup.md). **Cursor is optional**; browser-based JupyterLab works on its own.
 
-```bash
-uv run python -m ipykernel install --user --name java-ai-python --display-name "Python (java-ai-python)"
-```
+## Optional local AI lab, with a real model if you want
 
-Then select `Python (java-ai-python)` as the notebook kernel. This command registers the project's environment in your own Jupyter installation.
+<p align="center"><img src="assets/local-ai-flow.svg" alt="Gradio, Pydantic, mock or local LLM, human review and simulated approval" width="100%"></p>
 
-> The package is installed in editable mode by `uv sync`; you should be able to `import mini_agent` from any notebook. Run Jupyter from the repository root.
-
-## Validate everything without manual clicking
+After Lesson 06, open a tiny **support-ticket response assistant** in your browser to see Python types, async code, HTTP APIs, validation, Gradio callbacks and an approval gate working together:
 
 ```bash
-uv sync --group dev
-uv run pytest -q
-uv run python scripts/validate_notebooks.py
-uv run ruff check src tests scripts
+uv sync --group dev --group demo
+uv run --group demo python examples/gradio_app.py
 ```
 
-On the first run `uv sync` resolves dependencies and generates `uv.lock`; commit that file to keep future installs reproducible. The notebook checker executes all seven notebooks in fresh kernels (from the repository root). CI repeats these commands on pushes and pull requests.
+The interface defaults to **Mock (no model)** and requires no API key or Ollama server. For actual *local inference*, install [Ollama](https://ollama.com/download), run `ollama pull llama3.2:1b` (roughly 1.3 GB), and select **Ollama (local model)** in the Gradio app. See the [optional 15–25-minute lab](guides/06_local_ai_lab.md); downloading and initial setup can take longer.
 
-## How to learn effectively
+**Scope:** the ticket is fictional, AI text is a draft and must be reviewed, and **approval is simulated only**. The code never sends an email, updates a real ticket, or publishes the local Gradio URL.
 
-1. **Java analogy:** recognize a familiar concept, then learn the Python difference.
-2. **Run the code:** observe the real result rather than just reading it.
-3. **Change one thing:** predict what will happen, then test your hypothesis.
-4. **Attempt the checkpoint:** compare with the solution only after trying.
-5. **Move on:** this is a bridge, not a mandate to memorize every Python feature.
+## Guides: read only when needed
 
-The mini project intentionally separates validation, fake I/O tools, decision logic and approval handling. It is **agent-shaped**, not a genuine autonomous agent: it has no reasoning model, retrieval embeddings or external tool execution. The next step in a real AI project is to integrate a model behind this tested structure and measure its behavior.
+A short reference library, inspired by the helpfulness of course companion guides:
 
-## Java to Python lookup
+1. [Editor configuration: Cursor, VS Code, Jupyter](guides/01_editor_setup.md)
+2. [Java ↔ Python mental model](guides/02_java_python_map.md)
+3. [Async, await, gather and generators](guides/03_async_and_streaming.md)
+4. [Pydantic, type hints and decorators](guides/04_pydantic_and_decorators.md)
+5. [uv, imports, kernel issues and debugging](guides/05_uv_and_debugging.md)
+6. [Gradio/Ollama optional local AI lab](guides/06_local_ai_lab.md)
+
+## Java concepts and Python counterparts
 
 | Java | Python |
 | --- | --- |
-| `List<Map<String, Object>>` | `list[dict[str, object]]` |
-| Stream `filter/map` | List/dict comprehensions |
-| Java `record` / DTO | `@dataclass` / Pydantic `BaseModel` |
-| Annotations (similar use cases, different mechanics) | Decorators `@something` |
-| `CompletableFuture` | `async` / `await` / `asyncio.gather()` |
-| `Optional<T>` | `T \| None` (type annotation) |
-| `try-with-resources` | `with` context manager |
-| Maven / Gradle | `uv` + `pyproject.toml` |
-| JUnit / Mockito | pytest / mocking |
+| `List<Map<String,Object>>` | `list[dict[str, object]]` |
+| Streams | Comprehensions and generators |
+| Java records / Bean Validation | Dataclasses and Pydantic |
+| Interfaces | `Protocol` or abstract base classes |
+| `CompletableFuture` (I/O) | `async`, `await`, `asyncio.gather` |
+| Annotations (some overlapping use cases) | Executable decorators |
+| Try-with-resources | `with` context managers |
+| Maven/Gradle | `uv` and `pyproject.toml` |
+| JUnit | `pytest` |
 
-## Limitations and next steps
+This is a **language bridge**, not a full Python, ML, or agent course. The mandatory workflow is deterministic and *agent-shaped*, not autonomous. Type hints don't validate values at runtime; Pydantic does. The optional LLM output is validated but its content is not guaranteed correct.
 
-One hour is sufficient for a *guided introduction*, not fluency or production certification. You'll still learn by building real projects: async cancellation, timeouts, retries, security, test mocking, dependency management and API SDK details all deserve deeper practice. This bridge focuses on reading and editing the kind of Python you'll see in AI engineering.
+## Verify locally
 
-## Inspiration and attribution
+```bash
+uv sync --group dev --group demo
+uv run pytest -q
+uv run python scripts/validate_notebooks.py
+uv run ruff check src tests scripts examples
+```
 
-Inspired by the **hands-on notebook teaching format** popularized in courses such as [Ed Donner's LLM Engineering](https://github.com/ed-donner/llm_engineering). All written explanations, examples and code here are original; this repository is independent and is not affiliated with or endorsed by Ed Donner.
+The [CI workflow](.github/workflows/ci.yml) runs these steps without contacting a real model; Ollama HTTP responses are mocked in tests. Dependency bounds are declared in `pyproject.toml`; see [lockfile and reproducibility guidance](guides/05_uv_and_debugging.md).
 
-## License
+## Acknowledgments
 
-MIT. See [LICENSE](LICENSE). Contributions and corrections are welcome.
+Thank you to **[Ed Donner (@ed-donner)](https://github.com/ed-donner)** for the approachable, hands-on, notebook-first teaching approach exemplified by his [LLM Engineering repository](https://github.com/ed-donner/llm_engineering). That philosophy inspired the **format** here; all text, exercises, diagrams, and code are original. This project is **independent and is not affiliated with or endorsed by Ed Donner**.
+
+Contributions welcome: [CONTRIBUTING.md](CONTRIBUTING.md). Licensed under [MIT](LICENSE).

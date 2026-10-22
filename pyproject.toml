@@ -1,14 +1,22 @@
 [project]
 name = "python-for-java-ai-engineers"
-version = "0.1.0"
-description = "60-minute Python bridge for experienced Java developers entering AI engineering"
+version = "0.2.0"
+description = "One-hour Python bridge for Java developers, with an optional local AI demo"
 requires-python = ">=3.11"
 readme = "README.md"
 license = "MIT"
 dependencies = ["pydantic>=2.10,<3"]
 
 [dependency-groups]
-dev = ["ipykernel>=6.29,<7", "jupyterlab>=4.3,<5", "nbclient>=0.10,<1", "nbformat>=5.10,<6", "pytest>=8.3,<10", "ruff>=0.9,<1"]
+dev = [
+    "ipykernel>=6.29,<7",
+    "jupyterlab>=4.3,<5",
+    "nbclient>=0.10,<1",
+    "nbformat>=5.10,<6",
+    "pytest>=8.3,<10",
+    "ruff>=0.9,<1",
+]
+demo = ["gradio>=5.0,<7"]
 
 [build-system]
 requires = ["hatchling"]
@@ -24,4 +32,4 @@ testpaths = ["tests"]
 line-length = 100
 
 [tool.ruff.lint]
-select = ["E4","E7","E9","F"]
+select = ["E4", "E7", "E9", "F"]
