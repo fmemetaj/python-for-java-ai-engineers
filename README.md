@@ -19,6 +19,12 @@ Seven hands-on **Jupyter notebooks**, Java comparisons, short exercises, a targe
 | Try a live local model in a small UI | [Optional Gradio + Ollama lab](guides/06_local_ai_lab.md) |
 | Track lesson completion | [Progress checklist](PROGRESS.md) |
 
+## A real lesson, not just a cell to run
+
+Every core notebook now begins with **why the concept matters**, then shows a familiar **Java example**, then the runnable **Python counterpart**. There are predictions, common mistakes, small exercises and a checkpoint. Completing a lesson means *understanding the explanation and attempting the exercise*, not merely selecting Run All.
+
+The **60-minute schedule is an estimate**, not a measured guarantee. The syllabus is scoped for experienced Java developers. If you need extra depth, see our [topic-by-topic coverage and editorial audit](COVERAGE.md) against the relevant Ed Donner guide topics. Deliberately optional subjects such as Docker and pickle security appear in the [extra foundations reference](guides/07_extra_python_foundations.md).
+
 ## Seven focused lessons (60 minutes)
 
 | Lesson | What you will learn | Time |
@@ -106,3 +112,9 @@ The [CI workflow](.github/workflows/ci.yml) runs these steps without contacting 
 Thank you to **[Ed Donner (@ed-donner)](https://github.com/ed-donner)** for the approachable, hands-on, notebook-first teaching approach exemplified by his [LLM Engineering repository](https://github.com/ed-donner/llm_engineering). That philosophy inspired the **format** here; all text, exercises, diagrams, and code are original. This project is **independent and is not affiliated with or endorsed by Ed Donner**.
 
 Contributions welcome: [CONTRIBUTING.md](CONTRIBUTING.md). Licensed under [MIT](LICENSE).
+
+## Community collaboration and review
+
+This is a **public, read-only-by-default repository** for visitors. Everyone may fork, suggest changes and submit a pull request; **only people granted GitHub write permissions can push directly**. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+The maintainer controls the main branch. [CODEOWNERS](.github/CODEOWNERS) identifies the intended reviewer; branch-protection/ruleset enforcement must also be configured in the repository's GitHub Settings and is **not implied** by the file alone.

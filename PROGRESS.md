@@ -19,3 +19,12 @@ Check each notebook when you've run the examples and attempted its checkpoint. *
 ## Troubleshooting notes
 
 Use the [specific guides](guides/README.md) only when needed.
+
+## How to mark a lesson complete
+
+- [ ] Read the Java analogy and Python explanation **before** executing code.
+- [ ] Predict at least one result, run it, and understand why it happened.
+- [ ] Edit the **Your turn** example and verify the assertion.
+- [ ] Explain one language difference in your own words.
+
+The published durations are estimates for experienced developers. Understanding matters more than meeting the stopwatch.
