@@ -1,10 +1,17 @@
 """Smoke tests for the optional Gradio app without opening a server."""
+
 import importlib.util
 from pathlib import Path
 
+import pytest
+
+_gradio = pytest.importorskip("gradio")
+if not hasattr(_gradio, "Blocks"):
+    pytest.skip("optional demo extra (gradio) is not installed", allow_module_level=True)
 
 APP_PATH = Path(__file__).resolve().parents[1] / "examples" / "gradio_app.py"
 spec = importlib.util.spec_from_file_location("gradio_app", APP_PATH)
+assert spec is not None
 app = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
 spec.loader.exec_module(app)

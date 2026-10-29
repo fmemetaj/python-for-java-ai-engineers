@@ -1,6 +1,6 @@
 # 06 — Optional local AI lab: Gradio + Ollama
 
-**This is after the 60-minute core**, not another compulsory lesson. Allow about **15–25 minutes** of hands-on work, plus any model download and first-run time.
+**This is after the core notebooks**, not another compulsory lesson. Allow about **15–25 minutes** of hands-on work, plus any model download and first-run time.
 
 ![Local AI workflow](../assets/local-ai-flow.svg)
 
@@ -15,7 +15,7 @@ A small **support-ticket reply assistant**, not an autonomous agent. The Gradio 
 ## Step 1 — Install the demo dependencies
 
 ```bash
-uv sync --group dev --group demo
+uv sync --locked --group dev --group demo
 ```
 
 ## Step 2 — Start with no model, no API key

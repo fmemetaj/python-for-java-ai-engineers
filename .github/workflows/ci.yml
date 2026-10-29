@@ -1,19 +1,64 @@
-name: Validate course
-on: [push, pull_request]
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUTF8: "1"
+
 jobs:
-  validate:
+  checks:
+    name: ${{ matrix.os }} / ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+      - name: Install (locked, including optional demo)
+        run: uv sync --locked --group dev --group demo
+      - name: Ruff lint
+        run: uv run ruff check src tests scripts examples
+      - name: Ruff format
+        run: uv run ruff format --check src tests scripts examples
+      - name: Pyright
+        run: uv run pyright
+      - name: Pytest
+        run: uv run pytest -q
+      - name: Register Jupyter kernel
+        run: uv run python -m ipykernel install --user --name python3 --display-name "Python 3"
+      - name: Execute notebooks
+        run: uv run pytest --nbmake --nbmake-timeout=120 notebooks/
+
+  default-dev-install:
+    name: default uv sync --group dev (no Gradio)
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
           enable-cache: true
-      - name: Install course and optional demo
-        run: uv sync --group dev --group demo
-      - name: Run automated tests
+      - name: Install default course tools
+        run: uv sync --locked --group dev
+      - name: Pytest without Gradio
         run: uv run pytest -q
-      - name: Execute seven notebooks
-        run: uv run python scripts/validate_notebooks.py
-      - name: Lint Python code
-        run: uv run ruff check src tests scripts examples
+      - name: Doctor (offline)
+        run: uv run python scripts/doctor.py --offline

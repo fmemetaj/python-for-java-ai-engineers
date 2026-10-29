@@ -11,6 +11,6 @@ alwaysApply: true
 - Treat type hints as static/editor guidance, not runtime validation. Use Pydantic at input/output boundaries.
 - Always distinguish mock workflows from real LLM-backed inference. Never claim simulated actions sent email or changed data.
 - Default to local-only tools; never add paid API calls, expose secrets, run dangerous shell commands, or change the learning schedule without explanation.
-- Keep the seven core notebooks within 60 minutes; the Gradio/Ollama app is explicitly optional and runs after the core.
+- Keep the seven core notebooks tightly scoped; the Gradio/Ollama app is explicitly optional and runs after the core. README times are estimates, not a measured guarantee.
 - Before suggesting changes, explain their learning objective and the tradeoff. Preserve runnable notebooks and test behavior.
-- Validate changes with `uv run pytest -q`, `uv run python scripts/validate_notebooks.py`, and `uv run ruff check src tests scripts examples` where relevant.
+- Validate changes with `uv sync --locked --group dev`, `uv run pytest -q`, `uv run ruff check src tests scripts examples`, and `uv run pytest --nbmake notebooks/` where relevant.

@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Setup troubleshooting
+    url: https://github.com/fmemetaj/python-for-java-ai-engineers/blob/main/docs/setup/troubleshooting.md
+    about: uv, PATH, Python not found, Jupyter kernels, proxy/SSL, VPN, Apple Silicon, WSL
+  - name: Course plan
+    url: https://github.com/fmemetaj/python-for-java-ai-engineers/blob/main/docs/planning/course-strategy.md
+    about: Strategy, curriculum, and implementation roadmap

@@ -1,4 +1,5 @@
 """Optional local Ollama inference. No API key, no external action, no real sending."""
+
 from __future__ import annotations
 
 import json

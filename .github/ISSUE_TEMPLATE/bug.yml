@@ -1,0 +1,75 @@
+name: Bug
+description: Something in a lesson, test, or setup path is wrong or broken.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks. Include enough detail that we can reproduce this without a paid API key.
+        If this is a setup failure, paste `uv run python scripts/doctor.py --offline` output.
+  - type: dropdown
+    id: lesson
+    attributes:
+      label: Lesson or area
+      options:
+        - Setup / install
+        - 00 Getting started
+        - 01 Pythonic essentials
+        - 02 Typing and Pydantic
+        - 03 Async and streaming
+        - 04 Production Python
+        - 05 Mini workflow
+        - 06 Readiness check
+        - Optional Gradio / Ollama lab
+        - CI / tooling
+        - Docs
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS (Apple Silicon)
+        - macOS (Intel)
+        - Linux
+        - WSL
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: python_version
+    attributes:
+      label: Python version
+      placeholder: "3.12.8 (uv run python --version)"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: Exact commands or notebook cells, in order.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: Paste the error text. Do not paste API keys or `.env` contents.
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Doctor output (setup issues)
+      description: Optional. `uv run python scripts/doctor.py --offline`
+      render: shell

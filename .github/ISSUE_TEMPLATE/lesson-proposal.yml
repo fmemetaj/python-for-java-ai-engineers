@@ -1,0 +1,55 @@
+name: Lesson proposal
+description: Suggest a new lesson, guide, or exercise for Java developers.
+title: "[Proposal] "
+labels: ["lesson-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read [docs/planning/curriculum.md](https://github.com/fmemetaj/python-for-java-ai-engineers/blob/main/docs/planning/curriculum.md)
+        before proposing work that may already be on the roadmap.
+        Original material only — do not paste paid course content.
+  - type: input
+    id: title
+    attributes:
+      label: Proposed title
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Who is this for?
+      description: Assume the learner already knows Java, OOP, REST, and tests.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does this belong in the course?
+      description: What Java skill maps here, and what can the learner do after it?
+    validations:
+      required: true
+  - type: dropdown
+    id: offline
+    attributes:
+      label: Can the essential exercise run offline (no paid key)?
+      options:
+        - Yes, fully mock/fake
+        - Yes, with optional live mode
+        - No, a paid API is required
+    validations:
+      required: true
+  - type: input
+    id: time
+    attributes:
+      label: Estimated learner time
+      placeholder: "45 minutes"
+    validations:
+      required: true
+  - type: textarea
+    id: outline
+    attributes:
+      label: Outline
+      description: Java snippet → Python counterpart → exercise → check. Note where the analogy breaks.
+    validations:
+      required: true
