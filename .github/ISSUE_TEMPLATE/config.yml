@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Lesson guides
+    url: https://github.com/fmemetaj/python-for-java-ai-engineers/blob/main/guides/README.md
+    about: Kernel, typing, async, and uv troubleshooting
+  - name: Course progress checklist
+    url: https://github.com/fmemetaj/python-for-java-ai-engineers/blob/main/PROGRESS.md
+    about: Mark lessons complete as you go

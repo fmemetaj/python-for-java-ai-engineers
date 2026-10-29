@@ -1,0 +1,33 @@
+name: Content proposal
+description: Suggest a lesson change, cut, or addition
+title: "[Content]: "
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The **core notebooks stay an estimated ~60 minutes**. Longer material belongs in `guides/` or a future module in [docs/planning/curriculum.md](https://github.com/fmemetaj/python-for-java-ai-engineers/blob/main/docs/planning/curriculum.md).
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of change
+      options:
+        - Fix an inaccurate Java/Python comparison
+        - Cut or shorten something
+        - Add a guide note (not a new core lesson)
+        - Propose a future-module topic
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What to change, why it helps a Java developer, and where it should live.
+    validations:
+      required: true
+  - type: textarea
+    id: original
+    attributes:
+      label: Originality
+      description: If this is inspired by another resource, link it. Do not paste paid or proprietary lesson text.

@@ -8,7 +8,7 @@ From the repository root:
 
 ```bash
 uv python install 3.12
-uv sync --group dev
+uv sync --locked --group dev
 ```
 
 That creates the local environment `.venv` and installs the notebooks' dependencies.

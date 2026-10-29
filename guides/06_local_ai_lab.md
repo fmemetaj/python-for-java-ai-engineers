@@ -1,6 +1,6 @@
 # 06 — Optional local AI lab: Gradio + Ollama
 
-**This is after the 60-minute core**, not another compulsory lesson. Allow about **15–25 minutes** of hands-on work, plus any model download and first-run time.
+**This is after the estimated ~60-minute core**, not another compulsory lesson. Allow about **15–25 minutes** of hands-on work, plus any model download and first-run time.
 
 ![Local AI workflow](../assets/local-ai-flow.svg)
 
