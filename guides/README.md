@@ -1,6 +1,6 @@
 # Guides: when something feels unfamiliar
 
-The **seven core notebooks remain the entire 60-minute course**. These guides are *optional, targeted references*, not compulsory extra lessons.
+The **seven core notebooks remain the entire estimated ~60-minute course**. These guides are *optional, targeted references*, not compulsory extra lessons.
 
 | Guide | Read when... |
 | --- | --- |

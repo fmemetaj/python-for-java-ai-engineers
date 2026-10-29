@@ -1,0 +1,62 @@
+name: Lesson feedback
+description: Tell us how long a lesson took and what was confusing
+title: "[Feedback]: "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Lesson times are **estimates**. Reports like this are how we replace guesswork with data.
+        Optional and anonymous-friendly — skip any field you do not want to share.
+  - type: dropdown
+    id: lesson
+    attributes:
+      label: Lesson
+      options:
+        - "00 Getting Started"
+        - "01 Pythonic Essentials"
+        - "02 Typing & Pydantic"
+        - "03 Async & Streaming"
+        - "04 Production Python"
+        - "05 Mini Workflow"
+        - "06 Readiness Check"
+        - Optional Gradio / Ollama lab
+        - Whole core path (00–06)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: time_spent
+    attributes:
+      label: Time spent (minutes)
+      description: Include reading, exercises, and time stuck. Setup and model downloads separately if you can.
+      placeholder: "12"
+    validations:
+      required: true
+  - type: dropdown
+    id: usefulness
+    attributes:
+      label: Usefulness (1 = not useful, 5 = very useful)
+      options: ["1", "2", "3", "4", "5"]
+    validations:
+      required: true
+  - type: dropdown
+    id: completed
+    attributes:
+      label: Did you finish it?
+      options:
+        - "Yes"
+        - Partially
+        - "No"
+    validations:
+      required: true
+  - type: textarea
+    id: confusing
+    attributes:
+      label: Most confusing part
+      description: A cell, a Java analogy that broke down, a missing prerequisite, or a broken command.
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: What to keep, cut, or add. No need to include personal data.

@@ -1,0 +1,55 @@
+name: Setup report
+description: Report whether install and the first notebook succeeded
+title: "[Setup]: "
+labels: ["setup"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this after a clean clone. Paste command output; redact secrets and company hostnames if needed.
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Did `uv sync --locked --group dev` succeed?
+      options:
+        - "Yes"
+        - "No"
+        - Partial (installed, then a later command failed)
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: Windows 11 / macOS 15 / Ubuntu 24.04
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: Output of `uv run python --version`
+    validations:
+      required: true
+  - type: dropdown
+    id: first_notebook
+    attributes:
+      label: Did Lesson 00 run?
+      options:
+        - "Yes"
+        - Kernel / interpreter problem
+        - Did not try yet
+        - "No (other)"
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Commands and output
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: What would have helped

@@ -1,0 +1,28 @@
+name: API or SDK breakage
+description: A documented API, model ID, or dependency no longer matches a lesson
+title: "[SDK]: "
+labels: ["sdk"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The core course currently has **no vendor LLM SDK**. Use this if a pin, model name, or future-module note in `docs/` is wrong, or if the optional Ollama path changed.
+  - type: input
+    id: package
+    attributes:
+      label: Package or API
+      placeholder: ollama HTTP / pydantic / gradio / (future) openai
+    validations:
+      required: true
+  - type: textarea
+    id: what_broke
+    attributes:
+      label: What broke
+      description: Old behaviour, new behaviour, and a source URL with a date if you have one.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproducer
+      render: shell

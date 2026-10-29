@@ -1,10 +1,10 @@
 # 05 — uv, imports, kernels and debugging
 
-`uv` manages the project's interpreter, environment and dependencies. `pyproject.toml` defines compatible dependency ranges; `uv.lock` (if present) freezes their resolved versions.
+`uv` manages the project's interpreter, environment and dependencies. `pyproject.toml` defines compatible dependency ranges; committed `uv.lock` freezes the resolved versions CI and learners should use.
 
 ```bash
 uv python install 3.12
-uv sync --group dev
+uv sync --locked --group dev
 uv run python -c "import mini_agent, pydantic; print('ready')"
 uv run pytest -q
 uv run python scripts/validate_notebooks.py
@@ -20,14 +20,15 @@ uv run python scripts/validate_notebooks.py
 
 ## Different commands, different jobs
 
-- `uv sync --group dev`: install the course and its development tools.
-- `uv sync --group dev --group demo`: also install optional Gradio.
-- `uv run pytest -q`: run unit tests.
+- `uv sync --locked --group dev`: install the course and its development tools at the locked versions.
+- `uv sync --locked --group dev --group demo`: also install optional Gradio.
+- `uv run pytest -q`: run unit tests. Gradio demo tests skip if Gradio is not installed.
 - `uv run ruff check src tests scripts examples`: lint source files.
+- `uv run ruff format --check src tests scripts examples`: confirm formatting.
 - `uv run python scripts/validate_notebooks.py`: execute all 7 notebooks headlessly.
 
 ## Reproducibility note
 
-This repository targets Python 3.12 and declares dependency version ranges. Commit a generated `uv.lock` after a successful `uv lock` when exact reproducibility matters; without one, compatible dependency versions may change over time.
+This repository supports Python 3.11–3.13. Ranges live in `pyproject.toml`; exact versions are in committed `uv.lock`. CI runs `uv sync --locked`. After changing dependencies, run `uv lock` and commit the updated lockfile. Without `--locked`, compatible versions may drift.
 
 [Return to guide index](README.md)

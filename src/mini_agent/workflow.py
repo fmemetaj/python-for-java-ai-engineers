@@ -1,4 +1,5 @@
 """Agent-shaped orchestration; approval is simulated without sending a message."""
+
 import asyncio
 
 from .models import ReplyProposal, Ticket
@@ -19,4 +20,8 @@ async def prepare_reply(ticket: Ticket) -> ReplyProposal:
 
 def simulate_send(proposal: ReplyProposal, *, approved: bool) -> dict[str, bool | int]:
     """Pure in-memory exercise; 'would_send' is hypothetical, not a delivery receipt."""
-    return {"ticket_id": proposal.ticket_id, "approved": bool(approved), "would_send": bool(approved)}
+    return {
+        "ticket_id": proposal.ticket_id,
+        "approved": bool(approved),
+        "would_send": bool(approved),
+    }

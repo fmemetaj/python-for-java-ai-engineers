@@ -1,4 +1,5 @@
 """Offline unit tests: real Ollama is never required for CI."""
+
 import json
 from urllib.error import URLError
 
@@ -38,7 +39,11 @@ def test_validated_local_llm_response(monkeypatch):
         assert body["format"] == "json"
         assert timeout == 90
         return FakeResponse(
-            {"message": {"content": '{"category":"access","suggested_reply":"Please reset your password."}'}}
+            {
+                "message": {
+                    "content": '{"category":"access","suggested_reply":"Please reset your password."}'
+                }
+            }
         )
 
     monkeypatch.setattr("mini_agent.local_llm.urlopen", fake_open)

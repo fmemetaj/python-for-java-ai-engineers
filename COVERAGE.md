@@ -20,6 +20,6 @@ This document maps the independent course to the **topics listed** in the [Ed Do
 | 04: API/client concepts, environment vars, uv | Only Python-relevant parts | Lesson 04; Guides 05, 07 |
 | 04: Networking, screenshots, deeper SSL troubleshooting | Excluded from core: not Python language essentials | External guides as needed |
 
-**Editorial standard:** Each notebook should explain motivation, include a short Java starting point, have several runnable experiments, prompt a learner prediction or exercise, and conclude with a checkpoint and optional guide links. The 60-minute time budget is an **estimate for experienced developers**, not a claim of measured completion time.
+**Editorial standard:** Each notebook should explain motivation, include a short Java starting point, have several runnable experiments, prompt a learner prediction or exercise, and conclude with a checkpoint and optional guide links. The 60-minute time budget is an **estimate for experienced developers**, not a claim of measured completion time. Collect actual times via the [lesson feedback](https://github.com/fmemetaj/python-for-java-ai-engineers/issues/new?template=lesson-feedback.yml) issue form.
 
-**Technical validation:** CI checks the dependency install, tests, all notebooks and lint. The Gradio/Ollama live model quality is not tested in CI; Ollama integration is tested with mocked HTTP responses.
+**Technical validation:** CI installs with `uv sync --locked` on Python 3.11–3.13, then runs tests, all notebooks, ruff check, and ruff format. Pyright is non-blocking. The Gradio/Ollama live model quality is not tested in CI; Ollama integration is tested with mocked HTTP responses. A longer proposed syllabus lives in [docs/](docs/README.md).

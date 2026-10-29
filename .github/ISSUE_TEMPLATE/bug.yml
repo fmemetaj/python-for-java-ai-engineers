@@ -1,0 +1,56 @@
+name: Bug report
+description: Something in a lesson, test, or script did not work
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Include enough detail to reproduce on a clean clone.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Lesson or area
+      options:
+        - "00 Getting Started"
+        - "01 Pythonic Essentials"
+        - "02 Typing & Pydantic"
+        - "03 Async & Streaming"
+        - "04 Production Python"
+        - "05 Mini Workflow"
+        - "06 Readiness Check"
+        - Optional Gradio / Ollama lab
+        - CI / tooling
+        - Guides or README
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: Windows 11 / macOS 15 / Ubuntu 24.04
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: Output of `uv run python --version`
+      placeholder: Python 3.12.x
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: Commands and output
+      description: Paste the exact commands and the error text (redact secrets).
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
