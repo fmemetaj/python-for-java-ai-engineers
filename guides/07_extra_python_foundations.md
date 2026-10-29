@@ -1,6 +1,6 @@
 # 07 — Further Python foundations (read only when useful)
 
-This is a **supplemental reference**, not a mandatory lesson. The seven notebooks remain a focused one-hour bridge for experienced Java developers. Some topics from [Ed Donner's companion guides](https://github.com/ed-donner/llm_engineering/tree/main/guides) are intentionally summarized or deferred.
+This is a **supplemental reference**, not a mandatory lesson. The seven notebooks remain a focused bridge for experienced Java developers. Some topics from [Ed Donner's companion guides](https://github.com/ed-donner/llm_engineering/tree/main/guides) are intentionally summarized or deferred.
 
 ## Imports, modules and package boundaries
 

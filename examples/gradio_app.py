@@ -2,6 +2,7 @@
 
 Start: uv run --group demo python examples/gradio_app.py
 """
+
 import asyncio
 
 import gradio as gr
@@ -11,9 +12,7 @@ from mini_agent import Ticket, prepare_reply
 from mini_agent.local_llm import OllamaUnavailable, analyze_with_ollama
 
 
-def analyze_ticket(
-    subject: str, body: str, inference: str, model: str
-) -> tuple[str, str, str]:
+def analyze_ticket(subject: str, body: str, inference: str, model: str) -> tuple[str, str, str]:
     """Gradio callback; return (category, proposed draft, status)."""
     try:
         ticket = Ticket(id=101, subject=subject, body=body)
@@ -25,7 +24,11 @@ def analyze_ticket(
             suggestion = analyze_with_ollama(ticket, model=model.strip() or "llama3.2:1b")
         except OllamaUnavailable as exc:
             return "", "", str(exc)
-        return suggestion.category, suggestion.suggested_reply, "Local LLM draft. Review it before approval."
+        return (
+            suggestion.category,
+            suggestion.suggested_reply,
+            "Local LLM draft. Review it before approval.",
+        )
 
     proposal = asyncio.run(prepare_reply(ticket))
     return proposal.category, proposal.suggested_reply, "Mock mode: no LLM or network call."

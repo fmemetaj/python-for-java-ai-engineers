@@ -1,0 +1,64 @@
+name: Lesson feedback
+description: Tell us how long a lesson took and what was confusing.
+title: "[Feedback] "
+labels: ["lesson-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Times in the README are **estimates**, not a measured cohort result.
+        Your actual minutes help us replace those guesses with evidence.
+        Do not paste secrets, keys, or personal data from tickets or logs.
+  - type: dropdown
+    id: lesson
+    attributes:
+      label: Lesson
+      options:
+        - 00 Getting started
+        - 01 Pythonic essentials
+        - 02 Typing and Pydantic
+        - 03 Async and streaming
+        - 04 Production Python
+        - 05 Mini workflow
+        - 06 Readiness check
+        - Optional Gradio / Ollama lab
+        - A guide (specify which)
+    validations:
+      required: true
+  - type: input
+    id: minutes
+    attributes:
+      label: Minutes you actually spent
+      description: Active learning time for this lesson only (not install).
+      placeholder: "25"
+    validations:
+      required: true
+  - type: dropdown
+    id: usefulness
+    attributes:
+      label: Usefulness
+      options: ["1 — not useful", "2", "3", "4", "5 — exactly what I needed"]
+    validations:
+      required: true
+  - type: dropdown
+    id: completed
+    attributes:
+      label: Did you finish the checkpoint?
+      options:
+        - Yes
+        - Partially
+        - No
+    validations:
+      required: true
+  - type: textarea
+    id: confusing
+    attributes:
+      label: Most confusing part
+      placeholder: A Java analogy that broke, a cell that failed, a missing prerequisite…
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Optional. What should we cut, keep, or add?

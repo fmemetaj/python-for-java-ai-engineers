@@ -2,15 +2,37 @@
 
 Thanks for helping Java developers learn Python for AI engineering.
 
-- Report inaccuracies with a clear reproducer, Python version, OS and the lesson number.
-- Keep the **core course at 60 minutes**. Place optional longer explanations in `guides/` and optional projects in `examples/`.
+- Report inaccuracies with a clear reproducer, Python version, OS, and the lesson number. Setup failures: paste `uv run python scripts/doctor.py --offline` (no secrets).
+- Keep the **core notebooks tightly scoped**. Put optional longer explanations in `guides/` and optional projects in `examples/`. If a change alters lesson length, update the README estimates — those numbers are unmeasured guesses, not a timed guarantee.
 - Keep notebooks independently executable and avoid network calls in mandatory lessons.
-- Avoid paid APIs, personal data, hidden credentials and real external write operations.
-- Run `uv sync --group dev --group demo`, `uv run pytest -q`, `uv run python scripts/validate_notebooks.py`, and `uv run ruff check src tests scripts examples`.
-- Follow the learning-first style: concise context, Java analogy, runnable Python example, meaningful checkpoint.
-- If you are inspired by another educational resource, link it and write your own examples rather than reproducing its lesson text.
+- Avoid paid APIs, personal data, hidden credentials, and real external write operations.
+- Original work only. If another educational resource inspired you, link it and write your own examples.
+- Follow the learning-first style: concise context, Java analogy (and where it breaks), runnable Python, meaningful checkpoint.
 
-The optional Ollama path is not tested against live model inference in CI; use mocked HTTP responses in automatic tests.
+## Checks
+
+From the repository root, using the committed lockfile:
+
+```bash
+uv sync --locked --group dev
+uv run python scripts/doctor.py --offline
+uv run pytest -q
+uv run ruff check src tests scripts examples
+uv run ruff format --check src tests scripts examples
+uv run pytest --nbmake --nbmake-timeout=120 notebooks/
+```
+
+Install the optional demo group before pyright on `examples/gradio_app.py` and before Gradio tests actually run (otherwise they skip):
+
+```bash
+uv sync --locked --group dev --group demo
+uv run pyright
+uv run pytest -q
+```
+
+The optional Ollama path is not tested against live model inference in CI; use mocked HTTP responses.
+
+Issue templates: bug, lesson feedback (including actual minutes), and lesson proposal. See [docs/planning](docs/planning/course-strategy.md) before proposing large curriculum changes.
 
 ## Pull requests and maintainer review
 
