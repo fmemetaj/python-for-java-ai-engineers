@@ -2,6 +2,71 @@
 
 This project versions the *course*, not a library API. Dates are UTC.
 
+## 1.0.0 — 2026-10-30
+
+**First complete course release** — Modules 0A–7 plus Electives (A). A Java developer can go from Python fundamentals to a portfolio DocsDesk v1.0 (RAG, approval-gated agent, evals, cost, threat model) and optional vision / hosted-vs-own / SDK-upgrade tracks. Offline `FakeLLM` + `FakeEmbedder` + vision catalog fixtures. This PR versions the course only; it does not create a GitHub Release or git tag.
+
+### Module 0A — Python Fundamentals I
+
+- Concepts 0.1–0.15 (8 Analog, 7 NEW), Java-first or NEW-template lessons.
+- Placement check and `fundamentals/log_stats.py`. `uv run course check m0a`.
+- Original notebooks 00–06 remain optional explainers.
+
+### Module 0B — Python Fundamentals II
+
+- Concepts 0.16–0.29 (9 Analog, 5 NEW): classes, typing, exceptions, context managers, decorators, modules, threads, asyncio.
+- `fundamentals/tool_registry.py`. `uv run course check m0b`.
+
+### Module 1 — Python Engineering & Tooling
+
+- Concepts 1.1–1.12 (11 Analog, 1 NEW — virtual environments).
+- DocsDesk skeleton: settings, redacting logs, httpx + retries, Pydantic JSON, `FakeLLM`.
+- `uv run course check m1`. JDK 21 Java-snippet compile in CI.
+
+### Module 2 — LLM API Fundamentals
+
+- Concepts 2.1–2.11 (5 Analog, 6 NEW). Tokens, cost, Responses vs Chat Completions, streaming, versioned prompts.
+- DocsDesk multi-turn session over a pasted doc. `uv run course check m2`.
+
+### Module 3 — Structured Outputs, Tool Calling, First Evals
+
+- Concepts 3.1–3.5 (3 Analog, 2 NEW). JSON Schema, tool loop, safety, ≥15-case eval.
+- DocsDesk typed answers with citations and allow-listed tools. `uv run course check m3`.
+
+### Module 4 — Embeddings, Semantic Search, RAG
+
+- Concepts 4.1–4.7 (2 Analog, 5 NEW; 4.7 optional hybrid search).
+- Fake embeddings, numpy cosine index, original payments-api corpus, RAG with citations, recall@5. `uv run course check m4`.
+
+### Module 5 — Agents and Orchestration from Scratch
+
+- Concepts 5.1–5.6 (3 Analog, 3 NEW; 5.5–5.6 optional).
+- Agent loop with max steps and approval stop, traces, DocsDesk triage (`propose_page` is simulated). `uv run course check m5`.
+
+### Module 6 — Evals, Observability, Production
+
+- Concepts 6.1–6.6 (3 Analog, 3 NEW; 6.6 optional FastAPI + container sketch).
+- LLM-as-judge + CI gate, JSON logs, TTL cache, budgets, injection suite. `uv run course check m6`.
+
+### Module 7 — Capstone: DocsDesk v1.0
+
+- Concepts 7.1–7.7 (2 Analog, 5 NEW). Integrated ask + approval-gated investigate, ≥30 evals, cost/threat reports, portfolio README and 5-minute demo.
+- `uv run course check m7`. `uv run docsdesk v1` / `eval-v1` / `cost-report` / `portfolio`.
+
+### Electives (A)
+
+- Three optional tracks (~2–3 h each), concepts A.1–A.9. `uv run course check ma`.
+- **A1 Vision:** Responses `input_image`, screenshot-to-answer, image token economics.
+- **A2 Hosted vs own:** `file_search` vs Module 4 RAG, fake hosted-tool loop, lock-in ADR (`assistants: false`).
+- **A3 API change as a skill:** lockfile pin + fake changelog, sunset-string scanner, spend-capped smoke + sanitized fixtures.
+- `uv run docsdesk vision` / `hosted` / `smoke`.
+
+### Course-wide
+
+- Committed `uv.lock`; CI matrix Python 3.11–3.13 × Ubuntu, macOS, Windows; ruff, pyright, pytest, nbmake, Markdown link check.
+- `course` CLI, `scripts/doctor.py --offline`, Start-here path, [docs/setup/faq.md](docs/setup/faq.md).
+- Graded work stays on `LLM_PROVIDER=fake`. Never Assistants. Keys are never committed. Optional Gradio/Ollama lab remains after the core notebooks.
+
 ## 0.6.0 — 2026-10-30
 
 **Electives (A) + whole-course QA** — Optional tracks A.1–A.9 (vision, hosted tools vs owned RAG, API-change skill) after Module 7, plus a Start-here path, setup FAQ, and Markdown link check. Offline `FakeLLM` + vision catalog fixtures. No GitHub Release or git tag is created for this changelog entry.
