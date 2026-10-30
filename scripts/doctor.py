@@ -163,7 +163,7 @@ def collect_hints() -> list[str]:
     hints.append(
         "Jupyter kernel: Python: Select Interpreter → `.venv`, then pick that kernel in the notebook."
     )
-    hints.append("More detail: docs/setup/troubleshooting.md")
+    hints.append("FAQ: docs/setup/faq.md. More detail: docs/setup/troubleshooting.md")
     return hints
 
 
@@ -262,7 +262,7 @@ def main(argv: list[str] | None = None) -> int:
     if failed:
         print("Result: not ready. Fix the FAIL lines, then re-run doctor.")
         return 1
-    print("Result: ready for Modules 0A/0B/1/2/3/4/5/6 and the core notebooks.")
+    print("Result: ready for Modules 0A–7, Electives (A), and the core notebooks.")
     return 0
 
 

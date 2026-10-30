@@ -1,4 +1,4 @@
-"""`python -m docsdesk` — demo, eval, triage, v1, or portfolio reports."""
+"""`python -m docsdesk` — demo, eval, triage, v1, portfolio, or electives."""
 
 from __future__ import annotations
 
@@ -123,6 +123,37 @@ def _portfolio() -> int:
     return 0
 
 
+def _vision() -> int:
+    from .vision import VisionDesk
+
+    desk = VisionDesk()
+    result = desk.ask_screenshot(
+        "stacktrace-refund-500",
+        "Why did this refund return HTTP 500?",
+    )
+    print(result.summary())
+    print(result.answer)
+    return 0
+
+
+def _hosted() -> int:
+    from .hosted import compare_retrieve
+
+    comparison = compare_retrieve("How do I refund a captured payment?")
+    print(f"choice={comparison.decision.choice} overlap={comparison.overlap:.2f}")
+    print(comparison.record)
+    return 0
+
+
+def _smoke() -> int:
+    from .smoke import run_elective_smoke
+
+    result = run_elective_smoke(cap_usd=0.01)
+    print(result.summary())
+    print(result.fixture)
+    return 0 if result.report.within_budget else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     if args[:1] == ["eval"]:
@@ -143,6 +174,12 @@ def main(argv: list[str] | None = None) -> int:
         return _cost_report()
     if args[:1] == ["portfolio"]:
         return _portfolio()
+    if args[:1] == ["vision"]:
+        return _vision()
+    if args[:1] == ["hosted"]:
+        return _hosted()
+    if args[:1] == ["smoke"]:
+        return _smoke()
     return _demo()
 
 

@@ -37,7 +37,7 @@ Status: **[Proposed]. No repository changes until Federico approves (Phase 4 gat
 | M5 | Module 5 agents | M4 | P1 | 5 days |
 | M6 | Module 6 production | M5 | P1 | 6–8 days |
 | M7 | Capstone briefs + rubric | M6 | P2 | 3 days |
-| A | Electives | demand from feedback | P3 | — |
+| A | Electives (vision, hosted vs own, API-change skill) | M7 | P3 | 2–3 h each track |
 Sizes are agent-assisted effort estimates **[Unverified]**.
 
 ## MVP recommendation (revised 2026-10-29 after fundamentals rework)

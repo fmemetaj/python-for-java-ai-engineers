@@ -6,9 +6,14 @@
 
 You already know Java, OOP, REST APIs, and tests. This repo teaches the Python-specific patterns that show up in AI projects. It is **not** a beginner programming course, a full ML course, or a conversion service. No paid API key is required for the core notebooks.
 
-**Status:** Modules 0A, 0B, 1, 2, 3, 4, 5, 6, and 7 (concepts 0.1–7.7) are in the repo, plus the original seven notebooks and an optional Gradio/Ollama lab. Electives are planned — see [docs/planning](docs/planning/course-strategy.md). Release notes: [CHANGELOG.md](CHANGELOG.md).
+**Status:** Modules 0A–7 (concepts 0.1–7.7) and **Electives (A)** (A.1–A.9) are in the repo, plus the original seven notebooks and an optional Gradio/Ollama lab. Release notes: [CHANGELOG.md](CHANGELOG.md). Course map: [PROGRESS.md](PROGRESS.md).
 
 ## Start here
+
+New learner path (install uv, doctor, first lesson):
+
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) for your OS (Windows PowerShell, macOS/Linux curl). Restart the terminal.
+2. From this repository's root:
 
 ```bash
 uv python install 3.12
@@ -16,7 +21,10 @@ uv sync --locked --group dev
 uv run python scripts/doctor.py --offline
 ```
 
-Then start **[Module 0A](modules/0a-fundamentals/README.md)** (or take the [placement check](placement/README.md) if you already know some Python), then **[Module 0B](modules/0b-fundamentals/README.md)**, **[Module 1](modules/1-engineering-tooling/README.md)**, **[Module 2](modules/2-llm-api-fundamentals/README.md)**, **[Module 3](modules/3-structured-tools-evals/README.md)**, **[Module 4](modules/4-embeddings-rag/README.md)**, **[Module 5](modules/5-agents/README.md)**, **[Module 6](modules/6-evals-observability-prod/README.md)**, then the **[Module 7 capstone](modules/7-capstone/README.md)**. Select the interpreter in this repository's `.venv`.
+3. First lesson: **[0.1 Running Python](concepts/0_01/README.md)** in [Module 0A](modules/0a-fundamentals/README.md). If you already know some Python, take the [placement check](placement/README.md) instead.
+4. Setup problems (PATH, Store stub, Apple Silicon, WSL): **[FAQ](docs/setup/faq.md)** then [troubleshooting](docs/setup/troubleshooting.md).
+
+Select the interpreter in this repository's `.venv`. Then continue 0B → 1 → 2 → 3 → 4 → 5 → 6 → [7 capstone](modules/7-capstone/README.md). [Electives](modules/a-electives/README.md) are optional after that.
 
 | I want to... | Go to |
 | --- | --- |
@@ -29,9 +37,10 @@ Then start **[Module 0A](modules/0a-fundamentals/README.md)** (or take the [plac
 | Continue with Module 5 (agents from scratch, triage mode) | **[Module 5](modules/5-agents/README.md)** |
 | Continue with Module 6 (evals, observability, production) | **[Module 6](modules/6-evals-observability-prod/README.md)** |
 | Finish with Module 7 (DocsDesk v1.0 capstone / portfolio) | **[Module 7](modules/7-capstone/README.md)** |
+| Optional electives (vision, hosted tools, SDK-upgrade drills) | **[Electives (A)](modules/a-electives/README.md)** |
 | Skip 0A concepts I already know | [Placement check](placement/README.md) |
 | Use the original notebooks as explainers | **[Lesson 00](notebooks/00_getting_started.ipynb)** |
-| Fix install, PATH, kernels, proxy/SSL, WSL | **[Troubleshooting](docs/setup/troubleshooting.md)** |
+| Fix install, PATH, kernels, proxy/SSL, WSL | **[FAQ](docs/setup/faq.md)** · [Troubleshooting](docs/setup/troubleshooting.md) |
 | Use Cursor (optional AI tutor rules) | [Editor setup](guides/01_editor_setup.md#cursor) |
 | Use VS Code or JupyterLab | [Editor alternatives](guides/01_editor_setup.md) |
 | Try a local model in a small UI | [Optional Gradio + Ollama lab](guides/06_local_ai_lab.md) |
@@ -51,6 +60,7 @@ Times below are **unmeasured estimates** for engineers who already know Java. Th
 | [Module 5 · Agents from scratch](modules/5-agents/README.md) | Workflow vs agent, loop + cap, memory, traces, optional facade/MCP; DocsDesk triage | ~5–6 h |
 | [Module 6 · Evals, observability, production](modules/6-evals-observability-prod/README.md) | Judge + CI gate, JSON logs, cache/budgets, injection suite, optional FastAPI | ~5–6 h |
 | [Module 7 · Capstone: DocsDesk v1.0](modules/7-capstone/README.md) | Portfolio product: RAG + approval-gated agent, ≥30 evals, cost/threat reports, 5-minute demo | ~8–12 h |
+| [Electives (A)](modules/a-electives/README.md) | Optional: vision, hosted vs own RAG, pin/changelog/smoke (2–3 h **each** track) | ~2–3 h each |
 | [00 · Getting Started](notebooks/00_getting_started.ipynb) | Notebook mechanics and Java mental model | ~3 min |
 | [01 · Pythonic Essentials](notebooks/01_pythonic_essentials.ipynb) | Comprehensions, dictionaries, `None`, kwargs | ~9 min |
 | [02 · OOP, Typing & Pydantic](notebooks/02_typing_pydantic.ipynb) | Dataclasses, types, runtime validation, decorators | ~12 min |
@@ -81,7 +91,7 @@ Default mode is **Mock (no model)** — no API key, no Ollama. For local inferen
 - **Apple Silicon:** use an arm64 uv/Python. "Bad CPU type" means a Rosetta (x86_64) binary.
 - **WSL:** run clone, uv, and notebooks entirely inside Linux. Do not mix a Windows `.venv` with WSL paths.
 
-Full detail: [docs/setup/troubleshooting.md](docs/setup/troubleshooting.md).
+FAQ: [docs/setup/faq.md](docs/setup/faq.md). Full detail: [docs/setup/troubleshooting.md](docs/setup/troubleshooting.md).
 
 ## Guides (read only when needed)
 
@@ -130,6 +140,8 @@ uv run course check m4 --solutions
 uv run course check m5 --solutions
 uv run course check m6 --solutions
 uv run course check m7 --solutions
+uv run course check ma --solutions
+uv run python scripts/check_markdown_links.py
 uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 

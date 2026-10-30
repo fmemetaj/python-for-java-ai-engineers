@@ -1,0 +1,17 @@
+"""Open: pick own / hosted / hybrid."""
+
+from __future__ import annotations
+
+from course_kit.hosted import StackDecision
+
+
+def pick_stack(
+    *,
+    own_recall: float,
+    hosted_available: bool,
+    can_export: bool,
+    can_eval: bool,
+    overlap: float,
+) -> StackDecision:
+    """Delegate to the course helper. Prefer own when eval-able and recall >= 0.6."""
+    raise NotImplementedError

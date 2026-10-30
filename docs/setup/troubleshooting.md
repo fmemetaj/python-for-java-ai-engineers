@@ -171,6 +171,22 @@ uv run pytest -q
 - **Env vars:** Windows `set LLM_PROVIDER=fake`. PowerShell `$env:LLM_PROVIDER="fake"`. macOS/Linux `export LLM_PROVIDER=fake`.
 - **Wrong API:** live generation still uses `client.responses.create`. Never Assistants.
 
+## Module 7 (capstone)
+
+- **Eval wants 30 cases:** `uv run docsdesk eval-v1` on `LLM_PROVIDER=fake`. Do not lower the bar with a live key.
+- **Write tools still fire:** `DocsDeskV1(approved=False)` and `investigate(..., approved=False)`. `propose_page` is simulated (`would_write`).
+- **Portfolio command:** `uv run docsdesk portfolio` prints the self-assessment. Architecture/demo: `modules/7-capstone/`.
+- **Wrong API:** `client.responses.create` only. Never Assistants.
+
+## Electives (A)
+
+- **Vision fixtures:** `data/fixtures/vision.json`. Graded helpers reject `https://` image URLs. No PNGs in git.
+- **Image tokens:** `detail=low` is 85 tokens; high uses 512px tiles. Images bill as **input**. Rates stay in `data/pricing.yaml`.
+- **Hosted file_search:** canned hits only. Owned RAG remains the CI default. `uv run docsdesk hosted`.
+- **Smoke cap:** `uv run docsdesk smoke` requires `LLM_PROVIDER=fake`. It skips calls that would exceed the USD cap.
+- **Sunset scanner:** flags `openai.ChatCompletion.create` and Assistants/threads. It does **not** flag current `client.chat.completions.create`.
+- **FAQ:** [faq.md](faq.md) (Windows Store stub, macOS arm64, Linux wheels, PATH).
+
 ## Still stuck?
 
 1. Paste `uv run python scripts/doctor.py --offline` into a [bug issue](../../.github/ISSUE_TEMPLATE/bug.yml) (no keys).

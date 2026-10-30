@@ -28,6 +28,8 @@ uv run course check m4 --solutions
 uv run course check m5 --solutions
 uv run course check m6 --solutions
 uv run course check m7 --solutions
+uv run course check ma --solutions
+uv run python scripts/check_markdown_links.py
 uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 

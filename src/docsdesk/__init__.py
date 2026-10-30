@@ -10,6 +10,7 @@ optional FastAPI (no bound port in CI).
 Module 7: DocsDesk v1.0 capstone — RAG + citations, approval-gated agent,
 evals as a CI gate (≥30 cases), tracing, cost budgets, optional FastAPI,
 portfolio reports (eval, cost, threat model, README/demo).
+Electives (A): optional vision, hosted-vs-own comparison, spend-capped smoke.
 Everything essential runs offline (`LLM_PROVIDER=fake`, fixture HTTP transport).
 """
 
@@ -39,6 +40,7 @@ from .settings import Settings
 from .tools import ToolBlockedError, ToolRunner
 from .triage import TriageDesk
 from .v1 import DocsDeskV1, V1Result, V1_VERSION
+from .vision import VisionAnswer, VisionDesk
 
 __all__ = [
     "AgentEvalReport",
@@ -68,6 +70,8 @@ __all__ = [
     "TypedAnswer",
     "V1Result",
     "V1_VERSION",
+    "VisionAnswer",
+    "VisionDesk",
     "build_cost_report",
     "configure_logging",
     "default_docsdesk",

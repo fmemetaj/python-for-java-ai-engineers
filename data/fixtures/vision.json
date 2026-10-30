@@ -1,0 +1,16 @@
+{
+  "stacktrace-refund-500": {
+    "alt": "Spring Boot stack trace for a refund 500",
+    "description": "NullPointerException at com.northwind.payments.RefundService.refund(RefundService.java:42). Payment is null before refund is called. HTTP 500 on POST /payments/{id}/refunds.",
+    "width": 1024,
+    "height": 768,
+    "answer": "RefundService.refund throws NPE at line 42 because Payment is null. Load the payment before calling refund; the HTTP 500 is that NPE."
+  },
+  "auth-401-screenshot": {
+    "alt": "HTTP 401 response from the payments API",
+    "description": "HTTP/1.1 401 Unauthorized. WWW-Authenticate: Bearer. Body: {\"error\":\"missing_token\"}. The client called GET /payments without an Authorization header.",
+    "width": 800,
+    "height": 600,
+    "answer": "401 missing_token: send Authorization: Bearer <token>. The screenshot shows no Authorization header."
+  }
+}

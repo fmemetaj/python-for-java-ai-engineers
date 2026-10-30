@@ -90,3 +90,7 @@ jobs:
         run: uv run course check m6 --solutions
       - name: Module 7 solutions checkpoint
         run: uv run course check m7 --solutions
+      - name: Electives (A) solutions checkpoint
+        run: uv run course check ma --solutions
+      - name: Markdown link check
+        run: uv run python scripts/check_markdown_links.py
