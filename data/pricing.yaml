@@ -26,3 +26,10 @@ models:
     cached_input_per_million: 0.025
     context_window: 1047576
     max_output_tokens: 32768
+embeddings:
+  text-embedding-3-small:
+    input_per_million: 0.02
+    dimensions: 1536
+  text-embedding-3-large:
+    input_per_million: 0.13
+    dimensions: 3072

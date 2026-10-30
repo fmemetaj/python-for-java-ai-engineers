@@ -96,6 +96,20 @@ Start at [modules/3-structured-tools-evals/README.md](modules/3-structured-tools
 - [ ] [Deliverable: DocsDesk typed answers + tools](modules/3-structured-tools-evals/README.md)
 - [ ] `uv run course check m3`
 
+## Module 4 — Embeddings, Semantic Search, RAG
+
+Start at [modules/4-embeddings-rag/README.md](modules/4-embeddings-rag/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concepts are still recommended. 4.7 is optional.
+
+- [ ] [4.1 Embeddings and vector spaces](concepts/4_01/README.md) — NEW
+- [ ] [4.2 Cosine similarity and normalization](concepts/4_02/README.md) — NEW
+- [ ] [4.3 Chunking and metadata](concepts/4_03/README.md) — NEW
+- [ ] [4.4 Vector index / search](concepts/4_04/README.md) — Analog
+- [ ] [4.5 RAG pipeline with citations](concepts/4_05/README.md) — NEW
+- [ ] [4.6 Retrieval evals](concepts/4_06/README.md) — NEW
+- [ ] [4.7 Hybrid search + reranking](concepts/4_07/README.md) — Analog (optional)
+- [ ] [Deliverable: DocsDesk RAG + `docsdesk eval`](modules/4-embeddings-rag/README.md)
+- [ ] `uv run course check m4`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

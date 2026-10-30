@@ -141,6 +141,15 @@ uv run pytest -q
 - **Eval wants a key:** unset `LLM_PROVIDER` or set it to `fake`. Live pass rates are reported with no threshold claimed and are not a CI gate.
 - **Refusal vs ValidationError:** `response.refusal` is not malformed JSON. Do not retry-parse it as an Incident.
 
+## Module 4 (embeddings, RAG, numpy)
+
+- **numpy wheels, not source builds:** `uv sync --locked` should download a wheel for CPython 3.11–3.13 on Windows amd64, macOS x86_64 **and arm64**, and manylinux. If uv starts compiling numpy, the interpreter architecture is wrong.
+- **Apple Silicon:** `python -c "import platform; print(platform.machine())"` should print `arm64`. A Rosetta (x86_64) Python cannot import an arm64 wheel ("Bad CPU type"). Install native uv/CPython, then `uv sync --locked`.
+- **Windows ARM64:** use a numpy wheel if uv offers one. Do not install Visual Studio just to compile numpy for this course. WSL2 (x86_64 or arm64 Linux wheels) is the fallback.
+- **Graded embeddings are fake:** `FakeEmbedder` is a hashing trick. Precomputed vectors: `data/embeddings/payments-api.json`. Rebuild: `uv run python scripts/build_embedding_fixtures.py`.
+- **Wrong API:** live embeddings → `client.embeddings.create`. Live generation in RAG → `client.responses.create`. Never Assistants, never Assistants file_search in CI.
+- **Eval command:** `uv run docsdesk eval` (or `uv run python -m docsdesk eval`). Keep `LLM_PROVIDER=fake`. A red recall@5 is a chunker/index bug, not a missing key.
+
 ## Still stuck?
 
 1. Paste `uv run python scripts/doctor.py --offline` into a [bug issue](../../.github/ISSUE_TEMPLATE/bug.yml) (no keys).

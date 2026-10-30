@@ -2,6 +2,21 @@
 
 This project versions the *course*, not a library API. Dates are UTC.
 
+## 0.3.0 — 2026-10-30
+
+**v0.3 "RAG"** — Module 4. DocsDesk v0.4 answers over an original Spring Boot payments-api fixture with measured retrieval. Offline `FakeEmbedder` + precomputed vectors. No GitHub Release or git tag is created for this changelog entry.
+
+### Module 4 — Embeddings, Semantic Search, RAG
+
+- Concepts 4.1–4.7 (2 Analog, 5 NEW) under `concepts/4_XX/`. 4.7 is optional advanced (hybrid BM25 + vectors, reranking, hosted file_search lock-in sidebar).
+- `uv run course check m4` (solutions in CI).
+- `course_kit.rag`: hashing-trick `FakeEmbedder`, cosine / L2-norm / top-k (numpy), size vs structure-aware chunking, in-memory `VectorIndex`, BM25 hybrid fusion.
+- Precomputed fixture vectors `data/embeddings/payments-api.json`; rebuild with `scripts/build_embedding_fixtures.py`.
+- Original corpus `data/corpus/payments-api` (Northwind Payments Spring Boot docs + Javadoc excerpt).
+- DocsDesk RAG pipeline: retrieve → assemble context → FakeLLM answer with citations (`src/docsdesk/rag.py`).
+- `uv run docsdesk eval` reports recall@5 and groundedness (`data/evals/docsdesk_m4.json`).
+- Live embeddings remain optional via `.env` (`client.embeddings.create`); generation still uses the Responses API. Never Assistants. Keys are never committed.
+
 ## 0.2.0 — 2026-10-30
 
 **v0.2 "First LLM feature"** — Modules 2 and 3. DocsDesk v0.3: typed answers, tools, cost tracking, and a 15-case eval. Offline `FakeLLM`. No GitHub Release or git tag is created for this changelog entry.

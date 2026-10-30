@@ -24,6 +24,7 @@ uv run course check m0b --solutions
 uv run course check m1 --solutions
 uv run course check m2 --solutions
 uv run course check m3 --solutions
+uv run course check m4 --solutions
 uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 

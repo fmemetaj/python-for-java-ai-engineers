@@ -1,0 +1,57 @@
+{
+  "version": "docsdesk_m4.v1",
+  "k": 5,
+  "notes": "Gold labels are Markdown stems under data/corpus/payments-api/docs. Offline only.",
+  "cases": [
+    {
+      "id": "m4-01",
+      "question": "How do clients authenticate?",
+      "gold_stems": ["authentication"]
+    },
+    {
+      "id": "m4-02",
+      "question": "How do I create a payment?",
+      "gold_stems": ["payments"]
+    },
+    {
+      "id": "m4-03",
+      "question": "How do I refund a captured payment?",
+      "gold_stems": ["refunds"]
+    },
+    {
+      "id": "m4-04",
+      "question": "How are webhook signatures verified?",
+      "gold_stems": ["webhooks"]
+    },
+    {
+      "id": "m4-05",
+      "question": "What does HTTP 409 mean?",
+      "gold_stems": ["errors"]
+    },
+    {
+      "id": "m4-06",
+      "question": "Which Spring annotation maps POST /payments?",
+      "gold_stems": ["PaymentController"]
+    },
+    {
+      "id": "m4-07",
+      "question": "What header carries the JWT?",
+      "gold_stems": ["authentication"]
+    },
+    {
+      "id": "m4-08",
+      "question": "What is the Idempotency-Key header for?",
+      "gold_stems": ["payments"]
+    },
+    {
+      "id": "m4-09",
+      "question": "Are partial refunds allowed?",
+      "gold_stems": ["refunds"]
+    },
+    {
+      "id": "m4-10",
+      "question": "Which HMAC algorithm signs webhooks?",
+      "gold_stems": ["webhooks"]
+    }
+  ]
+}

@@ -51,3 +51,18 @@ class SearchDocsArgs(BaseModel):
 class GetEndpointSpecArgs(BaseModel):
     method: str = Field(min_length=1)
     path: str = Field(min_length=1)
+
+
+class RagCitation(BaseModel):
+    """Citation against a retrieved chunk (Module 4)."""
+
+    chunk_id: str = Field(min_length=1)
+    path: str = Field(min_length=1)
+    quote: str = Field(min_length=1)
+
+
+class RagAnswer(BaseModel):
+    """DocsDesk v0.4 RAG answer: prose plus citations into retrieved chunks."""
+
+    answer: str = Field(min_length=1)
+    citations: list[RagCitation]
