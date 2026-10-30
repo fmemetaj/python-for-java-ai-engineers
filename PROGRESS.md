@@ -123,6 +123,19 @@ Start at [modules/5-agents/README.md](modules/5-agents/README.md). Analog concep
 - [ ] [Deliverable: DocsDesk triage + `docsdesk eval-agent`](modules/5-agents/README.md)
 - [ ] `uv run course check m5`
 
+## Module 6 — Evals, Observability, Production
+
+Start at [modules/6-evals-observability-prod/README.md](modules/6-evals-observability-prod/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concepts are still recommended. 6.6 is optional.
+
+- [ ] [6.1 Eval strategy, LLM-as-judge, CI gates](concepts/6_01/README.md) — NEW
+- [ ] [6.2 Observability](concepts/6_02/README.md) — Analog
+- [ ] [6.3 Performance: cache, timeouts, gather](concepts/6_03/README.md) — Analog
+- [ ] [6.4 Cost control](concepts/6_04/README.md) — NEW
+- [ ] [6.5 Prompt injection and leakage](concepts/6_05/README.md) — NEW
+- [ ] [6.6 FastAPI + container](concepts/6_06/README.md) — Analog (optional)
+- [ ] [Deliverable: DocsDesk production layer](modules/6-evals-observability-prod/README.md)
+- [ ] `uv run course check m6`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

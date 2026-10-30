@@ -30,6 +30,7 @@ dev = [
     "ruff>=0.9,<1",
 ]
 demo = ["gradio>=5.0,<7"]
+prod = ["fastapi>=0.115,<1"]
 
 [build-system]
 requires = ["hatchling"]

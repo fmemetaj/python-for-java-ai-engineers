@@ -2,6 +2,22 @@
 
 This project versions the *course*, not a library API. Dates are UTC.
 
+## 0.4.0 — 2026-10-30
+
+**Module 6 "Evals, Observability, Production"** — Concepts 6.1–6.6. DocsDesk v0.6: LLM-as-judge with calibration, a CI eval gate that fails on an injected regression, JSON logs with request ids and per-request cost, TTL cache, budgets and prompt-cache discount, an injection suite, and an optional FastAPI wrapper. Offline `FakeLLM` (and Module 4's `FakeEmbedder` where retrieval is reused). No GitHub Release or git tag is created for this changelog entry.
+
+### Module 6 — Evals, Observability, Production
+
+- Concepts 6.1–6.6 (3 Analog, 3 NEW) under `concepts/6_XX/`. 6.6 is optional (FastAPI + container sketch).
+- `uv run course check m6` (solutions in CI).
+- `docsdesk.judge` / `docsdesk.gate`: scripted LLM-as-judge, agreement vs labels, `eval_gate`, `inject_regression`.
+- Observability: `LLMResponse.request_id` (OpenAI SDK `_request_id` analog), ContextVar MDC, JSON log lines with `cost_usd`.
+- Performance: in-process TTL cache, timeout helper, `asyncio.gather` (cooperative I/O).
+- Cost control: remaining budget, nano/mini routing, cached-token discount from `data/pricing.yaml`, log dashboard.
+- Security: direct/indirect injection detectors, secret redaction, `data/evals/docsdesk_injection.json`.
+- `uv run docsdesk eval-prod` and `uv run docsdesk eval-injection`.
+- Optional FastAPI (`uv sync --locked --group prod`) tested with in-process TestClient — no bound port. `deploy/Dockerfile` is a sketch; CI does not `docker build`. Never Assistants. Keys are never committed.
+
 ## 0.3.0 — 2026-10-30
 
 **v0.3 "RAG + agents"** — Modules 4 and 5. DocsDesk v0.5: RAG over an original Spring Boot payments-api fixture, then a from-scratch triage agent with a scripted 5-step fake trajectory. Offline `FakeEmbedder` + `FakeLLM` trajectories. No GitHub Release or git tag is created for this changelog entry.

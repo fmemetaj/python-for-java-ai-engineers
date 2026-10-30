@@ -73,6 +73,7 @@ class LLMResponse:
     model: str = "gpt-4.1-mini"
     refusal: str | None = None
     output_parsed: dict[str, object] | None = None
+    request_id: str = ""  # HTTP id; OpenAI SDK: response._request_id. Not response.id.
 
     @property
     def output_text(self) -> str:

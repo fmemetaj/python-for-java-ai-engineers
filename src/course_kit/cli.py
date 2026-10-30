@@ -1,4 +1,4 @@
-"""Command-line checkpoint: `uv run course check m0a|m0b|m1|m2|m3|m4|m5`."""
+"""Command-line checkpoint: `uv run course check m0a|m0b|m1|m2|m3|m4|m5|m6`."""
 
 from __future__ import annotations
 
@@ -17,6 +17,7 @@ from .catalog import (
     CONCEPTS_3,
     CONCEPTS_4,
     CONCEPTS_5,
+    CONCEPTS_6,
     MODULE_0A,
     MODULE_0B,
     MODULE_1,
@@ -24,6 +25,7 @@ from .catalog import (
     MODULE_3,
     MODULE_4,
     MODULE_5,
+    MODULE_6,
     Concept,
 )
 from .loader import repo_root
@@ -243,13 +245,38 @@ def check_m5(*, impl: str) -> int:
     return 0 if failed == 0 else 1
 
 
+def check_m6(*, impl: str) -> int:
+    root = repo_root()
+    print(f"{MODULE_6['title']}")
+    print(f"cost: {MODULE_6['cost']} | COURSE_IMPL={impl} | offline")
+    print()
+
+    failed = _grade_concepts(CONCEPTS_6, impl=impl)
+    prod_ok = _run_pytest([root / "tests" / "test_docsdesk_prod.py"], impl=impl) == 0
+    eval_ok = _run_pytest([root / "tests" / "test_docsdesk_eval.py"], impl=impl) == 0
+    if not prod_ok:
+        failed += 1
+    if not eval_ok:
+        failed += 1
+    print()
+    print(f"prod        {_label(prod_ok)}")
+    print(f"evals       {_label(eval_ok)}")
+    print()
+    total = len(CONCEPTS_6) + 2
+    passed = total - failed
+    print(f"{passed}/{total} checks passed")
+    if impl == "exercises":
+        print("Fill concepts/<id>/exercises/*.py, then re-run. Solutions stay in solutions/.")
+    return 0 if failed == 0 else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Course checkpoints")
     sub = parser.add_subparsers(dest="command", required=True)
     check = sub.add_parser("check", help="Run a module checkpoint")
     check.add_argument(
         "module",
-        choices=["m0a", "m0b", "m1", "m2", "m3", "m4", "m5"],
+        choices=["m0a", "m0b", "m1", "m2", "m3", "m4", "m5", "m6"],
         help="Module id",
     )
     check.add_argument(
@@ -273,6 +300,8 @@ def main(argv: list[str] | None = None) -> int:
         return check_m4(impl=impl)
     if args.module == "m5":
         return check_m5(impl=impl)
+    if args.module == "m6":
+        return check_m6(impl=impl)
     return 2
 
 

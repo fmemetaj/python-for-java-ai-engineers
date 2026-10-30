@@ -34,6 +34,12 @@ def _demo() -> int:
     rag = RagDesk()
     answer = rag.ask("How do I refund a captured payment?")
     print(answer.model_dump_json())
+    from .production import ProductionDesk
+
+    with ProductionDesk() as prod:
+        result = prod.ask("How do clients authenticate?")
+        print(result.summary())
+        print(result.log_line)
     return 0
 
 
@@ -63,6 +69,23 @@ def _eval_agent() -> int:
     return 0 if report.ok else 1
 
 
+def _eval_prod() -> int:
+    from .gate import eval_gate
+    from .prod_eval import run_m6_eval
+
+    report = run_m6_eval()
+    print(report.summary())
+    return 0 if eval_gate(report, min_pass_rate=1.0) else 1
+
+
+def _eval_injection() -> int:
+    from .prod_eval import run_injection_suite
+
+    report = run_injection_suite()
+    print(report.summary())
+    return 0 if report.failed == 0 else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     if args[:1] == ["eval"]:
@@ -71,6 +94,10 @@ def main(argv: list[str] | None = None) -> int:
         return _triage()
     if args[:1] == ["eval-agent"]:
         return _eval_agent()
+    if args[:1] == ["eval-prod"]:
+        return _eval_prod()
+    if args[:1] == ["eval-injection"]:
+        return _eval_injection()
     return _demo()
 
 

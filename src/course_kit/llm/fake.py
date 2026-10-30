@@ -310,6 +310,7 @@ class FakeLLM:
             model=model,
             refusal=refusal,
             output_parsed=output_parsed,
+            request_id=f"req_fake_{self._counter:04d}",
         )
         if store:
             self._store[response.id] = response

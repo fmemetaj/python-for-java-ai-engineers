@@ -2338,6 +2338,9 @@ dev = [
     { name = "respx" },
     { name = "ruff" },
 ]
+prod = [
+    { name = "fastapi" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -2361,6 +2364,7 @@ dev = [
     { name = "respx", specifier = ">=0.21,<1" },
     { name = "ruff", specifier = ">=0.9,<1" },
 ]
+prod = [{ name = "fastapi", specifier = ">=0.115,<1" }]
 
 [[package]]
 name = "python-json-logger"

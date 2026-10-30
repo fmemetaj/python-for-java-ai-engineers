@@ -160,6 +160,17 @@ uv run pytest -q
 - **MCP lesson (5.6):** in-process JSON-RPC only. No stdio server in CI. Hosted remote MCP is optional and paid.
 - **Wrong API:** live generation still uses `client.responses.create`. Never Assistants.
 
+## Module 6 (evals, observability, production)
+
+- **CI gate red on fake:** keep `LLM_PROVIDER=fake`. An injected regression (wrong `expected_answer`) is *supposed* to fail the gate. Do not "fix" it with a live key.
+- **Judge vs golden:** exact match is for FakeLLM fixtures. An LLM-as-judge needs calibration (`agreement_rate`) before it is a gate. Live judges report a rate; this course claims no threshold.
+- **Request id vs response id:** `LLMResponse.id` is `resp_…`. `LLMResponse.request_id` is the HTTP id (OpenAI Python SDK `_request_id`). Log both if you need them; quote `request_id` in support tickets.
+- **Port 8000:** FastAPI tests use TestClient (no port). Optional local uvicorn: `--host 127.0.0.1`. Windows: `netstat -ano | findstr :8000`. macOS/Linux: `lsof -i :8000`. Then `--port 8001`.
+- **Docker:** optional. Windows/macOS need Docker Desktop running. Linux needs permission for the daemon (`docker` group). CI never `docker build`. Never bake `OPENAI_API_KEY` into an image. `.env` is in `deploy/.dockerignore`.
+- **FastAPI extra:** `uv sync --locked --group prod`. Without it, `tests/test_docsdesk_service.py` skips. Concept 6.6 exercises still grade.
+- **Env vars:** Windows `set LLM_PROVIDER=fake`. PowerShell `$env:LLM_PROVIDER="fake"`. macOS/Linux `export LLM_PROVIDER=fake`.
+- **Wrong API:** live generation still uses `client.responses.create`. Never Assistants.
+
 ## Still stuck?
 
 1. Paste `uv run python scripts/doctor.py --offline` into a [bug issue](../../.github/ISSUE_TEMPLATE/bug.yml) (no keys).

@@ -26,13 +26,14 @@ uv run course check m2 --solutions
 uv run course check m3 --solutions
 uv run course check m4 --solutions
 uv run course check m5 --solutions
+uv run course check m6 --solutions
 uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 
-Install the optional demo group before pyright on `examples/gradio_app.py` and before Gradio tests actually run (otherwise they skip):
+Install the optional demo group (and `prod` for FastAPI) before pyright on `examples/gradio_app.py` / `docsdesk.service` and before those tests actually run (otherwise they skip):
 
 ```bash
-uv sync --locked --group dev --group demo
+uv sync --locked --group dev --group demo --group prod
 uv run pyright
 uv run pytest -q
 ```

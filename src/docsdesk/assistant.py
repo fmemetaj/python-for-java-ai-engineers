@@ -132,6 +132,7 @@ class DocsDesk:
         self._docs = docs
         self._owns_docs = docs is None and runner is None
         self._runner = runner if runner is not None else ToolRunner(docs)
+        self.last_response: LLMResponse | None = None
 
     def close(self) -> None:
         if self._runner is not None:
@@ -150,18 +151,16 @@ class DocsDesk:
             runner=self._runner,
             instructions=self.instructions,
         )
+        self.last_response = response
         return parse_typed_answer(response)
 
     def ask_with_cost(
         self, question: str, *, model: str = "gpt-4.1-mini"
     ) -> tuple[TypedAnswer, str]:
-        response = run_tool_loop(
-            self._client,
-            question,
-            runner=self._runner,
-            instructions=self.instructions,
-        )
-        answer = parse_typed_answer(response)
+        answer = self.ask(question)
+        response = self.last_response
+        if response is None:
+            raise RuntimeError("DocsDesk.ask did not store a response")
         amount = cost_usd(response.usage, model)
         badge = (
             f"[tokens in={response.usage.input_tokens} out={response.usage.output_tokens} "

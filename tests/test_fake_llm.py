@@ -39,6 +39,14 @@ def test_scripted_reply() -> None:
     assert client.complete("ping").output_text == "pong"
 
 
+def test_request_id_is_not_response_id() -> None:
+    client = FakeLLM(script={"ping": "pong"})
+    response = client.complete("ping")
+    assert response.request_id.startswith("req_fake_")
+    assert response.id.startswith("resp_fake_")
+    assert response.request_id != response.id
+
+
 def test_responses_kwargs_are_current_api() -> None:
     body = responses_create_kwargs(
         model="gpt-4.1-mini",
