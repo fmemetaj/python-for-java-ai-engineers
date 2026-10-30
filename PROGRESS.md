@@ -25,6 +25,28 @@ Start at [modules/0a-fundamentals/README.md](modules/0a-fundamentals/README.md).
 - [ ] [Deliverable: `fundamentals/log_stats.py`](fundamentals/README.md)
 - [ ] `uv run course check m0a`
 
+## Module 0B — Python Fundamentals II
+
+Start at [modules/0b-fundamentals/README.md](modules/0b-fundamentals/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concepts are still recommended.
+
+- [ ] [0.16 Classes and objects](concepts/0_16/README.md) — Analog
+- [ ] [0.17 Properties](concepts/0_17/README.md) — Analog
+- [ ] [0.18 Dunder methods](concepts/0_18/README.md) — NEW
+- [ ] [0.19 Dataclasses and Pydantic](concepts/0_19/README.md) — Analog
+- [ ] [0.20 Inheritance and MRO](concepts/0_20/README.md) — Analog
+- [ ] [0.21 Duck typing](concepts/0_21/README.md) — NEW
+- [ ] [0.22 Protocol and ABCs](concepts/0_22/README.md) — Analog
+- [ ] [0.23 Type hints vs generics](concepts/0_23/README.md) — Analog
+- [ ] [0.24 Exceptions](concepts/0_24/README.md) — Analog
+- [ ] [0.25 Context managers](concepts/0_25/README.md) — NEW
+- [ ] [0.26 Decorators](concepts/0_26/README.md) — NEW
+- [ ] [0.27 Modules and packages](concepts/0_27/README.md) — Analog
+- [ ] [0.28 Threads and executors](concepts/0_28/README.md) — Analog
+- [ ] [0.29 GIL and asyncio](concepts/0_29/README.md) — NEW
+- [ ] [Deliverable: `fundamentals/tool_registry.py`](fundamentals/README.md)
+- [ ] `uv run course check m0b`
+- [ ] [06 · Readiness Check](notebooks/06_readiness_check.ipynb)
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

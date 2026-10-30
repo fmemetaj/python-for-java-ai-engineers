@@ -73,7 +73,7 @@ uv run pytest fundamentals/test_log_stats.py
 uv run course check m0a
 ```
 
-Prints pass/fail per concept, plus `log_stats` and placement. CI runs the same command against `solutions/`.
+Prints pass/fail per concept, plus `log_stats` and placement. CI runs the same command against `solutions/`. Next: [Module 0B](../0b-fundamentals/README.md).
 
 ## Setup if you get stuck
 

@@ -73,3 +73,13 @@ def load_placement() -> ModuleType:
     else:
         path = root / "placement" / "self_check.py"
     return _load(path, f"course_placement_{impl_name()}")
+
+
+def load_tool_registry() -> ModuleType:
+    """Load the Module 0B deliverable `fundamentals/tool_registry.py`."""
+    root = repo_root()
+    if impl_name() == "solutions":
+        path = root / "fundamentals" / "solutions" / "tool_registry.py"
+    else:
+        path = root / "fundamentals" / "tool_registry.py"
+    return _load(path, f"course_tool_registry_{impl_name()}")

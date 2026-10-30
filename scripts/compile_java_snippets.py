@@ -1,4 +1,4 @@
-"""Compile every Java snippet shipped with Module 0A (JDK 21).
+"""Compile every Java snippet shipped with concept lessons (JDK 21).
 
 Each file is compiled on its own so public class names only need to
 match the file name, not be unique across the course.
@@ -74,7 +74,7 @@ def compile_all(*, javac: str) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Compile Module 0A Java snippets")
+    parser = argparse.ArgumentParser(description="Compile concept-lesson Java snippets")
     parser.add_argument("--javac", default=shutil.which("javac") or "javac")
     args = parser.parse_args(argv)
     if shutil.which(args.javac) is None and not Path(args.javac).is_file():
