@@ -10,7 +10,9 @@ from course_kit.llm import (
     FakeLLM,
     chat_completions_create_kwargs,
     get_client,
+    json_schema_from_model,
     responses_create_kwargs,
+    responses_text_format,
 )
 from course_kit.llm.migrate import migrate_chat_body_to_responses, output_text_from_chat
 
@@ -133,3 +135,53 @@ def test_openai_provider_is_opt_in() -> None:
 def test_unknown_provider_rejected() -> None:
     with pytest.raises(ValueError, match="Unknown LLM_PROVIDER"):
         get_client("assistants")
+
+
+def test_structured_output_and_refusal() -> None:
+    from docsdesk.models import Incident
+
+    payload = {
+        "service": "auth",
+        "severity": "high",
+        "summary": "token validation failed",
+        "timestamp": "2026-10-30T08:00:00Z",
+    }
+    schema = json_schema_from_model(Incident)
+    fmt = responses_text_format("incident", schema)
+    client = FakeLLM(structured={"extract": payload}, refusals=("nope",))
+    response = client.complete("extract", text_format=fmt)
+    assert response.output_parsed == payload
+    refused = client.complete("nope")
+    assert refused.refusal
+    assert refused.function_calls == ()
+
+
+def test_scripted_function_call_then_output() -> None:
+    client = FakeLLM(
+        tool_calls={
+            "q": [
+                {
+                    "call_id": "call_1",
+                    "name": "search_docs",
+                    "arguments": '{"query":"auth"}',
+                }
+            ]
+        },
+        after_tools={"q": "found it"},
+    )
+    tools: list[dict[str, object]] = [{"type": "function", "name": "search_docs"}]
+    first = client.complete("q", tools=tools)
+    assert first.function_calls[0].call_id == "call_1"
+    second = client.complete(
+        "q",
+        tools=tools,
+        input_items=[
+            {
+                "type": "function_call_output",
+                "call_id": "call_1",
+                "output": "[]",
+            }
+        ],
+    )
+    assert second.output_text == "found it"
+    assert second.function_calls == ()

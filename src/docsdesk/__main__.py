@@ -1,9 +1,10 @@
-"""`python -m docsdesk` — fetch a fixture page, then a two-turn fake session."""
+"""`python -m docsdesk` — fixture page, session, then a typed tool-backed answer."""
 
 from __future__ import annotations
 
 from course_kit.cost import format_cost
 
+from .assistant import DocsDesk
 from .client import DocsClient
 from .logging_setup import configure_logging
 from .session import DeskSession
@@ -22,6 +23,10 @@ def main() -> int:
     print(first.summary())
     print(second.summary())
     print(f"session turns={len(session.turns)} last={format_cost(second.cost)}")
+    with DocsDesk() as desk:
+        typed, badge = desk.ask_with_cost("Search the docs for authentication")
+        print(typed.model_dump_json())
+        print(badge)
     return 0
 
 

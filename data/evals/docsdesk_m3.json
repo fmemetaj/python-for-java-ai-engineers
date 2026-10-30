@@ -1,0 +1,128 @@
+{
+  "version": "docsdesk_m3.v1",
+  "provider": "fake",
+  "cases": [
+    {
+      "id": "exact-auth",
+      "check": "exact",
+      "prompt": "How do clients authenticate?",
+      "expected_answer": "Clients send a Bearer token. DocsDesk never logs the token."
+    },
+    {
+      "id": "exact-tickets",
+      "check": "exact",
+      "prompt": "What are tickets?",
+      "expected_answer": "GET /tickets/{id} returns a ticket. Timeouts are five seconds."
+    },
+    {
+      "id": "exact-401",
+      "check": "exact",
+      "prompt": "What does 401 mean?",
+      "expected_answer": "401 means missing Bearer token. 429 means backoff and retry."
+    },
+    {
+      "id": "exact-webhooks",
+      "check": "exact",
+      "prompt": "How are webhooks signed?",
+      "expected_answer": "POST /webhooks registers a URL. Signatures use HMAC."
+    },
+    {
+      "id": "rubric-bearer",
+      "check": "rubric",
+      "prompt": "How do clients authenticate?",
+      "contains": ["Bearer"]
+    },
+    {
+      "id": "rubric-never-log",
+      "check": "rubric",
+      "prompt": "Does DocsDesk log the token?",
+      "contains": ["never", "token"]
+    },
+    {
+      "id": "rubric-401",
+      "check": "rubric",
+      "prompt": "What does 401 mean?",
+      "contains": ["401", "Bearer"]
+    },
+    {
+      "id": "schema-incident-auth",
+      "check": "schema",
+      "model": "Incident",
+      "payload": {
+        "service": "auth",
+        "severity": "high",
+        "summary": "token validation failed for 12 requests",
+        "timestamp": "2026-10-30T08:00:00Z"
+      }
+    },
+    {
+      "id": "schema-incident-tickets",
+      "check": "schema",
+      "model": "Incident",
+      "payload": {
+        "service": "tickets",
+        "severity": "medium",
+        "summary": "p95 latency above five seconds",
+        "timestamp": "2026-10-30T08:05:00Z"
+      }
+    },
+    {
+      "id": "schema-typed-answer",
+      "check": "schema",
+      "model": "TypedAnswer",
+      "payload": {
+        "answer": "Clients send a Bearer token.",
+        "citations": [{"slug": "auth", "quote": "Clients send a Bearer token."}],
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "invalid-query-int",
+      "check": "invalid_args",
+      "tool": "search_docs",
+      "arguments": {"query": 1}
+    },
+    {
+      "id": "invalid-query-empty",
+      "check": "invalid_args",
+      "tool": "search_docs",
+      "arguments": {"query": ""}
+    },
+    {
+      "id": "invalid-spec-missing-path",
+      "check": "invalid_args",
+      "tool": "get_endpoint_spec",
+      "arguments": {"method": "GET"}
+    },
+    {
+      "id": "blocked-delete",
+      "check": "blocked",
+      "tool": "delete_page",
+      "arguments": {"slug": "auth"}
+    },
+    {
+      "id": "blocked-shell",
+      "check": "blocked",
+      "tool": "shell",
+      "arguments": {"cmd": "wipe"}
+    },
+    {
+      "id": "tool-search-auth",
+      "check": "tool",
+      "prompt": "Search the docs for authentication",
+      "contains": ["Bearer"]
+    },
+    {
+      "id": "tool-endpoint-tickets",
+      "check": "tool",
+      "prompt": "Look up GET /tickets/{id}",
+      "contains": ["tickets"]
+    },
+    {
+      "id": "tool-search-webhooks",
+      "check": "tool",
+      "prompt": "Search the docs for webhooks",
+      "contains": ["HMAC"]
+    }
+  ]
+}

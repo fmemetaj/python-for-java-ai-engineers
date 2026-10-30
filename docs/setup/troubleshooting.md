@@ -132,6 +132,15 @@ uv run pytest -q
 - **Prices:** read `data/pricing.yaml` (dated, sourced from [OpenAI pricing](https://platform.openai.com/docs/pricing)). Do not hard-code rates in code you will forget to update.
 - **Old snippets:** `openai.ChatCompletion.create` and the Assistants API are out of scope.
 
+## Module 3 (structured outputs, tools, evals)
+
+- **Schema vs Chat Completions:** Responses uses `text.format`; Chat Completions uses `response_format`. Mixing them is a common 400.
+- **`arguments` is a JSON string:** `json.loads(item.arguments)` before indexing. `item.arguments["query"]` raises `TypeError`.
+- **Tool loop repeats:** pair `function_call_output` with the model's `call_id`. Cap steps (`MAX_TOOL_STEPS`). Keep `LLM_PROVIDER=fake` for graded work.
+- **Invalid tool args in CI:** that is supposed to fail validation (`strict=True`). Do not coerce `query: 1` into `"1"`.
+- **Eval wants a key:** unset `LLM_PROVIDER` or set it to `fake`. Live pass rates are reported with no threshold claimed and are not a CI gate.
+- **Refusal vs ValidationError:** `response.refusal` is not malformed JSON. Do not retry-parse it as an Incident.
+
 ## Still stuck?
 
 1. Paste `uv run python scripts/doctor.py --offline` into a [bug issue](../../.github/ISSUE_TEMPLATE/bug.yml) (no keys).

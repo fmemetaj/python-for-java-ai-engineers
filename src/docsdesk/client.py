@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 
 import httpx
 
-from .models import DocPage
+from .models import DocPage, EndpointSpec
 from .retry import TransientError, run_with_retry, should_retry
 from .settings import Settings
 
@@ -23,6 +23,34 @@ FIXTURE_PAGES: dict[str, dict[str, str]] = {
         "slug": "tickets",
         "title": "Tickets API",
         "body": "GET /tickets/{id} returns a ticket. Timeouts are five seconds.",
+    },
+    "errors": {
+        "slug": "errors",
+        "title": "Error codes",
+        "body": "401 means missing Bearer token. 429 means backoff and retry.",
+    },
+    "webhooks": {
+        "slug": "webhooks",
+        "title": "Webhooks",
+        "body": "POST /webhooks registers a URL. Signatures use HMAC.",
+    },
+}
+
+FIXTURE_ENDPOINTS: dict[str, dict[str, str]] = {
+    "GET /tickets/{id}": {
+        "method": "GET",
+        "path": "/tickets/{id}",
+        "summary": "Fetch a ticket by id. Timeouts are five seconds.",
+    },
+    "POST /tickets": {
+        "method": "POST",
+        "path": "/tickets",
+        "summary": "Create a ticket. Body is JSON with subject and body fields.",
+    },
+    "GET /pages/{slug}": {
+        "method": "GET",
+        "path": "/pages/{slug}",
+        "summary": "Fetch a docs page by slug from the internal catalog.",
     },
 }
 
@@ -98,3 +126,22 @@ class DocsClient:
             attempts=self._settings.http_retries,
             sleeper=self._sleeper,
         )
+
+    def search_pages(self, query: str) -> list[DocPage]:
+        """Keyword search over the fixture catalog. Empty query is invalid."""
+        needle = query.strip().lower()
+        if not needle:
+            raise ValueError("query must be non-empty")
+        hits: list[DocPage] = []
+        for page in FIXTURE_PAGES.values():
+            blob = f"{page['slug']} {page['title']} {page['body']}".lower()
+            if needle in blob:
+                hits.append(DocPage.model_validate(page))
+        return hits
+
+    def get_endpoint_spec(self, method: str, path: str) -> EndpointSpec:
+        key = f"{method.strip().upper()} {path.strip()}"
+        spec = FIXTURE_ENDPOINTS.get(key)
+        if spec is None:
+            raise KeyError(f"unknown endpoint {key}")
+        return EndpointSpec.model_validate(spec)

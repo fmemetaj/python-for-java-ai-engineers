@@ -1,4 +1,4 @@
-"""Command-line checkpoint: `uv run course check m0a|m0b|m1|m2`."""
+"""Command-line checkpoint: `uv run course check m0a|m0b|m1|m2|m3`."""
 
 from __future__ import annotations
 
@@ -14,10 +14,12 @@ from .catalog import (
     CONCEPTS_0B,
     CONCEPTS_1,
     CONCEPTS_2,
+    CONCEPTS_3,
     MODULE_0A,
     MODULE_0B,
     MODULE_1,
     MODULE_2,
+    MODULE_3,
     Concept,
 )
 from .loader import repo_root
@@ -158,11 +160,40 @@ def check_m2(*, impl: str) -> int:
     return 0 if failed == 0 else 1
 
 
+def check_m3(*, impl: str) -> int:
+    root = repo_root()
+    print(f"{MODULE_3['title']}")
+    print(f"cost: {MODULE_3['cost']} | COURSE_IMPL={impl} | offline")
+    print()
+
+    failed = _grade_concepts(CONCEPTS_3, impl=impl)
+    docs_ok = _run_pytest([root / "tests" / "test_docsdesk.py"], impl=impl) == 0
+    llm_ok = _run_pytest([root / "tests" / "test_fake_llm.py"], impl=impl) == 0
+    eval_ok = _run_pytest([root / "tests" / "test_docsdesk_eval.py"], impl=impl) == 0
+    if not docs_ok:
+        failed += 1
+    if not llm_ok:
+        failed += 1
+    if not eval_ok:
+        failed += 1
+    print()
+    print(f"docsdesk    {_label(docs_ok)}")
+    print(f"fake_llm    {_label(llm_ok)}")
+    print(f"evals       {_label(eval_ok)}")
+    print()
+    total = len(CONCEPTS_3) + 3
+    passed = total - failed
+    print(f"{passed}/{total} checks passed")
+    if impl == "exercises":
+        print("Fill concepts/<id>/exercises/*.py, then re-run. Solutions stay in solutions/.")
+    return 0 if failed == 0 else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Course checkpoints")
     sub = parser.add_subparsers(dest="command", required=True)
     check = sub.add_parser("check", help="Run a module checkpoint")
-    check.add_argument("module", choices=["m0a", "m0b", "m1", "m2"], help="Module id")
+    check.add_argument("module", choices=["m0a", "m0b", "m1", "m2", "m3"], help="Module id")
     check.add_argument(
         "--solutions",
         action="store_true",
@@ -178,6 +209,8 @@ def main(argv: list[str] | None = None) -> int:
         return check_m1(impl=impl)
     if args.module == "m2":
         return check_m2(impl=impl)
+    if args.module == "m3":
+        return check_m3(impl=impl)
     return 2
 
 

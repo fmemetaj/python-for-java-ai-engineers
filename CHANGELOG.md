@@ -4,18 +4,26 @@ This project versions the *course*, not a library API. Dates are UTC.
 
 ## 0.2.0 — 2026-10-30
 
-Start of **release v0.2** ("First LLM feature"). Module 2 only; Module 3 is not in this drop.
+**v0.2 "First LLM feature"** — Modules 2 and 3. DocsDesk v0.3: typed answers, tools, cost tracking, and a 15-case eval. Offline `FakeLLM`. No GitHub Release or git tag is created for this changelog entry.
 
-### Added
+### Module 2 — LLM API Fundamentals
 
-- Module 2 — LLM API Fundamentals: concepts 2.1–2.11 (5 Analog, 6 NEW) under `concepts/2_XX/`.
+- Concepts 2.1–2.11 (5 Analog, 6 NEW) under `concepts/2_XX/`.
 - `uv run course check m2` (solutions in CI).
 - `course_kit.cost` + dated `data/pricing.yaml` (source: https://platform.openai.com/docs/pricing, retrieved 2026-10-30).
 - FakeLLM Chat Completions shape, streaming events, `previous_response_id` billing, reasoning items.
 - DocsDesk multi-turn session over a pasted doc, printing tokens and USD (`src/docsdesk/session.py`).
 - Versioned prompt `src/docsdesk/prompts/answer_from_doc.v1.txt`.
 
-No GitHub Release or git tag is created for this changelog entry.
+### Module 3 — Structured Outputs, Tool Calling, First Evals
+
+- Concepts 3.1–3.5 (3 Analog, 2 NEW) under `concepts/3_XX/`.
+- `uv run course check m3` (solutions in CI).
+- Structured outputs: JSON Schema from Pydantic, Responses `text.format` vs Chat Completions `response_format`, refusal handling.
+- FakeLLM scripted `function_call` / `function_call_output` turns (`call_id`) and structured JSON.
+- DocsDesk typed `TypedAnswer` with citations; tools `search_docs` and `get_endpoint_spec`.
+- Tool safety: allow-list, strict argument validation, simulated approval, idempotency. Invalid tool args are handled.
+- Eval harness `data/evals/docsdesk_m3.json` (≥15 cases) passes on fake; live pass rate is reported with no threshold claimed.
 
 ## 0.1.0 — 2026-10-30
 
