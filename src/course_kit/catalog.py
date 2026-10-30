@@ -1,4 +1,4 @@
-"""Module 0A/0B/1/2/3 concept index (curriculum.md §6, concepts 0.1–3.5)."""
+"""Module 0A/0B/1/2/3/4 concept index (curriculum.md §6, concepts 0.1–4.7)."""
 
 from __future__ import annotations
 
@@ -634,4 +634,84 @@ MODULE_3 = {
     "title": "Structured Outputs, Tool Calling, First Evals",
     "cost": "mock",
     "concepts": CONCEPTS_3,
+}
+
+CONCEPTS_4: tuple[Concept, ...] = (
+    {
+        "id": "4.1",
+        "number": "4.1",
+        "title": "Embeddings and vector spaces",
+        "kind": "new",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "4_01",
+    },
+    {
+        "id": "4.2",
+        "number": "4.2",
+        "title": "Cosine similarity and normalization",
+        "kind": "new",
+        "minutes": 40,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "4_02",
+    },
+    {
+        "id": "4.3",
+        "number": "4.3",
+        "title": "Chunking and metadata",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "4_03",
+    },
+    {
+        "id": "4.4",
+        "number": "4.4",
+        "title": "Vector index / search",
+        "kind": "analog",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "Lucene / Elasticsearch index",
+        "folder": "4_04",
+    },
+    {
+        "id": "4.5",
+        "number": "4.5",
+        "title": "RAG pipeline with citations",
+        "kind": "new",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "4_05",
+    },
+    {
+        "id": "4.6",
+        "number": "4.6",
+        "title": "Retrieval evals (recall@k, groundedness)",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "4_06",
+    },
+    {
+        "id": "4.7",
+        "number": "4.7",
+        "title": "Advanced: hybrid search + reranking",
+        "kind": "analog",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "Elasticsearch BM25 scoring — optional",
+        "folder": "4_07",
+    },
+)
+
+MODULE_4 = {
+    "id": "m4",
+    "title": "Embeddings, Semantic Search, RAG",
+    "cost": "mock",
+    "concepts": CONCEPTS_4,
 }

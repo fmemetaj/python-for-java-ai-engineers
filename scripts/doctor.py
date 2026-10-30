@@ -132,7 +132,8 @@ def collect_hints() -> list[str]:
         if machine.lower() in {"arm64", "aarch64"}:
             hints.append(
                 "Apple Silicon: use an arm64 uv/Python build. "
-                "'Bad CPU type in executable' means a Rosetta/x86_64 binary."
+                "'Bad CPU type in executable' means a Rosetta/x86_64 binary. "
+                "numpy must be the arm64 wheel (Module 4)."
             )
     else:
         hints.append("Linux: `python3` is the usual command; install uv, then `uv sync --locked`.")
@@ -198,6 +199,11 @@ def run_checks(*, offline: bool) -> list[tuple[str, str]]:
             hint="uv sync --locked --group dev",
         ),
         lambda: check_import(
+            "numpy",
+            required=True,
+            hint="uv sync --locked --group dev (numpy wheel; see docs/setup/troubleshooting.md)",
+        ),
+        lambda: check_import(
             "ipykernel",
             required=False,
             hint="needed for notebooks: uv sync --locked --group dev",
@@ -256,7 +262,7 @@ def main(argv: list[str] | None = None) -> int:
     if failed:
         print("Result: not ready. Fix the FAIL lines, then re-run doctor.")
         return 1
-    print("Result: ready for Modules 0A/0B/1/2 and the core notebooks.")
+    print("Result: ready for Modules 0A/0B/1/2/3/4 and the core notebooks.")
     return 0
 
 

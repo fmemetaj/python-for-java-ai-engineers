@@ -1,6 +1,6 @@
 # Concepts
 
-Concept-by-concept lessons for Modules 0A, 0B, 1, and 2. Start at [modules/0a-fundamentals/README.md](../modules/0a-fundamentals/README.md), then [modules/0b-fundamentals/README.md](../modules/0b-fundamentals/README.md), then [modules/1-engineering-tooling/README.md](../modules/1-engineering-tooling/README.md), then [modules/2-llm-api-fundamentals/README.md](../modules/2-llm-api-fundamentals/README.md).
+Concept-by-concept lessons for Modules 0A, 0B, 1, 2, 3, and 4. Start at [modules/0a-fundamentals/README.md](../modules/0a-fundamentals/README.md) and follow the module READMEs through [Module 4](../modules/4-embeddings-rag/README.md).
 
 Grade a single concept (your files in `exercises/`):
 
