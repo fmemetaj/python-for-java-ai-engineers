@@ -1,4 +1,4 @@
-"""Module 0A/0B/1/2/3/4/5/6 concept index (curriculum.md §6, concepts 0.1–6.6)."""
+"""Module 0A/0B/1/2/3/4/5/6/7 concept index (curriculum.md §6, concepts 0.1–7.7)."""
 
 from __future__ import annotations
 
@@ -854,4 +854,84 @@ MODULE_6 = {
     "title": "Evals, Observability, Production",
     "cost": "mock",
     "concepts": CONCEPTS_6,
+}
+
+CONCEPTS_7: tuple[Concept, ...] = (
+    {
+        "id": "7.1",
+        "number": "7.1",
+        "title": "Capstone briefs — pick a product",
+        "kind": "new",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "7_01",
+    },
+    {
+        "id": "7.2",
+        "number": "7.2",
+        "title": "Architecture of DocsDesk v1.0",
+        "kind": "analog",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "Spring Boot layered architecture",
+        "folder": "7_02",
+    },
+    {
+        "id": "7.3",
+        "number": "7.3",
+        "title": "Integrated ask path: RAG, tools, approval",
+        "kind": "new",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "7_03",
+    },
+    {
+        "id": "7.4",
+        "number": "7.4",
+        "title": "Eval report (≥30 cases) as a CI gate",
+        "kind": "new",
+        "minutes": 55,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "7_04",
+    },
+    {
+        "id": "7.5",
+        "number": "7.5",
+        "title": "Cost report per 100 requests",
+        "kind": "new",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "7_05",
+    },
+    {
+        "id": "7.6",
+        "number": "7.6",
+        "title": "Threat model and known limitations",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none (SQL injection is only a partial analog)",
+        "folder": "7_06",
+    },
+    {
+        "id": "7.7",
+        "number": "7.7",
+        "title": "Portfolio README and five-minute demo",
+        "kind": "analog",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "Product README / architecture.md",
+        "folder": "7_07",
+    },
+)
+
+MODULE_7 = {
+    "id": "m7",
+    "title": "Capstone: DocsDesk v1.0",
+    "cost": "mock",
+    "concepts": CONCEPTS_7,
 }

@@ -1,6 +1,6 @@
 [project]
 name = "python-for-java-ai-engineers"
-version = "0.7.0"
+version = "0.8.0"
 description = "Python bridge for Java developers, with an optional local AI demo"
 requires-python = ">=3.11"
 readme = "README.md"

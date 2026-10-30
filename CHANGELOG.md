@@ -2,6 +2,20 @@
 
 This project versions the *course*, not a library API. Dates are UTC.
 
+## 0.5.0 — 2026-10-30
+
+**Module 7 "Capstone: DocsDesk v1.0"** — Concepts 7.1–7.7. DocsDesk v1.0 composes RAG with citations, an approval-gated agent loop, evals as a CI gate (≥30 fake cases), tracing, cost budgets, and an optional FastAPI wrapper, plus a rubric, milestones, self-assessment, and portfolio/README guide. Offline `FakeLLM` + `FakeEmbedder`. No GitHub Release or git tag is created for this changelog entry.
+
+### Module 7 — Capstone: DocsDesk v1.0
+
+- Concepts 7.1–7.7 (2 Analog, 5 NEW) under `concepts/7_XX/`. Milestones: briefs, architecture, integrated ask path, eval report, cost report, threat model, portfolio README/demo.
+- `uv run course check m7` (solutions in CI).
+- `docsdesk.v1.DocsDeskV1`: retrieve → cite → budget/cache/JSON logs; `investigate()` uses the Module 5 loop and denies write tools until `approved=True`. `propose_page` is simulated (`would_write`).
+- `docsdesk.portfolio`: three original briefs (own-repo, pr-review, log-triage), `run_v1_eval` (≥30 cases from M3–M6 + injection), `build_cost_report` (100× FakeLLM usage against `data/pricing.yaml`), threat rows, limitations, self-assessment.
+- `uv run docsdesk v1` / `eval-v1` / `cost-report` / `portfolio`.
+- Optional FastAPI `/v1/ask` and `/v1/investigate` (TestClient, no bound port). `deploy/Dockerfile` remains a sketch; CI does not `docker build`. Never Assistants. Keys are never committed.
+- Learner-facing rubric, architecture diagram, demo script, and portfolio guide under `modules/7-capstone/`.
+
 ## 0.4.0 — 2026-10-30
 
 **Module 6 "Evals, Observability, Production"** — Concepts 6.1–6.6. DocsDesk v0.6: LLM-as-judge with calibration, a CI eval gate that fails on an injected regression, JSON logs with request ids and per-request cost, TTL cache, budgets and prompt-cache discount, an injection suite, and an optional FastAPI wrapper. Offline `FakeLLM` (and Module 4's `FakeEmbedder` where retrieval is reused). No GitHub Release or git tag is created for this changelog entry.
