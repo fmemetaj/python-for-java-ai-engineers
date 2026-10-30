@@ -124,6 +124,14 @@ uv run pytest -q
 - **`ModuleNotFoundError: docsdesk` / `httpx`:** `uv sync --locked --group dev` from the repository root, then `uv run python` (or select `.venv`).
 - **Live OpenAI is optional:** keep `LLM_PROVIDER=fake`. If you opt in, use `client.responses.create` ([Responses API](https://platform.openai.com/docs/guides/migrate-to-responses)), never the sunset Assistants API.
 
+## Module 2 (LLM calls, tokens, cost)
+
+- **No key in CI:** graded work uses `FakeLLM`. `get_client("openai")` raises on purpose.
+- **`usage` fields:** Responses uses `input_tokens` / `output_tokens`; Chat Completions uses `prompt_tokens` / `completion_tokens`.
+- **Bill looks 3× too high:** `previous_response_id` still bills prior input tokens. Trim context (concept 2.8); do not assume a session id is free.
+- **Prices:** read `data/pricing.yaml` (dated, sourced from [OpenAI pricing](https://platform.openai.com/docs/pricing)). Do not hard-code rates in code you will forget to update.
+- **Old snippets:** `openai.ChatCompletion.create` and the Assistants API are out of scope.
+
 ## Still stuck?
 
 1. Paste `uv run python scripts/doctor.py --offline` into a [bug issue](../../.github/ISSUE_TEMPLATE/bug.yml) (no keys).

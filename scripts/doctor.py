@@ -256,7 +256,7 @@ def main(argv: list[str] | None = None) -> int:
     if failed:
         print("Result: not ready. Fix the FAIL lines, then re-run doctor.")
         return 1
-    print("Result: ready for Modules 0A/0B/1 and the core notebooks.")
+    print("Result: ready for Modules 0A/0B/1/2 and the core notebooks.")
     return 0
 
 

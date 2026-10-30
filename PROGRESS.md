@@ -66,6 +66,24 @@ Start at [modules/1-engineering-tooling/README.md](modules/1-engineering-tooling
 - [ ] [Deliverable: `src/docsdesk`](modules/1-engineering-tooling/README.md)
 - [ ] `uv run course check m1`
 
+## Module 2 — LLM API Fundamentals
+
+Start at [modules/2-llm-api-fundamentals/README.md](modules/2-llm-api-fundamentals/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concepts (tokens, windows, sampling, cost, prompts, reasoning) are still recommended.
+
+- [ ] [2.1 LLM client from env](concepts/2_01/README.md) — Analog
+- [ ] [2.2 Tokens and tokenization](concepts/2_02/README.md) — NEW
+- [ ] [2.3 Context window](concepts/2_03/README.md) — NEW
+- [ ] [2.4 Sampling and temperature](concepts/2_04/README.md) — NEW
+- [ ] [2.5 Provider abstraction](concepts/2_05/README.md) — Analog
+- [ ] [2.6 Token economics](concepts/2_06/README.md) — NEW
+- [ ] [2.7 Responses vs Chat Completions](concepts/2_07/README.md) — Analog
+- [ ] [2.8 Conversation state](concepts/2_08/README.md) — Analog
+- [ ] [2.9 Streaming](concepts/2_09/README.md) — Analog
+- [ ] [2.10 Prompts as code + first eval](concepts/2_10/README.md) — NEW
+- [ ] [2.11 Reasoning models](concepts/2_11/README.md) — NEW
+- [ ] [Deliverable: DocsDesk session](modules/2-llm-api-fundamentals/README.md)
+- [ ] `uv run course check m2`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

@@ -91,6 +91,45 @@ def test_should_not_retry_ordinary_client_errors() -> None:
     assert should_retry(503) is True
 
 
+def test_module_entrypoint_runs_offline(capsys: pytest.CaptureFixture[str]) -> None:
+    from docsdesk.__main__ import main
+
+    assert main() == 0
+    captured = capsys.readouterr()
+    assert "tokens in=" in captured.out
+    assert "$" in captured.out
+
+
+def test_session_answers_from_pasted_doc_and_prints_cost() -> None:
+    from docsdesk.session import DeskSession
+
+    session = DeskSession("Clients send a Bearer token. DocsDesk never logs the token.")
+    turn = session.ask("How do clients authenticate?")
+    assert "Bearer" in turn.answer or "token" in turn.answer.lower() or turn.answer
+    assert turn.usage.input_tokens > 0
+    assert "$" in turn.summary()
+    assert "tokens in=" in turn.summary()
+
+
+def test_session_second_turn_bills_more_input() -> None:
+    from docsdesk.session import DeskSession
+
+    session = DeskSession("Tickets are fetched over HTTP with a timeout and retries.")
+    first = session.ask("What are tickets?")
+    second = session.ask("follow-up")
+    assert len(session.turns) == 2
+    assert second.usage.input_tokens > first.usage.input_tokens
+    assert second.response_id != first.response_id
+
+
+def test_prompt_file_is_versioned() -> None:
+    from docsdesk.session import PROMPT_VERSION, load_instructions
+
+    text = load_instructions()
+    assert "DocsDesk" in text
+    assert PROMPT_VERSION.startswith("answer_from_doc.")
+
+
 @respx.mock
 def test_respx_can_stub_a_live_looking_url() -> None:
     """WireMock analog: respx intercepts httpx without opening a port."""
