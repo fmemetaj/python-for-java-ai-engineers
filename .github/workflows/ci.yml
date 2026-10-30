@@ -84,3 +84,5 @@ jobs:
         run: uv run course check m3 --solutions
       - name: Module 4 solutions checkpoint
         run: uv run course check m4 --solutions
+      - name: Module 5 solutions checkpoint
+        run: uv run course check m5 --solutions

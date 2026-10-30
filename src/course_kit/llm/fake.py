@@ -45,12 +45,15 @@ class FakeLLM:
         tool_calls: Mapping[str, Sequence[Mapping[str, str]]] | None = None,
         after_tools: Mapping[str, str] | None = None,
         refusals: Sequence[str] | None = None,
+        trajectories: Mapping[str, Sequence[Mapping[str, object]]] | None = None,
     ) -> None:
         self._script = dict(script or {})
         self._structured = {key: dict(value) for key, value in (structured or {}).items()}
         self._tool_calls = {key: list(value) for key, value in (tool_calls or {}).items()}
         self._after_tools = dict(after_tools or {})
         self._refusals = set(refusals or ())
+        self._trajectories = {key: list(value) for key, value in (trajectories or {}).items()}
+        self._agent_turns: dict[str, int] = {}
         self._store: dict[str, LLMResponse] = {}
         self._counter = 0
 
@@ -88,6 +91,19 @@ class FakeLLM:
                 cached_tokens=cached_tokens,
                 visible_text="",
                 refusal="I'm sorry, I can't extract that.",
+            )
+
+        if prompt in self._trajectories:
+            return self._from_trajectory(
+                prompt,
+                previous_response_id=previous_response_id,
+                store=store,
+                model=model,
+                input_tokens=input_tokens,
+                reasoning_tokens=reasoning_tokens,
+                reasoning_effort=reasoning_effort,
+                cached_tokens=cached_tokens,
+                text_format=text_format,
             )
 
         tool_outputs = [
@@ -152,6 +168,73 @@ class FakeLLM:
             )
 
         text = self._script.get(prompt) or self._default_text(prompt, instructions)
+        parsed = self._maybe_parsed(text, text_format)
+        return self._message_response(
+            text=text,
+            previous_response_id=previous_response_id,
+            store=store,
+            model=model,
+            input_tokens=input_tokens,
+            reasoning_tokens=reasoning_tokens,
+            reasoning_effort=reasoning_effort,
+            cached_tokens=cached_tokens,
+            output_parsed=parsed,
+        )
+
+    def _from_trajectory(
+        self,
+        prompt: str,
+        *,
+        previous_response_id: str | None,
+        store: bool,
+        model: str,
+        input_tokens: int,
+        reasoning_tokens: int,
+        reasoning_effort: str | None,
+        cached_tokens: int,
+        text_format: dict[str, object] | None,
+    ) -> LLMResponse:
+        """Replay one turn of a scripted multi-step agent trajectory.
+
+        Each complete() for this prompt advances one turn. A turn is either
+        ``{"tools": [{"call_id", "name", "arguments"}, ...]}`` or
+        ``{"message": "..."}``. Past the last turn, the last message (or a
+        default) is returned so a missing cap cannot spin forever.
+        """
+        script = self._trajectories[prompt]
+        idx = self._agent_turns.get(prompt, 0)
+        if idx < len(script):
+            turn = script[idx]
+            self._agent_turns[prompt] = idx + 1
+        elif script:
+            turn = script[-1]
+        else:
+            turn = {"message": "DocsDesk fake provider."}
+
+        planned = turn.get("tools")
+        if isinstance(planned, list) and planned and idx < len(script):
+            calls = [
+                FunctionCall(
+                    call_id=str(spec.get("call_id", f"call_fake_{i + 1}")),
+                    name=str(spec.get("name", "")),
+                    arguments=str(spec.get("arguments", "{}")),
+                )
+                for i, spec in enumerate(planned)
+                if isinstance(spec, Mapping)
+            ]
+            if calls:
+                return self._finish(
+                    items=tuple(calls),
+                    previous_response_id=previous_response_id,
+                    store=store,
+                    model=model,
+                    input_tokens=input_tokens,
+                    reasoning_tokens=reasoning_tokens,
+                    cached_tokens=cached_tokens,
+                    visible_text="",
+                )
+
+        text = str(turn.get("message") or "DocsDesk fake provider.")
         parsed = self._maybe_parsed(text, text_format)
         return self._message_response(
             text=text,

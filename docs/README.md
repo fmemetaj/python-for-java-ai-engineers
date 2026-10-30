@@ -1,6 +1,6 @@
 # Course documentation
 
-Planning, research, and setup notes for this repository. The runnable course starts at [Module 0A](../modules/0a-fundamentals/README.md) and continues through [Module 4](../modules/4-embeddings-rag/README.md). The notebooks in `notebooks/` plus `guides/` remain as optional explainers.
+Planning, research, and setup notes for this repository. The runnable course starts at [Module 0A](../modules/0a-fundamentals/README.md) and continues through [Module 5](../modules/5-agents/README.md). The notebooks in `notebooks/` plus `guides/` remain as optional explainers.
 
 ## Setup
 

@@ -7,12 +7,14 @@ from .catalog import (
     CONCEPTS_2,
     CONCEPTS_3,
     CONCEPTS_4,
+    CONCEPTS_5,
     MODULE_0A,
     MODULE_0B,
     MODULE_1,
     MODULE_2,
     MODULE_3,
     MODULE_4,
+    MODULE_5,
 )
 from .cost import cost_usd, load_pricing
 from .loader import load_concept_module, load_fundamentals, load_placement, load_tool_registry
@@ -25,6 +27,7 @@ __all__ = [
     "CONCEPTS_2",
     "CONCEPTS_3",
     "CONCEPTS_4",
+    "CONCEPTS_5",
     "FakeLLM",
     "MODULE_0A",
     "MODULE_0B",
@@ -32,6 +35,7 @@ __all__ = [
     "MODULE_2",
     "MODULE_3",
     "MODULE_4",
+    "MODULE_5",
     "cost_usd",
     "get_client",
     "load_concept_module",

@@ -1,4 +1,4 @@
-"""Module 0A/0B/1/2/3/4 concept index (curriculum.md §6, concepts 0.1–4.7)."""
+"""Module 0A/0B/1/2/3/4/5 concept index (curriculum.md §6, concepts 0.1–5.6)."""
 
 from __future__ import annotations
 
@@ -714,4 +714,74 @@ MODULE_4 = {
     "title": "Embeddings, Semantic Search, RAG",
     "cost": "mock",
     "concepts": CONCEPTS_4,
+}
+
+CONCEPTS_5: tuple[Concept, ...] = (
+    {
+        "id": "5.1",
+        "number": "5.1",
+        "title": "Workflow vs agent decision",
+        "kind": "new",
+        "minutes": 35,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "5_01",
+    },
+    {
+        "id": "5.2",
+        "number": "5.2",
+        "title": "Agent loop, max steps, stop conditions",
+        "kind": "analog",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "State machine (Spring StateMachine) — model-driven transitions",
+        "folder": "5_02",
+    },
+    {
+        "id": "5.3",
+        "number": "5.3",
+        "title": "Agent memory and context management",
+        "kind": "new",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "5_03",
+    },
+    {
+        "id": "5.4",
+        "number": "5.4",
+        "title": "Tracing and debugging agent runs",
+        "kind": "analog",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "Distributed tracing (Micrometer/OTel)",
+        "folder": "5_04",
+    },
+    {
+        "id": "5.5",
+        "number": "5.5",
+        "title": "Optional: one framework comparison",
+        "kind": "analog",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "Spring AI / LangChain4j — optional",
+        "folder": "5_05",
+    },
+    {
+        "id": "5.6",
+        "number": "5.6",
+        "title": "Optional: MCP tools",
+        "kind": "new",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "none (optional)",
+        "folder": "5_06",
+    },
+)
+
+MODULE_5 = {
+    "id": "m5",
+    "title": "Agents and Orchestration from Scratch",
+    "cost": "mock",
+    "concepts": CONCEPTS_5,
 }

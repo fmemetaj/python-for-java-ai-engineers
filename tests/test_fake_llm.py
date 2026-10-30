@@ -185,3 +185,34 @@ def test_scripted_function_call_then_output() -> None:
     )
     assert second.output_text == "found it"
     assert second.function_calls == ()
+
+
+def test_trajectory_advances_per_complete() -> None:
+    client = FakeLLM(
+        trajectories={
+            "job": [
+                {
+                    "tools": [
+                        {
+                            "call_id": "c1",
+                            "name": "search_docs",
+                            "arguments": "{}",
+                        }
+                    ]
+                },
+                {"message": '{"ok":true}'},
+            ]
+        }
+    )
+    first = client.complete("job", tools=[{"type": "function", "name": "search_docs"}])
+    assert first.function_calls[0].call_id == "c1"
+    second = client.complete(
+        "job",
+        input_items=[
+            {"type": "function_call_output", "call_id": "c1", "output": "[]"},
+        ],
+    )
+    assert second.output_text == '{"ok":true}'
+    assert second.function_calls == ()
+    third = client.complete("job")
+    assert third.output_text == '{"ok":true}'
