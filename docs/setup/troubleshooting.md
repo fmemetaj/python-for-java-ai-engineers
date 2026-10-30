@@ -150,6 +150,16 @@ uv run pytest -q
 - **Wrong API:** live embeddings → `client.embeddings.create`. Live generation in RAG → `client.responses.create`. Never Assistants, never Assistants file_search in CI.
 - **Eval command:** `uv run docsdesk eval` (or `uv run python -m docsdesk eval`). Keep `LLM_PROVIDER=fake`. A red recall@5 is a chunker/index bug, not a missing key.
 
+## Module 5 (agents, triage, MCP)
+
+- **Trajectory stuck on turn 1:** reuse one `FakeLLM` instance. `trajectories=` advances one scripted turn per `complete()`. A new FakeLLM restarts at turn 0.
+- **Cap never fires:** the script must keep returning `tools`. A `message` turn stops with `done`. Runaway fixture: `keep calling tools forever`.
+- **`propose_page` still runs:** set both `run_agent_loop(..., approve=False)` and `ToolRunner.approved = False`. The gate is simulated (`would_write`); nothing is written or emailed.
+- **Agent eval:** `uv run docsdesk eval-agent` (or `uv run python -m docsdesk eval-agent`). Keep `LLM_PROVIDER=fake`. Failures are loop/cap/approval bugs, not a missing key.
+- **Framework lesson (5.5):** do not `uv add openai-agents` or LangChain. The facade is `course_kit.agent.facade`.
+- **MCP lesson (5.6):** in-process JSON-RPC only. No stdio server in CI. Hosted remote MCP is optional and paid.
+- **Wrong API:** live generation still uses `client.responses.create`. Never Assistants.
+
 ## Still stuck?
 
 1. Paste `uv run python scripts/doctor.py --offline` into a [bug issue](../../.github/ISSUE_TEMPLATE/bug.yml) (no keys).

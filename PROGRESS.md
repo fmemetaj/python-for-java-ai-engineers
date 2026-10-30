@@ -110,6 +110,19 @@ Start at [modules/4-embeddings-rag/README.md](modules/4-embeddings-rag/README.md
 - [ ] [Deliverable: DocsDesk RAG + `docsdesk eval`](modules/4-embeddings-rag/README.md)
 - [ ] `uv run course check m4`
 
+## Module 5 — Agents from Scratch
+
+Start at [modules/5-agents/README.md](modules/5-agents/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concepts are still recommended. 5.5 and 5.6 are optional.
+
+- [ ] [5.1 Workflow vs agent](concepts/5_01/README.md) — NEW
+- [ ] [5.2 The agent loop](concepts/5_02/README.md) — Analog
+- [ ] [5.3 Memory and context](concepts/5_03/README.md) — NEW
+- [ ] [5.4 Tracing agent runs](concepts/5_04/README.md) — Analog
+- [ ] [5.5 One framework comparison](concepts/5_05/README.md) — Analog (optional)
+- [ ] [5.6 MCP tools](concepts/5_06/README.md) — NEW (optional)
+- [ ] [Deliverable: DocsDesk triage + `docsdesk eval-agent`](modules/5-agents/README.md)
+- [ ] `uv run course check m5`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

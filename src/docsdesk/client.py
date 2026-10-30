@@ -34,6 +34,11 @@ FIXTURE_PAGES: dict[str, dict[str, str]] = {
         "title": "Webhooks",
         "body": "POST /webhooks registers a URL. Signatures use HMAC.",
     },
+    "refunds": {
+        "slug": "refunds",
+        "title": "Refunds",
+        "body": "POST /payments/{id}/refunds refunds a captured payment. A refund 500 after capture is a RefundService bug.",
+    },
 }
 
 FIXTURE_ENDPOINTS: dict[str, dict[str, str]] = {
@@ -51,6 +56,11 @@ FIXTURE_ENDPOINTS: dict[str, dict[str, str]] = {
         "method": "GET",
         "path": "/pages/{slug}",
         "summary": "Fetch a docs page by slug from the internal catalog.",
+    },
+    "POST /payments/{id}/refunds": {
+        "method": "POST",
+        "path": "/payments/{id}/refunds",
+        "summary": "Refund a captured payment. Uncaptured payments conflict (409).",
     },
 }
 

@@ -66,3 +66,28 @@ class RagAnswer(BaseModel):
 
     answer: str = Field(min_length=1)
     citations: list[RagCitation]
+
+
+class SearchCorpusArgs(BaseModel):
+    query: str = Field(min_length=1)
+
+
+class GetRecentErrorsArgs(BaseModel):
+    service: str = Field(min_length=1)
+
+
+class ProposePageArgs(BaseModel):
+    slug: str = Field(min_length=1)
+    title: str = Field(min_length=1)
+    body: str = Field(min_length=1)
+
+
+class TriageReport(BaseModel):
+    """DocsDesk v0.5 triage-mode result: a multi-step investigation."""
+
+    incident: str = Field(min_length=1)
+    root_cause: str = Field(min_length=1)
+    evidence: list[str]
+    recommended_action: str = Field(min_length=1)
+    steps: int = Field(ge=1)
+    approved_write: bool

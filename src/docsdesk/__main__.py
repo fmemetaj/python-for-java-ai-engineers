@@ -1,4 +1,4 @@
-"""`python -m docsdesk` — demo, or `uv run docsdesk eval` for retrieval metrics."""
+"""`python -m docsdesk` — demo, eval, triage, or eval-agent."""
 
 from __future__ import annotations
 
@@ -45,10 +45,32 @@ def _eval() -> int:
     return 0 if report.ok else 1
 
 
+def _triage() -> int:
+    from .triage import INCIDENT_REFUND_500, TriageDesk
+
+    with TriageDesk(approved=True) as desk:
+        result = desk.investigate(INCIDENT_REFUND_500, approved=True)
+        print(f"status={result.status} steps={result.steps} tools={result.tool_names}")
+        print(result.output_text)
+    return 0 if result.status == "done" else 1
+
+
+def _eval_agent() -> int:
+    from .agent_eval import print_report, run_agent_eval
+
+    report = run_agent_eval()
+    print_report(report)
+    return 0 if report.ok else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     if args[:1] == ["eval"]:
         return _eval()
+    if args[:1] == ["triage"]:
+        return _triage()
+    if args[:1] == ["eval-agent"]:
+        return _eval_agent()
     return _demo()
 
 

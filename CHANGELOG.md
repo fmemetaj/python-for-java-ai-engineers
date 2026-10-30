@@ -4,7 +4,7 @@ This project versions the *course*, not a library API. Dates are UTC.
 
 ## 0.3.0 — 2026-10-30
 
-**v0.3 "RAG"** — Module 4. DocsDesk v0.4 answers over an original Spring Boot payments-api fixture with measured retrieval. Offline `FakeEmbedder` + precomputed vectors. No GitHub Release or git tag is created for this changelog entry.
+**v0.3 "RAG + agents"** — Modules 4 and 5. DocsDesk v0.5: RAG over an original Spring Boot payments-api fixture, then a from-scratch triage agent with a scripted 5-step fake trajectory. Offline `FakeEmbedder` + `FakeLLM` trajectories. No GitHub Release or git tag is created for this changelog entry.
 
 ### Module 4 — Embeddings, Semantic Search, RAG
 
@@ -16,6 +16,16 @@ This project versions the *course*, not a library API. Dates are UTC.
 - DocsDesk RAG pipeline: retrieve → assemble context → FakeLLM answer with citations (`src/docsdesk/rag.py`).
 - `uv run docsdesk eval` reports recall@5 and groundedness (`data/evals/docsdesk_m4.json`).
 - Live embeddings remain optional via `.env` (`client.embeddings.create`); generation still uses the Responses API. Never Assistants. Keys are never committed.
+
+### Module 5 — Agents and Orchestration from Scratch
+
+- Concepts 5.1–5.6 (3 Analog, 3 NEW) under `concepts/5_XX/`. 5.5–5.6 are optional (framework comparison, MCP).
+- `uv run course check m5` (solutions in CI).
+- `course_kit.agent`: workflow-vs-agent classifier, `run_agent_loop` (max steps, approval stop), budgeted `AgentMemory`, in-process `AgentTrace` spans, a thin `Agent`/`Runner` facade (OpenAI Agents SDK *names* only — package not added), `FakeMcpServer` JSON-RPC.
+- FakeLLM `trajectories=` replays multi-step tool scripts; the graded refund-500 path is five deterministic `complete()` turns.
+- DocsDesk triage mode (`src/docsdesk/triage.py`): investigate → tools → `propose_page` human gate (simulated `would_write`). `uv run docsdesk triage` / `uv run docsdesk eval-agent`.
+- Agent evals `data/evals/docsdesk_m5.json` check task success, step count, approval denial, and the step cap.
+- Live generation remains optional via `.env` (`client.responses.create`). Never Assistants. Keys are never committed.
 
 ## 0.2.0 — 2026-10-30
 

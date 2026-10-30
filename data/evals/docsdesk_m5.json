@@ -1,0 +1,41 @@
+{
+  "version": "m5.v1",
+  "provider": "fake",
+  "cases": [
+    {
+      "id": "refund-500-success",
+      "incident": "POST /payments/{id}/refunds returns 500 after capture",
+      "approved": true,
+      "max_steps": 8,
+      "expect_status": "done",
+      "expect_steps": 5,
+      "expect_report": true,
+      "must_contain": ["RefundService", "captured"]
+    },
+    {
+      "id": "refund-500-step-count",
+      "incident": "POST /payments/{id}/refunds returns 500 after capture",
+      "approved": true,
+      "max_steps": 8,
+      "expect_status": "done",
+      "expect_steps": 5
+    },
+    {
+      "id": "approval-denied",
+      "incident": "POST /payments/{id}/refunds returns 500 after capture",
+      "approved": false,
+      "max_steps": 8,
+      "expect_status": "denied",
+      "expect_steps": 4
+    },
+    {
+      "id": "step-cap-enforced",
+      "incident": "keep calling tools forever",
+      "approved": true,
+      "max_steps": 3,
+      "expect_status": "capped",
+      "expect_steps": 3,
+      "expect_steps_le": 3
+    }
+  ]
+}
