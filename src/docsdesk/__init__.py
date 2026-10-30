@@ -5,6 +5,8 @@ Module 2: answer from a pasted doc, print tokens and USD, multi-turn session.
 Module 3: typed answers with citations, search_docs / get_endpoint_spec, evals.
 Module 4: embeddings, in-memory vector search, RAG over a Spring fixture, retrieval evals.
 Module 5: triage-mode agent loop, memory, traces, approval gate, agent evals.
+Module 6: judge + CI gate, JSON logs / request ids, cache, budgets, injection suite,
+optional FastAPI (no bound port in CI).
 Everything essential runs offline (`LLM_PROVIDER=fake`, fixture HTTP transport).
 """
 
@@ -12,6 +14,9 @@ from .agent_eval import AgentEvalReport, run_agent_eval
 from .assistant import DocsDesk, default_docsdesk, parse_typed_answer
 from .client import DocsClient
 from .evals import EvalReport, format_live_rate, run_docsdesk_eval
+from .gate import eval_gate
+from .prod_eval import run_injection_suite, run_m6_eval
+from .production import ProductionDesk, ProductionResult
 from .logging_setup import RedactingFilter, configure_logging
 from .models import (
     Citation,
@@ -40,6 +45,8 @@ __all__ = [
     "EndpointSpec",
     "EvalReport",
     "Incident",
+    "ProductionDesk",
+    "ProductionResult",
     "RagAnswer",
     "RagCitation",
     "RagDesk",
@@ -55,10 +62,13 @@ __all__ = [
     "configure_logging",
     "default_docsdesk",
     "default_session",
+    "eval_gate",
     "format_live_rate",
     "load_instructions",
     "parse_typed_answer",
     "run_agent_eval",
     "run_docsdesk_eval",
+    "run_injection_suite",
+    "run_m6_eval",
     "run_retrieval_eval",
 ]

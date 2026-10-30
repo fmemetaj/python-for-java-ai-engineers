@@ -14,6 +14,7 @@ from course_kit.catalog import (
     CONCEPTS_3,
     CONCEPTS_4,
     CONCEPTS_5,
+    CONCEPTS_6,
 )
 from course_kit.cli import main
 from course_kit.loader import _safe_part, impl_name, load_concept_module, repo_root
@@ -84,6 +85,13 @@ def test_catalog_covers_5() -> None:
     assert sum(1 for concept in CONCEPTS_5 if concept["kind"] == "analog") == 3
 
 
+def test_catalog_covers_6() -> None:
+    folders = [concept["folder"] for concept in CONCEPTS_6]
+    assert folders == [f"6_{index:02d}" for index in range(1, 7)]
+    assert sum(1 for concept in CONCEPTS_6 if concept["kind"] == "new") == 3
+    assert sum(1 for concept in CONCEPTS_6 if concept["kind"] == "analog") == 3
+
+
 def test_cli_help() -> None:
     result = subprocess.run(
         [sys.executable, "-m", "course_kit.cli", "check", "--help"],
@@ -100,6 +108,7 @@ def test_cli_help() -> None:
     assert "m3" in result.stdout
     assert "m4" in result.stdout
     assert "m5" in result.stdout
+    assert "m6" in result.stdout
 
 
 def test_cli_module_is_callable() -> None:

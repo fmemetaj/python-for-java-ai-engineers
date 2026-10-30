@@ -1,4 +1,4 @@
-"""Module 0A/0B/1/2/3/4/5 concept index (curriculum.md §6, concepts 0.1–5.6)."""
+"""Module 0A/0B/1/2/3/4/5/6 concept index (curriculum.md §6, concepts 0.1–6.6)."""
 
 from __future__ import annotations
 
@@ -784,4 +784,74 @@ MODULE_5 = {
     "title": "Agents and Orchestration from Scratch",
     "cost": "mock",
     "concepts": CONCEPTS_5,
+}
+
+CONCEPTS_6: tuple[Concept, ...] = (
+    {
+        "id": "6.1",
+        "number": "6.1",
+        "title": "Eval strategy, LLM-as-judge, CI gates",
+        "kind": "new",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "6_01",
+    },
+    {
+        "id": "6.2",
+        "number": "6.2",
+        "title": "Observability: logs, spans, request IDs",
+        "kind": "analog",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "Micrometer/OTel, MDC",
+        "folder": "6_02",
+    },
+    {
+        "id": "6.3",
+        "number": "6.3",
+        "title": "Performance: async concurrency, caching, timeouts",
+        "kind": "analog",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "Caffeine/@Cacheable, thread pools",
+        "folder": "6_03",
+    },
+    {
+        "id": "6.4",
+        "number": "6.4",
+        "title": "Cost control: budgets, routing, prompt caching",
+        "kind": "new",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "6_04",
+    },
+    {
+        "id": "6.5",
+        "number": "6.5",
+        "title": "Security: prompt injection, data leakage",
+        "kind": "new",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "none (SQL injection is only a partial analog)",
+        "folder": "6_05",
+    },
+    {
+        "id": "6.6",
+        "number": "6.6",
+        "title": "Advanced: FastAPI service + container",
+        "kind": "analog",
+        "minutes": 60,
+        "cost": "mock",
+        "java_analog": "Spring Boot app + jar/container — optional",
+        "folder": "6_06",
+    },
+)
+
+MODULE_6 = {
+    "id": "m6",
+    "title": "Evals, Observability, Production",
+    "cost": "mock",
+    "concepts": CONCEPTS_6,
 }

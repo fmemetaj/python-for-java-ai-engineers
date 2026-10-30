@@ -124,8 +124,12 @@ def _run_case(case: dict[str, Any], desk: DocsDesk, runner: ToolRunner) -> CaseR
         return CaseResult(case_id, False, kind, f"{type(exc).__name__}: {exc}")
 
 
-def run_docsdesk_eval(*, provider: str | None = None) -> EvalReport:
-    """Run the committed golden set. Graded CI uses fake only."""
+def run_docsdesk_eval(
+    *,
+    provider: str | None = None,
+    cases: list[dict[str, Any]] | None = None,
+) -> EvalReport:
+    """Run a golden set (default: committed Module 3 file). Graded CI uses fake only."""
     name = (provider or os.environ.get("LLM_PROVIDER") or "fake").strip().lower() or "fake"
     if name != "fake":
         raise RuntimeError(
@@ -133,10 +137,10 @@ def run_docsdesk_eval(*, provider: str | None = None) -> EvalReport:
             "If you opt in locally, format_live_rate(passed, total) reports the "
             "rate with no threshold claimed. Never commit keys."
         )
-    cases = load_eval_cases()
+    loaded = cases if cases is not None else load_eval_cases()
     llm = scripted_docsdesk_llm()
     with DocsDesk(client=llm) as desk, ToolRunner() as runner:
-        results = [_run_case(case, desk, runner) for case in cases]
+        results = [_run_case(case, desk, runner) for case in loaded]
     passed = sum(1 for item in results if item.passed)
     failed = len(results) - passed
     return EvalReport(

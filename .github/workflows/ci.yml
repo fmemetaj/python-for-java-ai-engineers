@@ -35,8 +35,8 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
-      - name: Install (locked, including optional demo)
-        run: uv sync --locked --group dev --group demo
+      - name: Install (locked, including optional demo and FastAPI)
+        run: uv sync --locked --group dev --group demo --group prod
       - name: Ruff lint
         run: uv run ruff check src tests scripts examples concepts placement fundamentals
       - name: Ruff format
@@ -55,7 +55,7 @@ jobs:
   default-dev-install:
     name: default uv sync --group dev (no Gradio)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -86,3 +86,5 @@ jobs:
         run: uv run course check m4 --solutions
       - name: Module 5 solutions checkpoint
         run: uv run course check m5 --solutions
+      - name: Module 6 solutions checkpoint
+        run: uv run course check m6 --solutions

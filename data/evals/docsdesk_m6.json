@@ -1,0 +1,37 @@
+{
+  "version": "docsdesk_m6.v1",
+  "provider": "fake",
+  "min_pass_rate": 1.0,
+  "cases": [
+    {
+      "id": "exact-auth",
+      "check": "exact",
+      "prompt": "How do clients authenticate?",
+      "expected_answer": "Clients send a Bearer token. DocsDesk never logs the token."
+    },
+    {
+      "id": "exact-tickets",
+      "check": "exact",
+      "prompt": "What are tickets?",
+      "expected_answer": "GET /tickets/{id} returns a ticket. Timeouts are five seconds."
+    },
+    {
+      "id": "rubric-bearer",
+      "check": "rubric",
+      "prompt": "How do clients authenticate?",
+      "contains": ["Bearer"]
+    },
+    {
+      "id": "judge-auth",
+      "check": "judge",
+      "answer": "Clients send a Bearer token. DocsDesk never logs the token.",
+      "min_score": 4
+    },
+    {
+      "id": "judge-tickets",
+      "check": "judge",
+      "answer": "GET /tickets/{id} returns a ticket. Timeouts are five seconds.",
+      "min_score": 4
+    }
+  ]
+}
