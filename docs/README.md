@@ -1,10 +1,11 @@
 # Course documentation
 
-Planning, research, and setup notes for this repository. The runnable course starts at [Module 0A](../modules/0a-fundamentals/README.md) and continues through [Module 7](../modules/7-capstone/README.md). The notebooks in `notebooks/` plus `guides/` remain as optional explainers.
+Planning, research, and setup notes for this repository. The runnable course starts at [Module 0A](../modules/0a-fundamentals/README.md) and continues through [Module 7](../modules/7-capstone/README.md). Optional tracks: [Electives (A)](../modules/a-electives/README.md). The notebooks in `notebooks/` plus `guides/` remain as optional explainers.
 
 ## Setup
 
-- [Troubleshooting](setup/troubleshooting.md) — Windows/macOS/Linux, uv, PATH, kernels, proxy/SSL, VPN, Apple Silicon, WSL
+- [Start here / FAQ](setup/faq.md) — install uv, doctor, first lesson; Windows / macOS / Linux
+- [Troubleshooting](setup/troubleshooting.md) — PATH, kernels, proxy/SSL, VPN, Apple Silicon, WSL, per-module notes
 
 ## Planning
 

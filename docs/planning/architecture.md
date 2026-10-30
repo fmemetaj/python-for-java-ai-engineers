@@ -12,7 +12,7 @@ src/course_kit/
 src/mini_agent/              # existing, unchanged
 modules/
   00-python-bridge/ notebooks 00–06 (moved from notebooks/ with redirects in README)
-  01-python-for-ai-services/  02-llm-api-fundamentals/  03-structured-tools-evals/  04-embeddings-rag/  05-agents/  06-evals-observability-prod/  07-capstone/  electives/
+  01-python-for-ai-services/  02-llm-api-fundamentals/  03-structured-tools-evals/  04-embeddings-rag/  05-agents/  06-evals-observability-prod/  07-capstone/  a-electives/
   (aligned with curriculum.md 2026-10-29; running project `src/docsdesk/` grows per module)
 placement/self_check.py  scripts/doctor.py  data/pricing.yaml
     each: README.md, NN_*.ipynb, exercises/, solutions/, tests/

@@ -16,6 +16,6 @@ def test_doctor_offline_passes_in_dev_environment():
         text=True,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "ready for Modules 0A/0B/1/2/3/4/5/6 and the core notebooks" in result.stdout
+    assert "ready for Modules 0A–7, Electives (A), and the core notebooks" in result.stdout
     assert "OPENAI_API_KEY set:" in result.stdout
     assert "sk-" not in result.stdout

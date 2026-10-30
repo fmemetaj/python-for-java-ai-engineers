@@ -2,6 +2,25 @@
 
 This project versions the *course*, not a library API. Dates are UTC.
 
+## 0.6.0 — 2026-10-30
+
+**Electives (A) + whole-course QA** — Optional tracks A.1–A.9 (vision, hosted tools vs owned RAG, API-change skill) after Module 7, plus a Start-here path, setup FAQ, and Markdown link check. Offline `FakeLLM` + vision catalog fixtures. No GitHub Release or git tag is created for this changelog entry.
+
+### Electives (A)
+
+- Three optional tracks (~2–3 h each) under `modules/a-electives/` and `concepts/a_XX/`. `uv run course check ma` (solutions in CI).
+- **A1 Vision:** Responses `input_image` items, screenshot-to-answer on catalog fixtures, image token economics (low=85, high=tiles; images bill as input).
+- **A2 Hosted vs own:** `file_search` vs Module 4 RAG, a two-step fake hosted-tool loop, lock-in decision record (`assistants: false`).
+- **A3 API change as a skill:** lockfile pin + fake changelog, sunset-string scanner (Assistants 2026-08-26; 0.x `ChatCompletion.create`), spend-capped smoke + sanitized fixtures.
+- `uv run docsdesk vision` / `hosted` / `smoke`. Graded work stays on `LLM_PROVIDER=fake`. Never Assistants. Keys are never committed.
+
+### Whole-course QA
+
+- Top-level **Start here**: install uv → `uv sync --locked --group dev` → `scripts/doctor.py --offline` → concept 0.1.
+- [docs/setup/faq.md](docs/setup/faq.md) for Windows / macOS / Linux (Store stub, PATH, Apple Silicon, WSL, proxy/SSL).
+- `scripts/check_markdown_links.py` plus `tests/test_markdown_links.py` — relative README/lesson links must resolve.
+- Course map, CHANGELOG, troubleshooting, and `course check` targets updated through Module 7 and Electives.
+
 ## 0.5.0 — 2026-10-30
 
 **Module 7 "Capstone: DocsDesk v1.0"** — Concepts 7.1–7.7. DocsDesk v1.0 composes RAG with citations, an approval-gated agent loop, evals as a CI gate (≥30 fake cases), tracing, cost budgets, and an optional FastAPI wrapper, plus a rubric, milestones, self-assessment, and portfolio/README guide. Offline `FakeLLM` + `FakeEmbedder`. No GitHub Release or git tag is created for this changelog entry.

@@ -1,4 +1,4 @@
-"""Command-line checkpoint: `uv run course check m0a|m0b|m1|m2|m3|m4|m5|m6|m7`."""
+"""Command-line checkpoint: `uv run course check m0a|…|m7|ma`."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ from .catalog import (
     CONCEPTS_5,
     CONCEPTS_6,
     CONCEPTS_7,
+    CONCEPTS_A,
     MODULE_0A,
     MODULE_0B,
     MODULE_1,
@@ -28,6 +29,7 @@ from .catalog import (
     MODULE_5,
     MODULE_6,
     MODULE_7,
+    MODULE_A,
     Concept,
 )
 from .loader import repo_root
@@ -297,13 +299,38 @@ def check_m7(*, impl: str) -> int:
     return 0 if failed == 0 else 1
 
 
+def check_ma(*, impl: str) -> int:
+    root = repo_root()
+    print(f"{MODULE_A['title']}")
+    print(f"cost: {MODULE_A['cost']} | COURSE_IMPL={impl} | offline")
+    print()
+
+    failed = _grade_concepts(CONCEPTS_A, impl=impl)
+    extras_ok = _run_pytest([root / "tests" / "test_electives.py"], impl=impl) == 0
+    desk_ok = _run_pytest([root / "tests" / "test_docsdesk_electives.py"], impl=impl) == 0
+    if not extras_ok:
+        failed += 1
+    if not desk_ok:
+        failed += 1
+    print()
+    print(f"electives   {_label(extras_ok)}")
+    print(f"docsdesk    {_label(desk_ok)}")
+    print()
+    total = len(CONCEPTS_A) + 2
+    passed = total - failed
+    print(f"{passed}/{total} checks passed")
+    if impl == "exercises":
+        print("Fill concepts/<id>/exercises/*.py, then re-run. Solutions stay in solutions/.")
+    return 0 if failed == 0 else 1
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Course checkpoints")
     sub = parser.add_subparsers(dest="command", required=True)
     check = sub.add_parser("check", help="Run a module checkpoint")
     check.add_argument(
         "module",
-        choices=["m0a", "m0b", "m1", "m2", "m3", "m4", "m5", "m6", "m7"],
+        choices=["m0a", "m0b", "m1", "m2", "m3", "m4", "m5", "m6", "m7", "ma"],
         help="Module id",
     )
     check.add_argument(
@@ -331,6 +358,8 @@ def main(argv: list[str] | None = None) -> int:
         return check_m6(impl=impl)
     if args.module == "m7":
         return check_m7(impl=impl)
+    if args.module == "ma":
+        return check_ma(impl=impl)
     return 2
 
 

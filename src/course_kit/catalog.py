@@ -1,4 +1,4 @@
-"""Module 0A/0B/1/2/3/4/5/6/7 concept index (curriculum.md §6, concepts 0.1–7.7)."""
+"""Module 0A/0B/1/2/3/4/5/6/7 and Electives (A) concept index (curriculum.md §6)."""
 
 from __future__ import annotations
 
@@ -934,4 +934,104 @@ MODULE_7 = {
     "title": "Capstone: DocsDesk v1.0",
     "cost": "mock",
     "concepts": CONCEPTS_7,
+}
+
+CONCEPTS_A: tuple[Concept, ...] = (
+    {
+        "id": "A.1",
+        "number": "A.1",
+        "title": "Image inputs on the Responses API",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "a_01",
+    },
+    {
+        "id": "A.2",
+        "number": "A.2",
+        "title": "Screenshot-to-answer for a Java stacktrace",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "a_02",
+    },
+    {
+        "id": "A.3",
+        "number": "A.3",
+        "title": "Image token economics",
+        "kind": "analog",
+        "minutes": 40,
+        "cost": "mock",
+        "java_analog": "Metered object storage / CDN egress",
+        "folder": "a_03",
+    },
+    {
+        "id": "A.4",
+        "number": "A.4",
+        "title": "Hosted file_search vs own RAG",
+        "kind": "analog",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "Managed OpenSearch vs self-hosted Lucene",
+        "folder": "a_04",
+    },
+    {
+        "id": "A.5",
+        "number": "A.5",
+        "title": "Fake hosted-tool loop",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none (model-driven tool turns)",
+        "folder": "a_05",
+    },
+    {
+        "id": "A.6",
+        "number": "A.6",
+        "title": "Lock-in decision record",
+        "kind": "new",
+        "minutes": 40,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "a_06",
+    },
+    {
+        "id": "A.7",
+        "number": "A.7",
+        "title": "Pin, changelog, and compatibility",
+        "kind": "analog",
+        "minutes": 40,
+        "cost": "mock",
+        "java_analog": "Maven versions / Dependabot",
+        "folder": "a_07",
+    },
+    {
+        "id": "A.8",
+        "number": "A.8",
+        "title": "SDK-upgrade drill: detect sunset APIs",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none",
+        "folder": "a_08",
+    },
+    {
+        "id": "A.9",
+        "number": "A.9",
+        "title": "Spend-capped smoke tests and sanitized fixtures",
+        "kind": "new",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "none (WireMock recordings are a partial analog)",
+        "folder": "a_09",
+    },
+)
+
+MODULE_A = {
+    "id": "ma",
+    "title": "Electives — vision, hosted tools, API-change skill",
+    "cost": "mock",
+    "concepts": CONCEPTS_A,
 }

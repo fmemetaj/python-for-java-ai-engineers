@@ -153,6 +153,29 @@ Start at [modules/7-capstone/README.md](modules/7-capstone/README.md). Analog co
 - [ ] [Five-minute demo script](modules/7-capstone/DEMO.md)
 - [ ] `uv run course check m7`
 
+## Electives (A) — optional
+
+Start at [modules/a-electives/README.md](modules/a-electives/README.md). Pick a track; skip the rest. Analog concepts can be skipped on a passing skip test. **NEW** concepts are still recommended.
+
+### A1 Vision
+
+- [ ] [A.1 Image inputs](concepts/a_01/README.md) — NEW
+- [ ] [A.2 Screenshot-to-answer](concepts/a_02/README.md) — NEW
+- [ ] [A.3 Image token economics](concepts/a_03/README.md) — Analog
+
+### A2 Hosted tools vs own pipeline
+
+- [ ] [A.4 Hosted file_search vs own RAG](concepts/a_04/README.md) — Analog
+- [ ] [A.5 Fake hosted-tool loop](concepts/a_05/README.md) — NEW
+- [ ] [A.6 Lock-in decision record](concepts/a_06/README.md) — NEW
+
+### A3 API change as a skill
+
+- [ ] [A.7 Pin, changelog, compatibility](concepts/a_07/README.md) — Analog
+- [ ] [A.8 SDK-upgrade drill](concepts/a_08/README.md) — NEW
+- [ ] [A.9 Spend-capped smoke + sanitized fixtures](concepts/a_09/README.md) — NEW
+- [ ] `uv run course check ma`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)
@@ -171,7 +194,7 @@ Start at [modules/7-capstone/README.md](modules/7-capstone/README.md). Analog co
 
 ## Troubleshooting notes
 
-Start with [docs/setup/troubleshooting.md](docs/setup/troubleshooting.md) or `uv run python scripts/doctor.py --offline`. Use the [topic guides](guides/README.md) only when a concept is unclear.
+Start with [docs/setup/faq.md](docs/setup/faq.md), [docs/setup/troubleshooting.md](docs/setup/troubleshooting.md), or `uv run python scripts/doctor.py --offline`. Use the [topic guides](guides/README.md) only when a concept is unclear.
 
 ## How to mark a lesson complete
 

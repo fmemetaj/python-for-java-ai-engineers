@@ -1,0 +1,24 @@
+{
+  "source": "course fixture — not a vendor changelog",
+  "retrieved": "2026-10-30",
+  "entries": [
+    {
+      "date": "2026-08-26",
+      "kind": "sunset",
+      "summary": "Assistants API sunset. Do not teach beta.assistants or threads.",
+      "action": "use client.responses.create"
+    },
+    {
+      "date": "2024-11-01",
+      "kind": "break",
+      "summary": "openai 0.x openai.ChatCompletion.create removed in 1.x.",
+      "action": "use client.responses.create for new work; Chat Completions remains client.chat.completions.create"
+    },
+    {
+      "date": "2025-03-01",
+      "kind": "recommend",
+      "summary": "Responses API is the primary API in the official Python SDK.",
+      "action": "prefer responses; keep Chat Completions only for the migration lesson"
+    }
+  ]
+}

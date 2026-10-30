@@ -31,7 +31,7 @@ Times are realistic first estimates for the target learner, covering reading plu
 | 5 | Agents from Scratch | [Proposed] | Essential core; 5.5–5.6 optional | 5–6 h |
 | 6 | Evals, Observability, Production | [Proposed] | Essential core; 6.6 optional | 5–6 h |
 | 7 | Capstone: DocsDesk v1.0 | [Proposed] | Essential (portfolio) | 8–12 h |
-| A | Electives | [Proposed] | Optional | 2–3 h each |
+| A | Electives | [Proposed] | Optional | 2–3 h each track |
 
 Times come from the concept map (§6) plus about 10% for module checkpoints. **[Unverified]** until pilot learners record actual times. Full path: about 58–69 h. An experienced Java dev who passes placement for most of 0A skips about 6–8 h of it.
 **Change vs v1 of this plan (2026-10-29, after Federico's feedback):** Modules 0 and 1 are now a concept-by-concept fundamentals sequence. Every concept is taught Java-first when Java has an analog. Concepts with no Java equivalent are marked **NEW** and get more time. The existing notebooks are reused as material inside the concepts, not discarded.
@@ -146,6 +146,18 @@ Every module also starts with a 3-question "do I need this?" check.
 - **Acceptance (rubric):** runs from a clean clone with `uv sync --locked`; offline tests green; an eval report with ≥30 cases; documented cost per 100 requests; known limitations listed.
 - **Why:** F9 (projects > certificates; one evolving project).
 
+## Electives (A) — optional tracks after Module 7
+- **Objective:** optional depth after the capstone. Three independent tracks (~2–3 h each). Skip any track.
+- **Prereqs:** Module 7 recommended (Module 4 for vision/hosted; Module 2 for the upgrade drill).
+- **Tracks:**
+  - **A1 Vision (~2–3 h):** A.1 image inputs on the Responses API (NEW) · A.2 screenshot-to-answer for a Java stacktrace (NEW) · A.3 image token economics (Analog: object storage / CDN egress).
+  - **A2 Hosted tools vs own pipeline (~2–3 h):** A.4 hosted `file_search` vs owned RAG (Analog: managed OpenSearch vs Lucene) · A.5 fake hosted-tool loop (NEW) · A.6 lock-in decision record (NEW).
+  - **A3 API change as a skill (~2–3 h):** A.7 pin / changelog / lockfile (Analog: Maven versions) · A.8 SDK-upgrade drill for sunset APIs (NEW) · A.9 spend-capped smoke tests and sanitized fixtures (NEW). This is the 6.7 drill called out under Module 6, shipped as an elective.
+- **Exercises:** Responses `input_image` items from `fixture://` ids; `VisionDesk.ask_screenshot`; image token counts (low=85, high=tiles); Jaccard + stack choice; two-step hosted fake; ADR JSON; lockfile equality; sunset-string scan; budget cap + redaction.
+- **Project extras:** `uv run docsdesk vision` / `hosted` / `smoke`. Still `LLM_PROVIDER=fake` for graded work. Optional live path uses `client.responses.create` only.
+- **Acceptance:** `uv run course check ma --solutions` green offline; no Assistants; no committed secrets; no live image HTTP in CI.
+- **Why:** F1 (API change as a skill), F8 (cost surprises on images and hosted tools), TR §3 hosted tools vs own pipeline. Fine-tuning, a framework survey, and Assistants stay deferred (§5).
+
 ## 5. Removed or deferred topics [Proposed]
 - Fine-tuning/QLoRA and model training are deferred: covered by Ed Donner/HF (CM), and they need a GPU (F8).
 - Gradio UI stays as the existing optional demo only.
@@ -154,7 +166,7 @@ Every module also starts with a 3-question "do I need this?" check.
 
 ## 6. Concept map [Proposed]
 Kind: **Analog** = taught Java-first, side by side. **NEW** = no Java equivalent (partial/misleading analogs counted as NEW), with a longer deep explanation. Times are concept teaching + exercise time [Unverified estimates].
-Totals: **76 concepts: 44 analog, 32 NEW.** Fundamentals (0A+0B): 17 analog, 12 NEW. Module 1: 11 analog, 1 NEW.
+Totals: **92 concepts: 48 analog, 44 NEW** (original 76 through 6.6, plus Module 7's 7 and Electives' 9). Fundamentals (0A+0B): 17 analog, 12 NEW. Module 1: 11 analog, 1 NEW.
 
 | ID | Concept | Java analog | Kind | Time | Module |
 |---|---|---|---|---|---|
@@ -234,3 +246,19 @@ Totals: **76 concepts: 44 analog, 32 NEW.** Fundamentals (0A+0B): 17 analog, 12 
 | 6.4 | Cost control: budgets, routing, prompt caching | none — new | **NEW** | 45 min | M6 |
 | 6.5 | Security: prompt injection, data leakage | none — new — SQL injection is only a partial analog | **NEW** | 60 min | M6 |
 | 6.6 | Advanced: FastAPI service + container | Spring Boot app + jar/container — optional | Analog | 60 min | M6 |
+| 7.1 | Capstone briefs — pick a product | none — new | **NEW** | 45 min | M7 |
+| 7.2 | Architecture of DocsDesk v1.0 | Spring Boot layered architecture | Analog | 50 min | M7 |
+| 7.3 | Integrated ask path: RAG, tools, approval | none — new | **NEW** | 60 min | M7 |
+| 7.4 | Eval report (≥30 cases) as a CI gate | none — new | **NEW** | 55 min | M7 |
+| 7.5 | Cost report per 100 requests | none — new | **NEW** | 45 min | M7 |
+| 7.6 | Threat model and known limitations | none — new — SQL injection is only a partial analog | **NEW** | 50 min | M7 |
+| 7.7 | Portfolio README and five-minute demo | Product README / architecture.md | Analog | 45 min | M7 |
+| A.1 | Image inputs on the Responses API | none — new — multipart upload is a misleading analog | **NEW** | 50 min | A |
+| A.2 | Screenshot-to-answer for a Java stacktrace | none — new — ImageIO is a misleading analog | **NEW** | 50 min | A |
+| A.3 | Image token economics | Metered object storage / CDN egress — tokens ≠ bytes | Analog | 40 min | A |
+| A.4 | Hosted file_search vs own RAG | Managed OpenSearch vs self-hosted Lucene | Analog | 50 min | A |
+| A.5 | Fake hosted-tool loop | none — new — Module 3 dispatch is a misleading analog | **NEW** | 50 min | A |
+| A.6 | Lock-in decision record | none — new | **NEW** | 40 min | A |
+| A.7 | Pin, changelog, and compatibility | Maven versions / Dependabot | Analog | 40 min | A |
+| A.8 | SDK-upgrade drill: detect sunset APIs | none — new — jdeps is a misleading analog | **NEW** | 50 min | A |
+| A.9 | Spend-capped smoke tests and sanitized fixtures | none — new — WireMock recordings are a partial analog | **NEW** | 50 min | A |
