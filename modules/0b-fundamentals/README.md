@@ -68,7 +68,7 @@ Existing `mini_agent` tests must still pass (`uv run pytest tests/test_agent.py`
 uv run course check m0b
 ```
 
-Prints pass/fail per concept, plus `tool_registry`. CI runs the same command against `solutions/`. After this module, also run the original [readiness check 06](../../notebooks/06_readiness_check.ipynb).
+Prints pass/fail per concept, plus `tool_registry`. CI runs the same command against `solutions/`. After this module, also run the original [readiness check 06](../../notebooks/06_readiness_check.ipynb), then continue with [Module 1](../1-engineering-tooling/README.md).
 
 ## Setup if you get stuck
 

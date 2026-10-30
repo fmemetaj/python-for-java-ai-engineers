@@ -188,6 +188,16 @@ def run_checks(*, offline: bool) -> list[tuple[str, str]]:
             hint="run doctor from the repo root after uv sync --locked --group dev",
         ),
         lambda: check_import(
+            "docsdesk",
+            required=True,
+            hint="run doctor from the repo root after uv sync --locked --group dev",
+        ),
+        lambda: check_import(
+            "httpx",
+            required=True,
+            hint="uv sync --locked --group dev",
+        ),
+        lambda: check_import(
             "ipykernel",
             required=False,
             hint="needed for notebooks: uv sync --locked --group dev",
@@ -246,7 +256,7 @@ def main(argv: list[str] | None = None) -> int:
     if failed:
         print("Result: not ready. Fix the FAIL lines, then re-run doctor.")
         return 1
-    print("Result: ready for Modules 0A/0B and the core notebooks.")
+    print("Result: ready for Modules 0A/0B/1 and the core notebooks.")
     return 0
 
 

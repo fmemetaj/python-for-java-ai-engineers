@@ -76,3 +76,5 @@ jobs:
         run: uv run course check m0a --solutions
       - name: Module 0B solutions checkpoint
         run: uv run course check m0b --solutions
+      - name: Module 1 solutions checkpoint
+        run: uv run course check m1 --solutions

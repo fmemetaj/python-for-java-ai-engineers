@@ -21,6 +21,7 @@ uv run ruff check src tests scripts examples concepts placement fundamentals
 uv run ruff format --check src tests scripts examples concepts placement fundamentals
 uv run course check m0a --solutions
 uv run course check m0b --solutions
+uv run course check m1 --solutions
 uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 
