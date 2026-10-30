@@ -6,7 +6,7 @@
 
 You already know Java, OOP, REST APIs, and tests. This repo teaches the Python-specific patterns that show up in AI projects. It is **not** a beginner programming course, a full ML course, or a conversion service. No paid API key is required for the core notebooks.
 
-**Status:** seven core notebooks and an optional Gradio/Ollama lab are in the repo today. A longer Java-first curriculum is planned — see [docs/planning](docs/planning/course-strategy.md).
+**Status:** Module 0A (concepts 0.1–0.15) is in the repo, plus the original seven notebooks and an optional Gradio/Ollama lab. Later modules are planned — see [docs/planning](docs/planning/course-strategy.md).
 
 ## Start here
 
@@ -16,11 +16,13 @@ uv sync --locked --group dev
 uv run python scripts/doctor.py --offline
 ```
 
-Then open [Lesson 00](notebooks/00_getting_started.ipynb) and select the interpreter in this repository's `.venv`.
+Then start **[Module 0A](modules/0a-fundamentals/README.md)** (or take the [placement check](placement/README.md) if you already know some Python). Select the interpreter in this repository's `.venv`.
 
 | I want to... | Go to |
 | --- | --- |
-| Start the core notebooks | **[Lesson 00](notebooks/00_getting_started.ipynb)** |
+| Start Module 0A (fundamentals 0.1–0.15) | **[Module 0A](modules/0a-fundamentals/README.md)** |
+| Skip concepts I already know | [Placement check](placement/README.md) |
+| Use the original notebooks as explainers | **[Lesson 00](notebooks/00_getting_started.ipynb)** |
 | Fix install, PATH, kernels, proxy/SSL, WSL | **[Troubleshooting](docs/setup/troubleshooting.md)** |
 | Use Cursor (optional AI tutor rules) | [Editor setup](guides/01_editor_setup.md#cursor) |
 | Use VS Code or JupyterLab | [Editor alternatives](guides/01_editor_setup.md) |
@@ -32,6 +34,7 @@ Times below are **unmeasured estimates** for engineers who already know Java. Th
 
 | Lesson | What you will learn | Est. |
 | --- | --- | ---: |
+| [Module 0A · Fundamentals I](modules/0a-fundamentals/README.md) | Concepts 0.1–0.15, Java-first or NEW, plus `log_stats` | ~8–9 h |
 | [00 · Getting Started](notebooks/00_getting_started.ipynb) | Notebook mechanics and Java mental model | ~3 min |
 | [01 · Pythonic Essentials](notebooks/01_pythonic_essentials.ipynb) | Comprehensions, dictionaries, `None`, kwargs | ~9 min |
 | [02 · OOP, Typing & Pydantic](notebooks/02_typing_pydantic.ipynb) | Dataclasses, types, runtime validation, decorators | ~12 min |
@@ -98,11 +101,12 @@ Full checks, matching CI:
 
 ```bash
 uv sync --locked --group dev --group demo
-uv run ruff check src tests scripts examples
-uv run ruff format --check src tests scripts examples
+uv run ruff check src tests scripts examples concepts placement fundamentals
+uv run ruff format --check src tests scripts examples concepts placement fundamentals
 uv run pyright
 uv run pytest -q
-uv run pytest --nbmake --nbmake-timeout=120 notebooks/
+uv run course check m0a --solutions
+uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 
 CI runs those checks on Python 3.11, 3.12, and 3.13 × Ubuntu, macOS, and Windows. Ollama HTTP is mocked; no live model is required.

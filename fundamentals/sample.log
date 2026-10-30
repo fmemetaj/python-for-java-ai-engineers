@@ -1,0 +1,7 @@
+# DocsDesk fixture log (UTF-8). Blank lines and comments are ignored.
+INFO started
+ERROR disk full
+WARNING retry
+ERROR timeout
+INFO done
+ERROR disk full

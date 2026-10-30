@@ -14,6 +14,22 @@ body:
     attributes:
       label: Lesson
       options:
+        - 0.1 Running Python
+        - 0.2 Notebooks
+        - 0.3 Variables
+        - 0.4 Built-in types
+        - 0.5 Truthiness
+        - 0.6 Control flow
+        - 0.7 Functions
+        - 0.8 args / kwargs
+        - 0.9 Scope and closures
+        - 0.10 First-class functions
+        - 0.11 Collections
+        - 0.12 Slicing and unpacking
+        - 0.13 Comprehensions
+        - 0.14 Generators
+        - 0.15 Streams vs comprehensions
+        - 0A placement / log_stats
         - 00 Getting started
         - 01 Pythonic essentials
         - 02 Typing and Pydantic
