@@ -17,9 +17,10 @@ From the repository root, using the committed lockfile:
 uv sync --locked --group dev
 uv run python scripts/doctor.py --offline
 uv run pytest -q
-uv run ruff check src tests scripts examples
-uv run ruff format --check src tests scripts examples
-uv run pytest --nbmake --nbmake-timeout=120 notebooks/
+uv run ruff check src tests scripts examples concepts placement fundamentals
+uv run ruff format --check src tests scripts examples concepts placement fundamentals
+uv run course check m0a --solutions
+uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 
 Install the optional demo group before pyright on `examples/gradio_app.py` and before Gradio tests actually run (otherwise they skip):

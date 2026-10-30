@@ -1,6 +1,6 @@
 # Course documentation
 
-Planning, research, and setup notes for this repository. The runnable course is still the notebooks in `notebooks/` plus `guides/`.
+Planning, research, and setup notes for this repository. The runnable course starts at [Module 0A](../modules/0a-fundamentals/README.md). The notebooks in `notebooks/` plus `guides/` remain as optional explainers.
 
 ## Setup
 
