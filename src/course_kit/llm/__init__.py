@@ -9,6 +9,7 @@ from .base import (
     ChatCompletion,
     ChatMessage,
     ChatUsage,
+    FunctionCall,
     LLMClient,
     LLMResponse,
     OutputItem,
@@ -22,6 +23,12 @@ from .context import remaining_budget, trim_oldest, would_overflow
 from .factory import chat_completions_create_kwargs, get_client, responses_create_kwargs
 from .fake import FakeLLM
 from .migrate import migrate_chat_body_to_responses
+from .schema import (
+    chat_response_format,
+    function_call_output,
+    json_schema_from_model,
+    responses_text_format,
+)
 from .tokens import estimate_tokens
 
 __all__ = [
@@ -30,6 +37,7 @@ __all__ = [
     "ChatMessage",
     "ChatUsage",
     "FakeLLM",
+    "FunctionCall",
     "LLMClient",
     "LLMResponse",
     "OutputItem",
@@ -39,11 +47,15 @@ __all__ = [
     "StreamEvent",
     "Usage",
     "chat_completions_create_kwargs",
+    "chat_response_format",
     "estimate_tokens",
+    "function_call_output",
     "get_client",
+    "json_schema_from_model",
     "migrate_chat_body_to_responses",
     "remaining_budget",
     "responses_create_kwargs",
+    "responses_text_format",
     "trim_oldest",
     "would_overflow",
 ]

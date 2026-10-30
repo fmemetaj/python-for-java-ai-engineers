@@ -84,6 +84,18 @@ Start at [modules/2-llm-api-fundamentals/README.md](modules/2-llm-api-fundamenta
 - [ ] [Deliverable: DocsDesk session](modules/2-llm-api-fundamentals/README.md)
 - [ ] `uv run course check m2`
 
+## Module 3 — Structured Outputs, Tool Calling, First Evals
+
+Start at [modules/3-structured-tools-evals/README.md](modules/3-structured-tools-evals/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concepts (the tool-call loop, evals) are still recommended.
+
+- [ ] [3.1 Structured outputs](concepts/3_01/README.md) — Analog
+- [ ] [3.2 Function/tool calling](concepts/3_02/README.md) — Analog
+- [ ] [3.3 The tool-call loop](concepts/3_03/README.md) — NEW
+- [ ] [3.4 Tool safety](concepts/3_04/README.md) — Analog
+- [ ] [3.5 Evals](concepts/3_05/README.md) — NEW
+- [ ] [Deliverable: DocsDesk typed answers + tools](modules/3-structured-tools-evals/README.md)
+- [ ] `uv run course check m3`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

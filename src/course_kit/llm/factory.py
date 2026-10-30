@@ -14,17 +14,21 @@ def responses_create_kwargs(
     *,
     model: str,
     instructions: str,
-    input: str,
+    input: str | list[object],
     previous_response_id: str | None = None,
     store: bool = False,
     temperature: float | None = None,
     reasoning_effort: str | None = None,
+    tools: list[dict[str, object]] | None = None,
+    text_format: dict[str, object] | None = None,
 ) -> dict[str, object]:
     """Body for the current OpenAI Responses API (`POST /v1/responses`).
 
     This is **not** Chat Completions (`messages`) and **not** the Assistants API
     (sunset 2026-08-26). Official guide:
     https://platform.openai.com/docs/guides/migrate-to-responses
+    Structured outputs: `text.format` (not Chat Completions `response_format`).
+    Tools: internally tagged `{"type": "function", "name": ...}`.
     """
     body: dict[str, object] = {
         "model": model,
@@ -38,19 +42,29 @@ def responses_create_kwargs(
         body["temperature"] = temperature
     if reasoning_effort is not None:
         body["reasoning"] = {"effort": reasoning_effort}
+    if tools is not None:
+        body["tools"] = tools
+    if text_format is not None:
+        body["text"] = {"format": text_format}
     return body
 
 
 def chat_completions_create_kwargs(
     *,
     model: str,
-    messages: list[dict[str, str]],
+    messages: list[dict[str, object]],
     temperature: float | None = None,
+    tools: list[dict[str, object]] | None = None,
+    response_format: dict[str, object] | None = None,
 ) -> dict[str, object]:
     """Body for Chat Completions (`POST /v1/chat/completions`). Still supported."""
     body: dict[str, object] = {"model": model, "messages": messages}
     if temperature is not None:
         body["temperature"] = temperature
+    if tools is not None:
+        body["tools"] = tools
+    if response_format is not None:
+        body["response_format"] = response_format
     return body
 
 

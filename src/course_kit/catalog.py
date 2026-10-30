@@ -1,4 +1,4 @@
-"""Module 0A/0B/1/2 concept index (curriculum.md §6, concepts 0.1–2.11)."""
+"""Module 0A/0B/1/2/3 concept index (curriculum.md §6, concepts 0.1–3.5)."""
 
 from __future__ import annotations
 
@@ -574,4 +574,64 @@ MODULE_2 = {
     "title": "LLM API Fundamentals",
     "cost": "mock",
     "concepts": CONCEPTS_2,
+}
+
+CONCEPTS_3: tuple[Concept, ...] = (
+    {
+        "id": "3.1",
+        "number": "3.1",
+        "title": "Structured outputs (JSON Schema from Pydantic)",
+        "kind": "analog",
+        "minutes": 50,
+        "cost": "mock",
+        "java_analog": "Jackson DTO + Bean Validation",
+        "folder": "3_01",
+    },
+    {
+        "id": "3.2",
+        "number": "3.2",
+        "title": "Function/tool calling",
+        "kind": "analog",
+        "minutes": 45,
+        "cost": "mock",
+        "java_analog": "Interface dispatch / command pattern",
+        "folder": "3_02",
+    },
+    {
+        "id": "3.3",
+        "number": "3.3",
+        "title": "The tool-call loop (call_id, outputs)",
+        "kind": "new",
+        "minutes": 40,
+        "cost": "mock",
+        "java_analog": "none (model decides control flow)",
+        "folder": "3_03",
+    },
+    {
+        "id": "3.4",
+        "number": "3.4",
+        "title": "Tool safety: validation, allow-lists, approval",
+        "kind": "analog",
+        "minutes": 40,
+        "cost": "mock",
+        "java_analog": "Input validation, Spring Security authorization",
+        "folder": "3_04",
+    },
+    {
+        "id": "3.5",
+        "number": "3.5",
+        "title": "Evals: golden sets, rubric checks",
+        "kind": "new",
+        "minutes": 55,
+        "cost": "mock",
+        "java_analog": "none (JUnit is a partial analog; outputs are probabilistic)",
+        "folder": "3_05",
+    },
+)
+
+MODULE_3 = {
+    "id": "m3",
+    "title": "Structured Outputs, Tool Calling, First Evals",
+    "cost": "mock",
+    "concepts": CONCEPTS_3,
 }

@@ -122,6 +122,37 @@ def test_session_second_turn_bills_more_input() -> None:
     assert second.response_id != first.response_id
 
 
+def test_search_pages_and_endpoint_spec() -> None:
+    settings = Settings.offline()
+    with DocsClient(settings, sleeper=lambda _delay: None) as client:
+        hits = client.search_pages("Bearer")
+        spec = client.get_endpoint_spec("GET", "/tickets/{id}")
+    assert any(page.slug == "auth" for page in hits)
+    assert spec.method == "GET"
+    with pytest.raises(ValueError):
+        with DocsClient(settings, sleeper=lambda _delay: None) as client:
+            client.search_pages("  ")
+
+
+def test_typed_answer_with_citations() -> None:
+    from docsdesk.assistant import DocsDesk
+
+    with DocsDesk() as desk:
+        answer = desk.ask("How do clients authenticate?")
+    assert "Bearer" in answer.answer
+    assert answer.citations[0].slug == "auth"
+    assert 0 <= answer.confidence <= 1
+
+
+def test_tool_loop_search_docs() -> None:
+    from docsdesk.assistant import DocsDesk
+
+    with DocsDesk() as desk:
+        answer = desk.ask("Search the docs for authentication")
+    assert "Bearer" in answer.answer
+    assert answer.citations
+
+
 def test_prompt_file_is_versioned() -> None:
     from docsdesk.session import PROMPT_VERSION, load_instructions
 

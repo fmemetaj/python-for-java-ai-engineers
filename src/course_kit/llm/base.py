@@ -47,7 +47,17 @@ class ReasoningItem:
     effort: str | None = None
 
 
-OutputItem = OutputMessage | ReasoningItem
+@dataclass(frozen=True)
+class FunctionCall:
+    """A Responses `function_call` output item. Arguments are a JSON string."""
+
+    type: str = "function_call"
+    call_id: str = ""
+    name: str = ""
+    arguments: str = ""
+
+
+OutputItem = OutputMessage | ReasoningItem | FunctionCall
 
 
 @dataclass(frozen=True)
@@ -61,6 +71,8 @@ class LLMResponse:
     previous_response_id: str | None = None
     store: bool = False
     model: str = "gpt-4.1-mini"
+    refusal: str | None = None
+    output_parsed: dict[str, object] | None = None
 
     @property
     def output_text(self) -> str:
@@ -74,6 +86,10 @@ class LLMResponse:
                 if block.type == "output_text":
                     parts.append(block.text)
         return "".join(parts)
+
+    @property
+    def function_calls(self) -> tuple[FunctionCall, ...]:
+        return tuple(item for item in self.output if isinstance(item, FunctionCall))
 
 
 @dataclass(frozen=True)
