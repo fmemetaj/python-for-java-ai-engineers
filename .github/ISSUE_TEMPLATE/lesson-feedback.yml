@@ -30,6 +30,21 @@ body:
         - 0.14 Generators
         - 0.15 Streams vs comprehensions
         - 0A placement / log_stats
+        - 0.16 Classes and objects
+        - 0.17 Properties
+        - 0.18 Dunder methods
+        - 0.19 Dataclasses and Pydantic
+        - 0.20 Inheritance and MRO
+        - 0.21 Duck typing
+        - 0.22 Protocol and ABCs
+        - 0.23 Type hints vs generics
+        - 0.24 Exceptions
+        - 0.25 Context managers
+        - 0.26 Decorators
+        - 0.27 Modules and packages
+        - 0.28 Threads and executors
+        - 0.29 GIL and asyncio
+        - 0B tool_registry deliverable
         - 00 Getting started
         - 01 Pythonic essentials
         - 02 Typing and Pydantic

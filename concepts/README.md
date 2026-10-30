@@ -1,6 +1,6 @@
 # Concepts
 
-Concept-by-concept lessons for Module 0A. Start at [modules/0a-fundamentals/README.md](../modules/0a-fundamentals/README.md).
+Concept-by-concept lessons for Modules 0A and 0B. Start at [modules/0a-fundamentals/README.md](../modules/0a-fundamentals/README.md), then [modules/0b-fundamentals/README.md](../modules/0b-fundamentals/README.md).
 
 Grade a single concept (your files in `exercises/`):
 

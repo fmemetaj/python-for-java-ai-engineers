@@ -43,3 +43,18 @@ def test_cannot_send_without_approval():
 def test_approved_send_is_still_only_simulated():
     proposal = ReplyProposal(ticket_id=1, category="general", suggested_reply="Hello")
     assert simulate_send(proposal, approved=True)["would_send"] is True
+
+
+def test_registry_decorator_registers_classify() -> None:
+    from mini_agent.tools import registry
+
+    assert "classify" in registry.names()
+    assert registry.call("classify", "cannot log in please help") == "access"
+    assert registry.call("kb_hint", "billing") == "Please check your billing portal."
+
+
+def test_registry_unknown_tool_lists_names() -> None:
+    from mini_agent.tools import registry
+
+    with pytest.raises(KeyError, match="unknown tool"):
+        registry.get("not-a-tool")
