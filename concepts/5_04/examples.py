@@ -28,7 +28,7 @@ kinds = {"agent", "llm", "tool", "approval"}
 assert "tool" in kinds
 
 # Example 5 — secrets stay out of attributes (Module 1 habit).
-secret = "sk-course-fake"
+secret = "course-test-secret-value"
 safe = AgentTrace()
 with safe.span("llm.step_1", "llm", provider="fake"):
     pass
