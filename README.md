@@ -6,7 +6,7 @@
 
 You already know Java, OOP, REST APIs, and tests. This repo teaches the Python-specific patterns that show up in AI projects. It is **not** a beginner programming course, a full ML course, or a conversion service. No paid API key is required for the core notebooks.
 
-**Status:** Modules 0A, 0B, and 1 (concepts 0.1–1.12) are in the repo, plus the original seven notebooks and an optional Gradio/Ollama lab. Later modules are planned — see [docs/planning](docs/planning/course-strategy.md).
+**Status:** Modules 0A, 0B, 1, and 2 (concepts 0.1–2.11) are in the repo, plus the original seven notebooks and an optional Gradio/Ollama lab. Later modules are planned — see [docs/planning](docs/planning/course-strategy.md). Release notes: [CHANGELOG.md](CHANGELOG.md).
 
 ## Start here
 
@@ -16,13 +16,14 @@ uv sync --locked --group dev
 uv run python scripts/doctor.py --offline
 ```
 
-Then start **[Module 0A](modules/0a-fundamentals/README.md)** (or take the [placement check](placement/README.md) if you already know some Python), then **[Module 0B](modules/0b-fundamentals/README.md)**, then **[Module 1](modules/1-engineering-tooling/README.md)**. Select the interpreter in this repository's `.venv`.
+Then start **[Module 0A](modules/0a-fundamentals/README.md)** (or take the [placement check](placement/README.md) if you already know some Python), then **[Module 0B](modules/0b-fundamentals/README.md)**, **[Module 1](modules/1-engineering-tooling/README.md)**, then **[Module 2](modules/2-llm-api-fundamentals/README.md)**. Select the interpreter in this repository's `.venv`.
 
 | I want to... | Go to |
 | --- | --- |
 | Start Module 0A (fundamentals 0.1–0.15) | **[Module 0A](modules/0a-fundamentals/README.md)** |
 | Continue with Module 0B (0.16–0.29) | **[Module 0B](modules/0b-fundamentals/README.md)** |
 | Continue with Module 1 (uv, tests, HTTP, config) | **[Module 1](modules/1-engineering-tooling/README.md)** |
+| Continue with Module 2 (LLM APIs, tokens, cost) | **[Module 2](modules/2-llm-api-fundamentals/README.md)** |
 | Skip 0A concepts I already know | [Placement check](placement/README.md) |
 | Use the original notebooks as explainers | **[Lesson 00](notebooks/00_getting_started.ipynb)** |
 | Fix install, PATH, kernels, proxy/SSL, WSL | **[Troubleshooting](docs/setup/troubleshooting.md)** |
@@ -39,6 +40,7 @@ Times below are **unmeasured estimates** for engineers who already know Java. Th
 | [Module 0A · Fundamentals I](modules/0a-fundamentals/README.md) | Concepts 0.1–0.15, Java-first or NEW, plus `log_stats` | ~8–9 h |
 | [Module 0B · Fundamentals II](modules/0b-fundamentals/README.md) | Classes, typing, errors, decorators, asyncio; `tool_registry` | ~8–9 h |
 | [Module 1 · Engineering & Tooling](modules/1-engineering-tooling/README.md) | uv, venv, ruff/pyright, pytest, httpx, secrets; DocsDesk skeleton | ~6–7 h |
+| [Module 2 · LLM API Fundamentals](modules/2-llm-api-fundamentals/README.md) | Tokens, cost, Responses vs Chat Completions, session; FakeLLM | ~7–8 h |
 | [00 · Getting Started](notebooks/00_getting_started.ipynb) | Notebook mechanics and Java mental model | ~3 min |
 | [01 · Pythonic Essentials](notebooks/01_pythonic_essentials.ipynb) | Comprehensions, dictionaries, `None`, kwargs | ~9 min |
 | [02 · OOP, Typing & Pydantic](notebooks/02_typing_pydantic.ipynb) | Dataclasses, types, runtime validation, decorators | ~12 min |
@@ -112,6 +114,7 @@ uv run pytest -q
 uv run course check m0a --solutions
 uv run course check m0b --solutions
 uv run course check m1 --solutions
+uv run course check m2 --solutions
 uv run pytest --nbmake --nbmake-timeout=120 notebooks/ concepts/0_02/hidden_state.ipynb
 ```
 

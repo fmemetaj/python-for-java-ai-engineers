@@ -1,0 +1,28 @@
+# Dated OpenAI API prices for the course cost calculator.
+# Source of truth: https://platform.openai.com/docs/pricing
+# Retrieved: 2026-10-30. Update this file when OpenAI publishes new rates.
+# Never commit API keys. Never hard-code prices in lesson prose.
+
+source: https://platform.openai.com/docs/pricing
+retrieved: 2026-10-30
+currency: USD
+unit_tokens: 1000000
+models:
+  gpt-4.1-mini:
+    input_per_million: 0.40
+    output_per_million: 1.60
+    cached_input_per_million: 0.10
+    context_window: 1047576
+    max_output_tokens: 32768
+  gpt-5-mini:
+    input_per_million: 0.25
+    output_per_million: 2.00
+    cached_input_per_million: 0.025
+    context_window: 400000
+    max_output_tokens: 128000
+  gpt-4.1-nano:
+    input_per_million: 0.10
+    output_per_million: 0.40
+    cached_input_per_million: 0.025
+    context_window: 1047576
+    max_output_tokens: 32768
