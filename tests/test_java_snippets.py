@@ -58,4 +58,4 @@ def test_java_snippets_compile() -> None:
 def test_compile_script_exists_and_finds_files() -> None:
     assert SCRIPT.is_file()
     files = list((ROOT / "concepts").glob("*/java/*.java"))
-    assert len(files) >= 17
+    assert len(files) >= 28

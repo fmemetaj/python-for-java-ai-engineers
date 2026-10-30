@@ -47,6 +47,25 @@ Start at [modules/0b-fundamentals/README.md](modules/0b-fundamentals/README.md).
 - [ ] `uv run course check m0b`
 - [ ] [06 · Readiness Check](notebooks/06_readiness_check.ipynb)
 
+## Module 1 — Python Engineering & Tooling
+
+Start at [modules/1-engineering-tooling/README.md](modules/1-engineering-tooling/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concept 1.3 is still recommended.
+
+- [ ] [1.1 uv](concepts/1_01/README.md) — Analog
+- [ ] [1.2 pyproject.toml and uv.lock](concepts/1_02/README.md) — Analog
+- [ ] [1.3 Virtual environments](concepts/1_03/README.md) — NEW
+- [ ] [1.4 src layout and entry points](concepts/1_04/README.md) — Analog
+- [ ] [1.5 ruff and pyright](concepts/1_05/README.md) — Analog
+- [ ] [1.6 Logging](concepts/1_06/README.md) — Analog
+- [ ] [1.7 Config and secrets](concepts/1_07/README.md) — Analog
+- [ ] [1.8 pytest](concepts/1_08/README.md) — Analog
+- [ ] [1.9 Mocking](concepts/1_09/README.md) — Analog
+- [ ] [1.10 httpx](concepts/1_10/README.md) — Analog
+- [ ] [1.11 JSON ↔ Pydantic](concepts/1_11/README.md) — Analog
+- [ ] [1.12 Retries with backoff](concepts/1_12/README.md) — Analog
+- [ ] [Deliverable: `src/docsdesk`](modules/1-engineering-tooling/README.md)
+- [ ] `uv run course check m1`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

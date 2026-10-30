@@ -116,6 +116,14 @@ uv sync --locked --group dev --group demo
 uv run pytest -q
 ```
 
+## Module 1 (uv, lockfile, `.env`, HTTP)
+
+- **Stale lock:** `uv lock` then commit both `pyproject.toml` and `uv.lock`. CI runs `uv sync --locked` and fails if they disagree.
+- **`.env`:** copy `.env.example` to `.env` for local overrides. Never commit `.env`. Doctor reports whether `OPENAI_API_KEY` is set, not the value.
+- **httpx hangs:** graded tests use `httpx.MockTransport` and must not call the network. Always pass `timeout=`.
+- **`ModuleNotFoundError: docsdesk` / `httpx`:** `uv sync --locked --group dev` from the repository root, then `uv run python` (or select `.venv`).
+- **Live OpenAI is optional:** keep `LLM_PROVIDER=fake`. If you opt in, use `client.responses.create` ([Responses API](https://platform.openai.com/docs/guides/migrate-to-responses)), never the sunset Assistants API.
+
 ## Still stuck?
 
 1. Paste `uv run python scripts/doctor.py --offline` into a [bug issue](../../.github/ISSUE_TEMPLATE/bug.yml) (no keys).

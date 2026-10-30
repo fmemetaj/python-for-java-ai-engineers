@@ -6,7 +6,7 @@ import subprocess
 import sys
 
 import pytest
-from course_kit.catalog import CONCEPTS_0A, CONCEPTS_0B
+from course_kit.catalog import CONCEPTS_0A, CONCEPTS_0B, CONCEPTS_1
 from course_kit.cli import main
 from course_kit.loader import _safe_part, impl_name, load_concept_module, repo_root
 
@@ -41,6 +41,13 @@ def test_loader_reads_solutions() -> None:
             os.environ["COURSE_IMPL"] = previous
 
 
+def test_catalog_covers_1() -> None:
+    folders = [concept["folder"] for concept in CONCEPTS_1]
+    assert folders == [f"1_{index:02d}" for index in range(1, 13)]
+    assert sum(1 for concept in CONCEPTS_1 if concept["kind"] == "new") == 1
+    assert sum(1 for concept in CONCEPTS_1 if concept["kind"] == "analog") == 11
+
+
 def test_cli_help() -> None:
     result = subprocess.run(
         [sys.executable, "-m", "course_kit.cli", "check", "--help"],
@@ -52,6 +59,7 @@ def test_cli_help() -> None:
     assert result.returncode == 0, result.stdout + result.stderr
     assert "m0a" in result.stdout
     assert "m0b" in result.stdout
+    assert "m1" in result.stdout
 
 
 def test_cli_module_is_callable() -> None:
