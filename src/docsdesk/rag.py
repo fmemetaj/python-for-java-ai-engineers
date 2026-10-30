@@ -132,6 +132,7 @@ class RagDesk:
             if client is not None
             else FakeLLM(structured={key: dict(value) for key, value in self._scripts.items()})
         )
+        self.last_response: LLMResponse | None = None
 
     def retrieve(self, question: str, *, k: int | None = None) -> list[dict[str, object]]:
         take = k if k is not None else self.k
@@ -147,6 +148,7 @@ class RagDesk:
             question,
             instructions=f"{self.instructions}\n\n{context}",
         )
+        self.last_response = response
         return self._parse(question, response, hits)
 
     def _parse(

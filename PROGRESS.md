@@ -136,6 +136,23 @@ Start at [modules/6-evals-observability-prod/README.md](modules/6-evals-observab
 - [ ] [Deliverable: DocsDesk production layer](modules/6-evals-observability-prod/README.md)
 - [ ] `uv run course check m6`
 
+## Module 7 — Capstone: DocsDesk v1.0
+
+Start at [modules/7-capstone/README.md](modules/7-capstone/README.md). Analog concepts can be skipped on a passing skip test. **NEW** concepts are still recommended.
+
+- [ ] [7.1 Capstone briefs](concepts/7_01/README.md) — NEW
+- [ ] [7.2 Architecture of v1.0](concepts/7_02/README.md) — Analog
+- [ ] [7.3 Integrated ask path](concepts/7_03/README.md) — NEW
+- [ ] [7.4 Eval report as a CI gate](concepts/7_04/README.md) — NEW
+- [ ] [7.5 Cost report per 100](concepts/7_05/README.md) — NEW
+- [ ] [7.6 Threat model](concepts/7_06/README.md) — NEW
+- [ ] [7.7 Portfolio README + demo](concepts/7_07/README.md) — Analog
+- [ ] [Deliverable: DocsDesk v1.0 + portfolio](modules/7-capstone/README.md)
+- [ ] [Architecture diagram](modules/7-capstone/architecture.md)
+- [ ] [Portfolio / README guide](modules/7-capstone/PORTFOLIO.md)
+- [ ] [Five-minute demo script](modules/7-capstone/DEMO.md)
+- [ ] `uv run course check m7`
+
 ## Original notebooks (optional explainers)
 
 - [ ] [00 · Getting Started](notebooks/00_getting_started.ipynb)

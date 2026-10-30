@@ -7,6 +7,9 @@ Module 4: embeddings, in-memory vector search, RAG over a Spring fixture, retrie
 Module 5: triage-mode agent loop, memory, traces, approval gate, agent evals.
 Module 6: judge + CI gate, JSON logs / request ids, cache, budgets, injection suite,
 optional FastAPI (no bound port in CI).
+Module 7: DocsDesk v1.0 capstone — RAG + citations, approval-gated agent,
+evals as a CI gate (≥30 cases), tracing, cost budgets, optional FastAPI,
+portfolio reports (eval, cost, threat model, README/demo).
 Everything essential runs offline (`LLM_PROVIDER=fake`, fixture HTTP transport).
 """
 
@@ -16,6 +19,7 @@ from .client import DocsClient
 from .evals import EvalReport, format_live_rate, run_docsdesk_eval
 from .gate import eval_gate
 from .prod_eval import run_injection_suite, run_m6_eval
+from .portfolio import CostReport, build_cost_report, run_v1_eval
 from .production import ProductionDesk, ProductionResult
 from .logging_setup import RedactingFilter, configure_logging
 from .models import (
@@ -34,11 +38,14 @@ from .session import DeskSession, Turn, default_session, load_instructions
 from .settings import Settings
 from .tools import ToolBlockedError, ToolRunner
 from .triage import TriageDesk
+from .v1 import DocsDeskV1, V1Result, V1_VERSION
 
 __all__ = [
     "AgentEvalReport",
     "Citation",
+    "CostReport",
     "DeskSession",
+    "DocsDeskV1",
     "DocPage",
     "DocsClient",
     "DocsDesk",
@@ -59,6 +66,9 @@ __all__ = [
     "TriageReport",
     "Turn",
     "TypedAnswer",
+    "V1Result",
+    "V1_VERSION",
+    "build_cost_report",
     "configure_logging",
     "default_docsdesk",
     "default_session",
@@ -71,4 +81,5 @@ __all__ = [
     "run_injection_suite",
     "run_m6_eval",
     "run_retrieval_eval",
+    "run_v1_eval",
 ]

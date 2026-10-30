@@ -1,4 +1,4 @@
-"""`python -m docsdesk` — demo, eval, triage, or eval-agent."""
+"""`python -m docsdesk` — demo, eval, triage, v1, or portfolio reports."""
 
 from __future__ import annotations
 
@@ -40,6 +40,11 @@ def _demo() -> int:
         result = prod.ask("How do clients authenticate?")
         print(result.summary())
         print(result.log_line)
+    from .v1 import DocsDeskV1
+
+    with DocsDeskV1(approved=True) as v1:
+        for item in v1.demo():
+            print(item.summary())
     return 0
 
 
@@ -86,6 +91,38 @@ def _eval_injection() -> int:
     return 0 if report.failed == 0 else 1
 
 
+def _v1() -> int:
+    from .v1 import DocsDeskV1
+
+    with DocsDeskV1(approved=True) as desk:
+        for item in desk.demo():
+            print(item.summary())
+            print(item.log_line)
+    return 0
+
+
+def _eval_v1() -> int:
+    from .portfolio import capstone_gate_ok, print_eval_report, run_v1_eval
+
+    report = run_v1_eval(provider="fake")
+    print_eval_report(report)
+    return 0 if capstone_gate_ok(report) else 1
+
+
+def _cost_report() -> int:
+    from .portfolio import build_cost_report, print_cost_report
+
+    print_cost_report(build_cost_report())
+    return 0
+
+
+def _portfolio() -> int:
+    from .portfolio import print_portfolio
+
+    print_portfolio()
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     if args[:1] == ["eval"]:
@@ -98,6 +135,14 @@ def main(argv: list[str] | None = None) -> int:
         return _eval_prod()
     if args[:1] == ["eval-injection"]:
         return _eval_injection()
+    if args[:1] == ["v1"]:
+        return _v1()
+    if args[:1] == ["eval-v1"]:
+        return _eval_v1()
+    if args[:1] == ["cost-report"]:
+        return _cost_report()
+    if args[:1] == ["portfolio"]:
+        return _portfolio()
     return _demo()
 
 

@@ -1,6 +1,6 @@
 # Course documentation
 
-Planning, research, and setup notes for this repository. The runnable course starts at [Module 0A](../modules/0a-fundamentals/README.md) and continues through [Module 6](../modules/6-evals-observability-prod/README.md). The notebooks in `notebooks/` plus `guides/` remain as optional explainers.
+Planning, research, and setup notes for this repository. The runnable course starts at [Module 0A](../modules/0a-fundamentals/README.md) and continues through [Module 7](../modules/7-capstone/README.md). The notebooks in `notebooks/` plus `guides/` remain as optional explainers.
 
 ## Setup
 

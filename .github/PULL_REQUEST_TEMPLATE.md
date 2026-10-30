@@ -17,7 +17,7 @@ Run from the repository root:
 - [ ] `uv run pytest -q` (Gradio tests skip unless the demo group is installed)
 - [ ] `uv run ruff check src tests scripts examples concepts placement fundamentals`
 - [ ] `uv run ruff format --check src tests scripts examples concepts placement fundamentals`
-- [ ] `uv run course check m0a --solutions` / `m0b` / `m1` / `m2` / `m3` / `m4` / `m5` / `m6 --solutions` (when those modules change)
+- [ ] `uv run course check m0a --solutions` / `m0b` / `m1` / `m2` / `m3` / `m4` / `m5` / `m6` / `m7 --solutions` (when those modules change)
 - [ ] `uv run pyright` (install `--group demo` so `examples/gradio_app.py` type-checks)
 - [ ] `uv run pytest --nbmake --nbmake-timeout=120 notebooks/`
 

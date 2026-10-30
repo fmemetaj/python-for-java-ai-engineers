@@ -1,0 +1,33 @@
+{
+  "version": "docsdesk_m7.v1",
+  "min_cases": 30,
+  "provider": "fake",
+  "notes": "Capstone bundle. Cases are executed by docsdesk.portfolio.run_v1_eval from the Module 3–6 fixtures. Offline FakeLLM + FakeEmbedder only.",
+  "sources": [
+    {
+      "id": "m3",
+      "path": "data/evals/docsdesk_m3.json",
+      "kind": "golden"
+    },
+    {
+      "id": "m4",
+      "path": "data/evals/docsdesk_m4.json",
+      "kind": "retrieval"
+    },
+    {
+      "id": "m5",
+      "path": "data/evals/docsdesk_m5.json",
+      "kind": "agent"
+    },
+    {
+      "id": "m6",
+      "path": "data/evals/docsdesk_m6.json",
+      "kind": "prod"
+    },
+    {
+      "id": "injection",
+      "path": "data/evals/docsdesk_injection.json",
+      "kind": "injection"
+    }
+  ]
+}

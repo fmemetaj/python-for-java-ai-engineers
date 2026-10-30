@@ -14,6 +14,7 @@ import importlib
 from typing import Any
 
 from .production import ProductionDesk
+from .v1 import DocsDeskV1
 
 
 def health_payload() -> dict[str, str]:
@@ -36,7 +37,7 @@ def fastapi_available() -> bool:
     return True
 
 
-def create_app(desk: ProductionDesk | None = None) -> Any:
+def create_app(desk: ProductionDesk | None = None, v1: DocsDeskV1 | None = None) -> Any:
     """Build a FastAPI app. Raises RuntimeError if the optional extra is missing."""
     try:
         fastapi = importlib.import_module("fastapi")
@@ -46,8 +47,9 @@ def create_app(desk: ProductionDesk | None = None) -> Any:
         ) from exc
     FastAPI = fastapi.FastAPI
     HTTPException = fastapi.HTTPException
-    app = FastAPI(title="DocsDesk", version="0.6")
+    app = FastAPI(title="DocsDesk", version="1.0")
     holder = desk if desk is not None else ProductionDesk()
+    v1_holder = v1 if v1 is not None else DocsDeskV1()
 
     @app.get("/health")
     def health() -> dict[str, str]:
@@ -71,6 +73,29 @@ def create_app(desk: ProductionDesk | None = None) -> Any:
             "blocked": result.blocked,
             "model": result.model,
         }
+
+    @app.post("/v1/ask")
+    def v1_ask(body: dict[str, Any]) -> dict[str, Any]:
+        raw = body.get("question")
+        if not isinstance(raw, str):
+            raise HTTPException(status_code=422, detail="question must be a string")
+        try:
+            question = validate_question(raw)
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+        return v1_holder.ask(question).as_dict()
+
+    @app.post("/v1/investigate")
+    def v1_investigate(body: dict[str, Any]) -> dict[str, Any]:
+        raw = body.get("incident")
+        if not isinstance(raw, str):
+            raise HTTPException(status_code=422, detail="incident must be a string")
+        try:
+            incident = validate_question(raw)
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+        approved = bool(body.get("approved", False))
+        return v1_holder.investigate(incident, approved=approved).as_dict()
 
     return app
 
