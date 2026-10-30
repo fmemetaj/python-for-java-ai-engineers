@@ -13,10 +13,31 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+MIN_JAVAC_MAJOR = 21
 
 
 def java_files() -> list[Path]:
     return sorted((ROOT / "concepts").glob("*/java/*.java"))
+
+
+def javac_major_version(javac: str) -> int | None:
+    """Return the javac major version, or None if it cannot be parsed."""
+    result = subprocess.run(
+        [javac, "-version"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    text = f"{result.stdout} {result.stderr}"
+    for token in text.replace("\n", " ").split():
+        if token[:1].isdigit() and "." in token:
+            try:
+                return int(token.split(".", 1)[0])
+            except ValueError:
+                return None
+        if token.isdigit():
+            return int(token)
+    return None
 
 
 def compile_all(*, javac: str) -> int:
@@ -59,6 +80,13 @@ def main(argv: list[str] | None = None) -> int:
     if shutil.which(args.javac) is None and not Path(args.javac).is_file():
         print("javac not found. Install JDK 21 or skip this script locally.")
         return 2
+    major = javac_major_version(args.javac)
+    if major is None or major < MIN_JAVAC_MAJOR:
+        print(
+            f"javac {major} cannot compile -source {MIN_JAVAC_MAJOR}. "
+            "Install JDK 21 (CI does this) or skip this script locally."
+        )
+        return 3
     return compile_all(javac=args.javac)
 
 
