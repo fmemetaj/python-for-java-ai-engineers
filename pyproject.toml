@@ -19,7 +19,7 @@ docsdesk = "docsdesk.__main__:main"
 
 [dependency-groups]
 dev = [
-    "ipykernel>=6.29,<7",
+    "ipykernel>=6.29,<8",
     "jupyterlab>=4.3,<5",
     "nbclient>=0.10,<1",
     "nbformat>=5.10,<6",
